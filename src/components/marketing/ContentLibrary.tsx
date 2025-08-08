@@ -8,19 +8,11 @@ import type { LucideIcon } from "lucide-react";
 
 // Phase categories (daily moments)
 const phases = [
-  { id: "rano-rutina", label: "Ranní rutina", emoji: "🌅" },
-  { id: "kava", label: "Ranní káva/snídaně", emoji: "☕" },
-  { id: "cesta-do", label: "Cesta do práce/školy", emoji: "🚗" },
-  { id: "dopoledne", label: "Krátká dopolední pauza", emoji: "☀️" },
-  { id: "obed", label: "Polední přestávka", emoji: "🥗" },
-  { id: "denni-rutina", label: "Pravidelná denní rutina", emoji: "🔁" },
-  { id: "odpoledni-unava", label: "Odpolední únava", emoji: "💤" },
-  { id: "cesta-zpět", label: "Cesta z práce/školy domů", emoji: "🚌" },
-  { id: "vecerni-klid", label: "Večerní klidová chvíle", emoji: "🌇" },
-  { id: "vecerni-rutina", label: "Večerní rutina/usínání", emoji: "🌙🛏️" },
-  { id: "rodice", label: "Večerní rutina/rodiče s dětmi", emoji: "📖😴" },
-  { id: "vikend", label: "Víkendový čas", emoji: "🧘🌿" },
-  { id: "dovolena", label: "Dovolená/prázdniny", emoji: "🏖️🏔️🧘‍♀️👨‍👩‍👧‍👦" },
+  { id: "rano-rutina", label: "Ranní rutina", icon: "alarm-outline" },
+  { id: "cesta-do", label: "Cesta do práce/školy", icon: "bus-outline" },
+  { id: "obed", label: "Polední přestávka", icon: "restaurant-outline" },
+  { id: "vecerni-klid", label: "Večerní klidová chvíle", icon: "moon-outline" },
+  { id: "rodice", label: "Večerní rutina/rodiče s dětmi", icon: "sparkles-outline" },
 ] as const;
 
 // Formats
@@ -31,10 +23,7 @@ const formats: Format[] = [
   { id: "meditace", label: "Meditace", icon: Headphones },
   { id: "afirmace", label: "Afirmace", icon: Type },
   { id: "hudba", label: "Hudba", icon: Headphones },
-  { id: "priroda", label: "Zvuky přírody", icon: Headphones },
-  { id: "meditace-pribeh", label: "Meditace s příběhem", icon: Headphones },
   { id: "usinani", label: "Příběhy na usínání", icon: Headphones },
-  { id: "vyzvy", label: "Výzvy a úkoly", icon: ListChecks },
 ];
 
 // Sample library items (placeholders)
@@ -61,7 +50,7 @@ const items: Item[] = [
   {
     id: "i2",
     title: "Jemná 3min ranní meditace",
-    phase: "kava",
+    phase: "cesta-do",
     format: "meditace",
     type: "audio",
     duration: "3 min",
@@ -70,19 +59,10 @@ const items: Item[] = [
   {
     id: "i3",
     title: "Afirmace na sebe‑soucit",
-    phase: "dopoledne",
+    phase: "obed",
     format: "afirmace",
     type: "text",
     sample: "Jsem k sobě laskavý/á. Dýchám, nechávám odejít napětí.",
-  },
-  {
-    id: "i4",
-    title: "Zvuky moře",
-    phase: "obed",
-    format: "priroda",
-    type: "audio",
-    duration: "1 min",
-    sample: "/media/sample-audio.mp3",
   },
   {
     id: "i5",
@@ -96,19 +76,11 @@ const items: Item[] = [
   {
     id: "i6",
     title: "Příběh na usínání: Klidná louka",
-    phase: "vecerni-rutina",
+    phase: "rodice",
     format: "usinani",
     type: "audio",
     duration: "8 min",
     sample: "/media/sample-audio.mp3",
-  },
-  {
-    id: "i7",
-    title: "Mini‑výzva: 3 vděčnosti",
-    phase: "denni-rutina",
-    format: "vyzvy",
-    type: "text",
-    sample: "Zapište si 3 věci, za které dnes děkujete.",
   },
 ];
 
@@ -144,9 +116,7 @@ const ContentLibrary = () => {
                 className="rounded-full"
                 title={`${p.label}`}
               >
-                <span className="mr-1" aria-hidden>
-                  {p.emoji}
-                </span>
+                <ion-icon name={p.icon} className="mr-2" aria-hidden="true"></ion-icon>
                 {p.label}
               </Button>
             ))}
