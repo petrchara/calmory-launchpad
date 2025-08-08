@@ -304,7 +304,7 @@ const ContentLibrary = () => {
       <div className="container mx-auto px-6">
         <header className="max-w-2xl mx-auto text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold">Knihovna obsahu</h2>
-          <p className="mt-4 text-muted-foreground">Procházejte krátké ukázky podle denní fáze a formátu.</p>
+          <p className="mt-4 text-muted-foreground">Objevujte svět Calmory v krátkých ochutnávkách – od ranního probuzení přes klidné poledne až po večerní ztišení. Tady máte drobnou ochutnávku toho, co můžete v aplikaci nalézt. Procházejte obsah podle denní fáze a formátu, poslouchejte ukázky a nechte se vést hudbou, příběhy, dechovými technikami i meditacemi, které přinášejí klid a radost do každé části dne.</p>
         </header>
 
         {/* Phases selector */}

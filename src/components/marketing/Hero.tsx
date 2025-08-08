@@ -29,17 +29,15 @@ const Hero = () => {
               <span className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold bg-secondary/60 text-secondary-foreground">
                 <Sparkles className="size-4" /> Spuštění za 2 měsíce
               </span>
-              <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
+              <h1 className="mt-6 text-3xl md:text-5xl font-extrabold leading-tight">
                 Calmory App – terapeutická mobilní aplikace pro klidnější mysl
               </h1>
               <p className="mt-4 text-lg text-muted-foreground max-w-prose">
-                Zvládejte stres a úzkost s cvičeními vycházejícími z ověřených
-                terapeutických přístupů. Připojte se k čekací listině a získejte
-                brzký přístup a exkluzivní tipy.
+                Klidnější mysl, lehčí dech, více radosti. Objevte techniky a příběhy, které pomáhají zvládat stres a přinášejí pohodu. Přidejte se k nám ještě před spuštěním a získejte přístup dřív než ostatní.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
                 <Button asChild variant="hero" size="lg">
-                  <a href="#cekaci-listina">Přidat se na čekací listinu</a>
+                  <a href="#cekaci-listina">Přidat se pro přednostní přístup</a>
                 </Button>
                 <Button variant="outline" size="lg">
                   Již brzy pro iOS a Android
