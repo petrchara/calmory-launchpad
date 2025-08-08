@@ -4,6 +4,7 @@ import Hero from "@/components/marketing/Hero";
 import Features from "@/components/marketing/Features";
 import ContentCarousel from "@/components/marketing/ContentCarousel";
 import ContentLibrary from "@/components/marketing/ContentLibrary";
+import BlogHomeSection from "@/components/marketing/BlogHomeSection";
 import WaitlistForm from "@/components/marketing/WaitlistForm";
 import Testimonials from "@/components/marketing/Testimonials";
 import Trust from "@/components/marketing/Trust";
