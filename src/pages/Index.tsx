@@ -5,6 +5,7 @@ import Features from "@/components/marketing/Features";
 import ContentCarousel from "@/components/marketing/ContentCarousel";
 import WaitlistForm from "@/components/marketing/WaitlistForm";
 import Testimonials from "@/components/marketing/Testimonials";
+import Trust from "@/components/marketing/Trust";
 import Experts from "@/components/marketing/Experts";
 import FAQ from "@/components/marketing/FAQ";
 import Footer from "@/components/marketing/Footer";
@@ -59,6 +60,7 @@ const Index = () => {
       <Features />
       <ContentCarousel />
       <Testimonials />
+      <Trust />
       <WaitlistForm />
       <Experts />
       <FAQ />
