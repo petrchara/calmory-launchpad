@@ -4,6 +4,7 @@ import Hero from "@/components/marketing/Hero";
 import Features from "@/components/marketing/Features";
 import ContentCarousel from "@/components/marketing/ContentCarousel";
 import WaitlistForm from "@/components/marketing/WaitlistForm";
+import Testimonials from "@/components/marketing/Testimonials";
 import Experts from "@/components/marketing/Experts";
 import FAQ from "@/components/marketing/FAQ";
 import Footer from "@/components/marketing/Footer";
@@ -57,6 +58,7 @@ const Index = () => {
       <Hero />
       <Features />
       <ContentCarousel />
+      <Testimonials />
       <WaitlistForm />
       <Experts />
       <FAQ />
