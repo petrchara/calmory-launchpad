@@ -16,11 +16,6 @@ const features = [
     description: "Přizpůsobené programy, sledování pokroku a jemná motivace bez tlaku.",
     icon: Moon,
   },
-  {
-    title: "Plány a připomínky",
-    description: "Chytré připomínky a týdenní souhrny, které drží směr a tempo.",
-    icon: CalendarCheck,
-  },
 ];
 
 const Features = () => {
@@ -33,7 +28,7 @@ const Features = () => {
             Praktický průvodce pro klidnější den – v kapse, kdykoliv ho potřebujete.
           </p>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((f) => (
             <div key={f.title} className="glass-card rounded-xl p-6">
               <f.icon className="size-6 text-primary" />
