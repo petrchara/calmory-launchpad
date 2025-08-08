@@ -1,14 +1,53 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "@/components/marketing/Navbar";
 import Footer from "@/components/marketing/Footer";
 import { Badge } from "@/components/ui/badge";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Button } from "@/components/ui/button";
+import { Play, Pause, Square } from "lucide-react";
 import { getPostBySlug } from "@/data/blog";
 
 const BlogPost = () => {
   const { slug } = useParams();
   const post = getPostBySlug(slug || "");
+
+  // Text-to-Speech (TTS) pro audio verzi článku
+  const [isPlaying, setIsPlaying] = useState(false);
+  const utterRef = useRef<SpeechSynthesisUtterance | null>(null);
+
+  const handlePlayPause = () => {
+    const synth = window.speechSynthesis;
+    if (!synth || !post) return;
+
+    if (synth.speaking && !synth.paused) {
+      synth.pause();
+      setIsPlaying(false);
+      return;
+    }
+    if (synth.paused) {
+      synth.resume();
+      setIsPlaying(true);
+      return;
+    }
+
+    const utter = new SpeechSynthesisUtterance(`${post.title}. ${post.content.join(" ")}`);
+    utter.lang = "cs-CZ";
+    utter.rate = 1;
+    utter.onend = () => setIsPlaying(false);
+    utter.onerror = () => setIsPlaying(false);
+    utterRef.current = utter;
+    setIsPlaying(true);
+    synth.speak(utter);
+  };
+
+  const handleStop = () => {
+    const synth = window.speechSynthesis;
+    if (!synth) return;
+    synth.cancel();
+    setIsPlaying(false);
+    utterRef.current = null;
+  };
 
   useEffect(() => {
     if (!post) return;
@@ -59,6 +98,16 @@ const BlogPost = () => {
     };
     ld.textContent = JSON.stringify(jsonLd);
   }, [post]);
+
+  useEffect(() => {
+    return () => {
+      try {
+        window.speechSynthesis?.cancel();
+      } catch {}
+      setIsPlaying(false);
+      utterRef.current = null;
+    };
+  }, [post?.slug]);
 
   if (!post) {
     return (
