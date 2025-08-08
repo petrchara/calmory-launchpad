@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { PlayCircle, PauseCircle, Headphones, Video } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import type { LucideIcon } from "lucide-react";
 
 // Phase categories (daily moments)
@@ -295,7 +296,7 @@ const ContentLibrary = () => {
   const [playingId, setPlayingId] = useState<string | null>(null);
 
   const filtered = useMemo(() => {
-    return items.filter((it) => it.phase === activePhase);
+    return items.filter((it) => it.phase === activePhase).slice(0, 3);
   }, [activePhase]);
 
   const onPlay = (id: string) => setPlayingId((p) => (p === id ? null : id));
@@ -305,7 +306,7 @@ const ContentLibrary = () => {
       <div className="container mx-auto px-6">
         <header className="max-w-2xl mx-auto text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold">Knihovna obsahu</h2>
-          <p className="mt-4 text-muted-foreground">Objevujte svět Calmory v krátkých ochutnávkách – od ranního probuzení přes klidné poledne až po večerní ztišení. Tady máte drobnou ochutnávku toho, co můžete v aplikaci nalézt. Procházejte obsah podle denní fáze, poslouchejte ukázky a nechte se vést hudbou, příběhy, dechovými technikami i meditacemi, které přinášejí klid a radost do každé části dne.</p>
+          <p className="mt-4 text-muted-foreground">Objevujte svět Calmory v krátkých ochutnávkách – od ranního probuzení přes klidné poledne až po večerní ztišení. Takovýto obsah v aplikaci naleznete.</p>
         </header>
 
         {/* Phases selector */}
@@ -329,8 +330,73 @@ const ContentLibrary = () => {
         </div>
 
 
-        {/* Items grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Items - mobile swipe */}
+        <div className="md:hidden">
+          {filtered.length === 0 ? (
+            <div className="text-center text-sm text-muted-foreground">Pro tuto fázi zatím nemáme ukázky.</div>
+          ) : (
+            <Carousel opts={{ align: "start", containScroll: "trimSnaps" }}>
+              <CarouselContent>
+                {filtered.map((it) => (
+                  <CarouselItem key={it.id} className="basis-[85%] pr-1">
+                    <Card className="glass-card animate-fade-in">
+                      <CardHeader>
+                        <div className="flex items-start justify-between gap-4">
+                          <div>
+                            <CardTitle className="text-lg">{it.title}</CardTitle>
+                            <div className="mt-2 flex items-center gap-2">
+                              {(() => {
+                                const Icon = formats.find((f) => f.id === it.format)?.icon;
+                                return Icon ? <Icon className="size-4 text-muted-foreground" aria-hidden="true" /> : null;
+                              })()}
+                              <Badge variant="secondary">{formats.find((f) => f.id === it.format)?.label}</Badge>
+                              {it.duration ? <span className="text-xs text-muted-foreground">{it.duration}</span> : null}
+                            </div>
+                          </div>
+                          {it.type !== "text" ? (
+                            <Button variant="outline" size="sm" onClick={() => onPlay(it.id)} aria-label="Přehrát ukázku">
+                              {playingId === it.id ? (
+                                <PauseCircle className="size-4" />
+                              ) : it.type === "audio" ? (
+                                <PlayCircle className="size-4" />
+                              ) : (
+                                <Video className="size-4" />
+                              )}
+                            </Button>
+                          ) : null}
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="mb-3">
+                          <AspectRatio ratio={16/9}>
+                            <img
+                              src="/placeholder.svg"
+                              alt={`Ilustrační obrázek: ${it.title}`}
+                              loading="lazy"
+                              className="h-full w-full rounded object-cover"
+                            />
+                          </AspectRatio>
+                        </div>
+                        {it.type === "audio" && playingId === it.id && it.sample ? (
+                          <audio className="w-full" controls autoPlay src={it.sample} aria-label={`Ukázka: ${it.title}`}></audio>
+                        ) : null}
+                        {it.type === "video" && playingId === it.id && it.sample ? (
+                          <video className="w-full rounded" controls autoPlay src={it.sample} aria-label={`Ukázka: ${it.title}`}></video>
+                        ) : null}
+                        {it.type === "text" && it.sample ? (
+                          <p className="text-sm text-muted-foreground">{it.sample}</p>
+                        ) : null}
+                      </CardContent>
+                    </Card>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          )}
+        </div>
+
+        {/* Items - desktop grid (3 per row) */}
+        <div className="hidden md:grid grid-cols-3 gap-6">
           {filtered.map((it) => (
             <Card key={it.id} className="glass-card animate-fade-in">
               <CardHeader>
