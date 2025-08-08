@@ -38,48 +38,121 @@ interface Item {
 }
 
 const items: Item[] = [
+  // Ranní rutina
   {
     id: "i1",
-    title: "1–2 minuty vědomého dechu",
+    title: "Dýchej, jen dýchej",
     phase: "rano-rutina",
     format: "dychani",
-    type: "audio",
-    duration: "2 min",
-    sample: "/media/sample-audio.mp3",
-  },
-  {
-    id: "i2",
-    title: "Jemná 3min ranní meditace",
-    phase: "cesta-do",
-    format: "meditace",
     type: "audio",
     duration: "3 min",
     sample: "/media/sample-audio.mp3",
   },
   {
-    id: "i3",
-    title: "Afirmace na sebe‑soucit",
-    phase: "obed",
-    format: "afirmace",
+    id: "i2",
+    title: "Lesní tanec bez hranic",
+    phase: "rano-rutina",
+    format: "hudba",
     type: "text",
-    sample: "Jsem k sobě laskavý/á. Dýchám, nechávám odejít napětí.",
+    sample:
+      "Skladba plná radosti, hravého pohybu a uvolnění. Pomalý rytmus jako bosé kroky na mechu, jemné perkuse a smyčce, které rozvibrovávají tělo i srdce.",
+  },
+
+  // Cesta do práce/školy
+  {
+    id: "i3",
+    title: "Rytmus cesty",
+    phase: "cesta-do",
+    format: "hudba",
+    type: "audio",
+    duration: "4 min",
+    sample: "/media/sample-audio.mp3",
   },
   {
+    id: "i4",
+    title: "Tanec bez pravidel",
+    phase: "cesta-do",
+    format: "hudba",
+    type: "text",
+    sample:
+      "Jemná, živá skladba plná pohybu a lehkosti. Letní tanec bez hranic – svobodný, hravý, vroucný. Hudba, která tě zve pohybem zpět k sobě.",
+  },
+
+  // Polední přestávka
+  {
     id: "i5",
-    title: "Krátká večerní meditace",
-    phase: "vecerni-klid",
+    title: "Kruhy na vodě a ty",
+    phase: "obed",
     format: "meditace",
-    type: "video",
-    duration: "5 min",
-    sample: "/media/sample-video.mp4",
+    type: "text",
+    sample:
+      "Na hladinu dopadá jemný déšť. Vznikají kruhy – jako myšlenky a pocity. Hudba tě nese jako klidná voda, bez cíle a bez tlaku.",
   },
   {
     id: "i6",
-    title: "Příběh na usínání: Klidná louka",
+    title: "Vzpomínka vonící tichem",
+    phase: "obed",
+    format: "meditace",
+    type: "text",
+    sample:
+      "Zavřené oči, dech se zpomalí, v dálce obzory. Pomalý klavír a jemné smyčce připomínají chvíli, kdy bylo všechno v pořádku.",
+  },
+
+  // Večerní klidová chvíle
+  {
+    id: "i7",
+    title: "Aurinka – Srdce lesa",
+    phase: "vecerni-klid",
+    format: "hudba",
+    type: "audio",
+    duration: "5 min",
+    sample: "/media/sample-audio.mp3",
+  },
+  {
+    id: "i8",
+    title: "Kruhy na vodě",
+    phase: "vecerni-klid",
+    format: "meditace",
+    type: "audio",
+    duration: "6 min",
+    sample: "/media/sample-audio.mp3",
+  },
+  {
+    id: "i9",
+    title: "Bubny na jezeře",
+    phase: "vecerni-klid",
+    format: "hudba",
+    type: "text",
+    sample:
+      "Pravidelný tlukot jemných bubnů, vlnění těla a odplouvající stres. Zůstává jen klid, mír a láska.",
+  },
+
+  // Večerní rutina/rodiče s dětmi
+  {
+    id: "i10",
+    title: "Aurinka lesní víla",
+    phase: "rodice",
+    format: "hudba",
+    type: "text",
+    sample:
+      "Jemná, pečující skladba jako dotek lesní víly. Harfové vrstvy a zemitá brumenda plynou jako míza pod lesní půdou.",
+  },
+  {
+    id: "i11",
+    title: "Levandulové nebe",
+    phase: "rodice",
+    format: "hudba",
+    type: "audio",
+    duration: "4 min",
+    sample: "/media/sample-audio.mp3",
+  },
+  {
+    id: "i12",
+    title: "Ozvěny chaty u jezera",
     phase: "rodice",
     format: "usinani",
     type: "audio",
-    duration: "8 min",
+    duration: "7 min",
     sample: "/media/sample-audio.mp3",
   },
 ];
