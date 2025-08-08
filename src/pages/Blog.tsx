@@ -1,14 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/marketing/Navbar";
 import Footer from "@/components/marketing/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getPosts } from "@/data/blog";
 
 const Blog = () => {
-  const posts = getPosts();
+  const allPosts = getPosts();
+  const categories = useMemo(() => ["all", ...Array.from(new Set(allPosts.map((p) => p.category)))], [allPosts]);
+  const [active, setActive] = useState<string>("all");
+  const posts = useMemo(() => (active === "all" ? allPosts : allPosts.filter((p) => p.category === active)), [active, allPosts]);
 
   useEffect(() => {
     document.title = "Blog Calmory – terapeutické články";
@@ -60,6 +64,17 @@ const Blog = () => {
             <p className="mt-4 text-muted-foreground">Praktické návody a laskavé tipy pro klidnější den.</p>
           </header>
 
+          {/* Kategorie filtrování */}
+          <Tabs value={active} onValueChange={(v) => setActive(v)} className="mb-6">
+            <TabsList className="flex flex-wrap gap-2">
+              {categories.map((c) => (
+                <TabsTrigger key={c} value={c} className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                  {c === "all" ? "Vše" : c}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </Tabs>
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {posts.map((p) => (
               <Link key={p.slug} to={`/blog/${p.slug}`} className="group block focus:outline-none focus:ring-2 focus:ring-primary rounded-lg">
@@ -82,6 +97,10 @@ const Blog = () => {
               </Link>
             ))}
           </div>
+
+          {posts.length === 0 ? (
+            <p className="mt-6 text-center text-sm text-muted-foreground">Pro vybranou kategorii zatím nemáme články.</p>
+          ) : null}
         </div>
       </section>
       <Footer />
