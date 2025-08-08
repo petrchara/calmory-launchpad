@@ -1,6 +1,8 @@
 import React from "react";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import heroImg from "@/assets/calmory-hero.jpg";
 
 interface AbecedaItem {
@@ -57,7 +59,13 @@ const TherapyAlphabet = () => {
           </p>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mb-8 flex justify-center md:justify-end">
+          <Button asChild>
+            <Link to="/abeceda" aria-label="Zobrazit vše – Terapeutická abeceda">All</Link>
+          </Button>
+        </div>
+
+        <div className="grid grid-cols-3 gap-6">
           {items.map((it, idx) => (
             <article key={it.title} itemScope itemType="https://schema.org/HowTo">
               <Card className="h-full overflow-hidden">
