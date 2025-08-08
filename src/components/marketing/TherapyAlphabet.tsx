@@ -42,7 +42,7 @@ const items: AbecedaItem[] = [
   ...articleItems,
 ];
 
-const TherapyAlphabet = () => {
+const TherapyAlphabet = ({ showAllButton = true }: { showAllButton?: boolean }) => {
   const ld = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -73,11 +73,13 @@ const TherapyAlphabet = () => {
           </p>
         </div>
 
-        <div className="mb-8 flex justify-center md:justify-end">
-          <Button asChild>
-            <Link to="/abeceda" aria-label="Zobrazit vše – Terapeutická abeceda">All</Link>
-          </Button>
-        </div>
+        {showAllButton && (
+          <div className="mb-8 flex justify-center md:justify-end">
+            <Button asChild>
+              <Link to="/abeceda" aria-label="Zobrazit vše – Terapeutická abeceda">Zobrazit vše</Link>
+            </Button>
+          </div>
+        )}
 
         <div className="grid grid-cols-3 gap-6">
           {items.map((it, idx) => (
