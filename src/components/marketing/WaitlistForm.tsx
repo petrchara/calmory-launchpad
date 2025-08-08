@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
@@ -6,12 +6,33 @@ import { toast } from "sonner";
 const STORAGE_KEY = "calmory_waitlist";
 
 const WaitlistForm = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [agree, setAgree] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [hp, setHp] = useState(""); // honeypot
+  const [meta, setMeta] = useState({
+    utm_source: "",
+    utm_medium: "",
+    utm_campaign: "",
+    referrer: "",
+  });
+
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      setMeta({
+        utm_source: params.get("utm_source") || "",
+        utm_medium: params.get("utm_medium") || "",
+        utm_campaign: params.get("utm_campaign") || "",
+        referrer: document.referrer || "",
+      });
+    } catch {}
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (hp) return; // bot ochrana
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       toast.error("Zadejte platný e‑mail.");
       return;
@@ -24,11 +45,28 @@ const WaitlistForm = () => {
     setLoading(true);
     try {
       const prev = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-      const record = { email, ts: Date.now() };
+      const exists = prev.find((p: any) => p.email?.toLowerCase() === email.toLowerCase());
+      if (exists) {
+        toast.success("Děkujeme! Tento e‑mail už je na seznamu.");
+        setEmail("");
+        setAgree(false);
+        setName("");
+        return;
+      }
+
+      const record = {
+        email,
+        name: name || undefined,
+        consent: agree,
+        source: "waitlist-section",
+        ...meta,
+        created_at: new Date().toISOString(),
+      };
       localStorage.setItem(STORAGE_KEY, JSON.stringify([record, ...prev]));
       toast.success("Děkujeme! Brzy se vám ozveme.");
       setEmail("");
       setAgree(false);
+      setName("");
     } catch (e) {
       toast.error("Něco se pokazilo. Zkuste to prosím znovu.");
     } finally {
@@ -45,7 +83,14 @@ const WaitlistForm = () => {
             Získejte brzký přístup, slevu pro první uživatele a praktické tipy pro klidnější den.
           </p>
         </div>
-        <form onSubmit={handleSubmit} className="mt-8 max-w-xl mx-auto flex flex-col sm:flex-row gap-3">
+        <form onSubmit={handleSubmit} className="mt-8 max-w-xl mx-auto grid sm:grid-cols-[1fr_1fr_auto] gap-3">
+          <Input
+            type="text"
+            placeholder="Jméno (nepovinné)"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            aria-label="Jméno"
+          />
           <Input
             type="email"
             placeholder="Váš e‑mail"
@@ -54,7 +99,17 @@ const WaitlistForm = () => {
             aria-label="E-mail pro čekací listinu"
             required
           />
-          <Button type="submit" variant="hero" disabled={loading}>
+          {/* Honeypot pro ochranu proti botům */}
+          <input
+            type="text"
+            value={hp}
+            onChange={(e) => setHp(e.target.value)}
+            className="hidden"
+            tabIndex={-1}
+            aria-hidden="true"
+            autoComplete="off"
+          />
+          <Button type="submit" variant="hero" disabled={loading} className="hover-scale">
             {loading ? "Odesílám…" : "Chci být u toho"}
           </Button>
         </form>
@@ -66,8 +121,8 @@ const WaitlistForm = () => {
             onChange={(e) => setAgree(e.target.checked)}
             aria-label="Souhlasím se zasíláním novinek"
           />
-          Odesláním souhlasíte se zasíláním novinek. Vaše data jsou chráněna a
-          kdykoliv se můžete odhlásit.
+          Odesláním souhlasíte se zasíláním novinek a se zpracováním osobních údajů dle
+          <a href="#" className="story-link ml-1">Zásad ochrany osobních údajů</a>. Odhlášení kdykoliv jedním klikem.
         </label>
       </div>
     </section>
