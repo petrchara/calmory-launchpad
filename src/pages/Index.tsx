@@ -62,6 +62,7 @@ const Index = () => {
       <Features />
       <ContentCarousel />
       <ContentLibrary />
+      <BlogHomeSection />
       <Testimonials />
       <Trust />
       <WaitlistForm />
