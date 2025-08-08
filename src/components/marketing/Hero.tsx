@@ -41,7 +41,7 @@ const Hero = () => {
                 <Button asChild variant="hero" size="lg">
                   <a href="#cekaci-listina">Přidat se na čekací listinu</a>
                 </Button>
-                <Button variant="outline" size="lg" className="backdrop-blur">
+                <Button variant="default" size="lg">
                   Již brzy pro iOS a Android
                 </Button>
               </div>

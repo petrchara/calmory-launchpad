@@ -67,7 +67,7 @@ const PhoneMock = ({ title, description, category }: { title: string; descriptio
       <span className="text-xs font-semibold px-2 py-1 rounded-full bg-secondary/70 w-max">{category}</span>
       <h3 className="mt-3 text-xl font-bold leading-tight">{title}</h3>
       <p className="mt-2 text-sm text-muted-foreground line-clamp-2">{description}</p>
-      <button className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full btn-hero hover-scale">
+      <button className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow hover-scale">
         <Play className="size-4" />
         Spustit ukázku
       </button>

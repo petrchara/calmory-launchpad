@@ -109,7 +109,7 @@ const WaitlistForm = () => {
             aria-hidden="true"
             autoComplete="off"
           />
-          <Button type="submit" variant="hero" disabled={loading} className="hover-scale">
+          <Button type="submit" disabled={loading} className="hover-scale">
             {loading ? "Odesílám…" : "Chci být u toho"}
           </Button>
         </form>
