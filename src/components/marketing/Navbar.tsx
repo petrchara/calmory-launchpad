@@ -1,4 +1,6 @@
 import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
 
 const Navbar = () => {
   return (
@@ -16,6 +18,32 @@ const Navbar = () => {
           />
           <span>Calmory</span>
         </a>
+        {/* Mobile menu */}
+        <div className="md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" aria-label="Otevřít menu">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-72">
+              <SheetHeader>
+                <SheetTitle>Navigace</SheetTitle>
+              </SheetHeader>
+              <nav className="mt-6 grid gap-4 text-base">
+                <a href="#funkce" className="text-foreground hover:underline">Funkce a obsah aplikace</a>
+                <a href="/abeceda" className="text-foreground hover:underline">Terapeutická abeceda</a>
+                <a href="/blog" className="text-foreground hover:underline">Články a příběhy</a>
+                <a href="#faq" className="text-foreground hover:underline">FAQ</a>
+                <Button asChild className="mt-2">
+                  <a href="#cekaci-listina">Přidat se</a>
+                </Button>
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
+
+        {/* Desktop menu */}
         <div className="hidden md:flex items-center gap-6 text-sm">
           <a href="#funkce" className="text-muted-foreground hover:text-foreground transition-colors">Funkce a obsah aplikace</a>
           <a href="/abeceda" className="text-muted-foreground hover:text-foreground transition-colors">Terapeutická abeceda</a>
