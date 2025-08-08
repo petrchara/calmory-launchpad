@@ -1,14 +1,28 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getPosts } from "@/data/blog";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 
 const BlogHomeSection = () => {
   const latest = getPosts().slice(0, 3);
+  const [api, setApi] = useState<CarouselApi | null>(null);
+  const [current, setCurrent] = useState(0);
+  useEffect(() => {
+    if (!api) return;
+    const onSelect = () => setCurrent(api.selectedScrollSnap());
+    onSelect();
+    api.on("select", onSelect);
+    api.on("reInit", onSelect);
+    return () => {
+      api.off("select", onSelect);
+      api.off("reInit", onSelect);
+    };
+  }, [api]);
 
   return (
     <section id="blog-novinky" className="py-16 md:py-24">
@@ -24,7 +38,7 @@ const BlogHomeSection = () => {
         </div>
         {/* Mobile carousel */}
         <div className="md:hidden mb-6">
-          <Carousel opts={{ align: "start", containScroll: "trimSnaps" }}>
+          <Carousel setApi={setApi} opts={{ align: "start", containScroll: "trimSnaps" }}>
             <CarouselContent>
               {latest.map((p) => (
                 <CarouselItem key={p.slug} className="basis-[85%]">
@@ -53,6 +67,17 @@ const BlogHomeSection = () => {
               ))}
             </CarouselContent>
           </Carousel>
+          <div className="mt-4 flex justify-center gap-2 md:hidden" aria-label="Posuvník článků – indikátory">
+            {latest.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => api?.scrollTo(i)}
+                className={`h-2 w-2 rounded-full transition-colors ${current === i ? "bg-primary" : "bg-muted-foreground/40"}`}
+                aria-label={`Přejít na snímek ${i + 1}`}
+                aria-current={current === i ? "true" : undefined}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="hidden md:grid grid-cols-3 gap-6">

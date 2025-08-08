@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroImg from "@/assets/calmory-hero.jpg";
 import { getPosts } from "@/data/blog";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 
 interface AbecedaItem {
   category: string;
@@ -61,6 +61,19 @@ const TherapyAlphabet = ({ showAllButton = true }: { showAllButton?: boolean }) 
       position: i + 1,
     })),
   };
+  const [api, setApi] = useState<CarouselApi | null>(null);
+  const [current, setCurrent] = useState(0);
+  useEffect(() => {
+    if (!api) return;
+    const onSelect = () => setCurrent(api.selectedScrollSnap());
+    onSelect();
+    api.on("select", onSelect);
+    api.on("reInit", onSelect);
+    return () => {
+      api.off("select", onSelect);
+      api.off("reInit", onSelect);
+    };
+  }, [api]);
 
   return (
     <section id="terapeuticka-abeceda" aria-labelledby="abeceda-heading" className="py-16 md:py-24">
@@ -84,7 +97,7 @@ const TherapyAlphabet = ({ showAllButton = true }: { showAllButton?: boolean }) 
 
         {/* Mobile carousel */}
         <div className="md:hidden">
-          <Carousel opts={{ align: "start", containScroll: "trimSnaps" }}>
+          <Carousel setApi={setApi} opts={{ align: "start", containScroll: "trimSnaps" }}>
             <CarouselContent>
               {items.map((it, idx) => (
                 <CarouselItem key={it.title} className="basis-[85%]">
@@ -142,6 +155,17 @@ const TherapyAlphabet = ({ showAllButton = true }: { showAllButton?: boolean }) 
               ))}
             </CarouselContent>
           </Carousel>
+          <div className="mt-4 flex justify-center gap-2 md:hidden" aria-label="Posuvník abecedy – indikátory">
+            {items.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => api?.scrollTo(i)}
+                className={`h-2 w-2 rounded-full transition-colors ${current === i ? "bg-primary" : "bg-muted-foreground/40"}`}
+                aria-label={`Přejít na snímek ${i + 1}`}
+                aria-current={current === i ? "true" : undefined}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Desktop grid */}
