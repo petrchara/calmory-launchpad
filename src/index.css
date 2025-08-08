@@ -53,6 +53,13 @@ All colors MUST be HSL.
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Extended design tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(210 100% 98%), hsl(200 100% 96%));
+    --gradient-cta: linear-gradient(135deg, hsl(192 90% 45%), hsl(228 90% 60%));
+    --shadow-elegant: 0 20px 50px -20px hsl(var(--primary) / 0.25);
+    --shadow-glow: 0 10px 30px -10px hsl(228 90% 60% / 0.35);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
@@ -91,6 +98,13 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Extended design tokens (dark) */
+    --gradient-primary: linear-gradient(180deg, hsl(222.2 84% 6%), hsl(217.2 32.6% 17.5%));
+    --gradient-cta: linear-gradient(135deg, hsl(192 90% 45%), hsl(228 90% 60%));
+    --shadow-elegant: 0 20px 50px -20px hsl(210 40% 2% / 0.6);
+    --shadow-glow: 0 10px 30px -10px hsl(217.2 91.2% 59.8% / 0.35);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
@@ -100,6 +114,49 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI,
+      Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  }
+}
+
+@layer components {
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+  .glass-card {
+    background: hsl(var(--card) / 0.6);
+    border: 1px solid hsl(var(--border) / 0.6);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-elegant);
+  }
+  .btn-hero {
+    background-image: var(--gradient-cta);
+    color: hsl(var(--primary-foreground));
+    border: 1px solid hsl(var(--ring) / 0.15);
+    box-shadow: var(--shadow-glow);
+  }
+  .spotlight-surface {
+    position: relative;
+    isolation: isolate;
+  }
+  .spotlight-surface::before {
+    content: "";
+    position: absolute;
+    inset: -10%;
+    z-index: -1;
+    background: radial-gradient(600px_circle at var(--x,50%) var(--y,50%), hsl(var(--primary) / 0.15), transparent 60%);
+    transition: background var(--transition-smooth);
+    pointer-events: none;
+  }
+}
+
+@layer utilities {
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
   }
 }
