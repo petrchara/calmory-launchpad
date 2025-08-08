@@ -23,6 +23,13 @@ const experts = [
     bio: "Pomáhá nastavovat zdravé rituály a režim pro kvalitnější spánek.",
     image: "/placeholder.svg",
   },
+  {
+    name: "Mgr. Adéla Krejčí",
+    role: "Fyzioterapeutka dechu",
+    specialties: "Dechové techniky",
+    bio: "Zaměřuje se na práci s dechem a tělem pro snížení napětí a zlepšení spánku.",
+    image: "/placeholder.svg",
+  },
 ];
 
 const Experts = () => {

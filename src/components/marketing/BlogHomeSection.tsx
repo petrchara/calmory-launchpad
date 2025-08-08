@@ -14,7 +14,7 @@ const BlogHomeSection = () => {
       <div className="container mx-auto px-6">
         <header className="max-w-2xl mx-auto text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold">Nové terapeutické články</h2>
-          <p className="mt-4 text-muted-foreground">Krátké, praktické tipy od týmu Calmory – pro klid během dne i večer.</p>
+          <p className="mt-4 text-muted-foreground">Krátké, praktické tipy od týmu Calmory – pro klid během dne i večer. Najdete zde terapeutické texty, inspiraci a osobní zkušenosti, které vám pomohou lépe porozumět sobě i druhým. Objevte klidné příběhy, relaxační techniky a praktické rady pro duševní pohodu, hlubší spánek a vyrovnanější život.</p>
         </header>
         <div className="mb-8 flex justify-center md:justify-end">
           <Button asChild>

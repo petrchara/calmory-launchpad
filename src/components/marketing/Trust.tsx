@@ -58,6 +58,15 @@ const Trust = () => {
         "Kontinuální zlepšování na základě dat",
       ],
     },
+  {
+      icon: FileCheck2,
+      title: "Transparentnost a soulad",
+      points: [
+        "Srozumitelná komunikace benefitů a limitů",
+        "Jasné označení, co je a není terapie",
+        "Zpětná vazba a kontakt na podporu",
+      ],
+    }
   ] as const;
 
   return (
