@@ -26,7 +26,7 @@ const Navbar = () => {
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-72">
+            <SheetContent side="top" className="w-full">
               <SheetHeader>
                 <SheetTitle>Navigace</SheetTitle>
               </SheetHeader>
@@ -35,7 +35,7 @@ const Navbar = () => {
                 <a href="/abeceda" className="text-foreground hover:underline">Terapeutická abeceda</a>
                 <a href="/blog" className="text-foreground hover:underline">Články a příběhy</a>
                 <a href="#faq" className="text-foreground hover:underline">FAQ</a>
-                <Button asChild className="mt-2">
+                <Button asChild variant="hero" size="sm" className="mt-2">
                   <a href="#cekaci-listina">Přidat se</a>
                 </Button>
               </nav>
