@@ -57,6 +57,33 @@ const items: Item[] = [
     sample:
       "Skladba plná radosti, hravého pohybu a uvolnění. Pomalý rytmus jako bosé kroky na mechu, jemné perkuse a smyčce, které rozvibrovávají tělo i srdce.",
   },
+  {
+    id: "i13",
+    title: "Sluneční dech",
+    phase: "rano-rutina",
+    format: "afirmace",
+    type: "text",
+    sample:
+      "Představ si, jak teplé sluneční paprsky proudí po tvém těle s nádechem a přináší světlo a vděčnost. Každý výdech odnáší zbytky ospalosti.",
+  },
+  {
+    id: "i14",
+    title: "Lesní práh probuzení",
+    phase: "rano-rutina",
+    format: "meditace",
+    type: "text",
+    sample:
+      "Zvuky ptáků, listí a tichý dech lesa tě zvou zpět k sobě. Ráno ti šeptá, že dnes máš prostor pro sebe.",
+  },
+  {
+    id: "i15",
+    title: "Kroky v mechu",
+    phase: "rano-rutina",
+    format: "hudba",
+    type: "audio",
+    duration: "3 min",
+    sample: "/media/sample-audio.mp3",
+  },
 
   // Cesta do práce/školy
   {
@@ -77,6 +104,32 @@ const items: Item[] = [
     sample:
       "Jemná, živá skladba plná pohybu a lehkosti. Letní tanec bez hranic – svobodný, hravý, vroucný. Hudba, která tě zve pohybem zpět k sobě.",
   },
+  {
+    id: "i16",
+    title: "Dech do kroku",
+    phase: "cesta-do",
+    format: "dychani",
+    type: "text",
+    sample:
+      "Krátká technika: nádech na čtyři kroky, výdech na šest. Rytmus pohybu kol uklidňuje mysl, tělo zůstává klidné.",
+  },
+  {
+    id: "i17",
+    title: "Okno do ticha",
+    phase: "cesta-do",
+    format: "meditace",
+    type: "text",
+    sample:
+      "Otevři okno do ticha – z autobusu nebo vlaku sleduj krajinu a dýchej. Mysl se do ticha vrací sama.",
+  },
+  {
+    id: "i18",
+    title: "Pevný v sobě",
+    phase: "cesta-do",
+    format: "afirmace",
+    type: "text",
+    sample: "Jsem pevný/á, jsem v sobě. Každý nádech mě vrací domů.",
+  },
 
   // Polední přestávka
   {
@@ -96,6 +149,32 @@ const items: Item[] = [
     type: "text",
     sample:
       "Zavřené oči, dech se zpomalí, v dálce obzory. Pomalý klavír a jemné smyčce připomínají chvíli, kdy bylo všechno v pořádku.",
+  },
+  {
+    id: "i19",
+    title: "Polední nádech",
+    phase: "obed",
+    format: "dychani",
+    type: "audio",
+    duration: "2 min",
+    sample: "/media/sample-audio.mp3",
+  },
+  {
+    id: "i20",
+    title: "Jsem tady pro sebe",
+    phase: "obed",
+    format: "afirmace",
+    type: "text",
+    sample: "Zastavuji se, abych mohl/a pokračovat. Hudba jako jemný dech vyrovnává.",
+  },
+  {
+    id: "i21",
+    title: "Hudba poledního klidu",
+    phase: "obed",
+    format: "hudba",
+    type: "audio",
+    duration: "3 min",
+    sample: "/media/sample-audio.mp3",
   },
 
   // Večerní klidová chvíle
@@ -126,6 +205,33 @@ const items: Item[] = [
     sample:
       "Pravidelný tlukot jemných bubnů, vlnění těla a odplouvající stres. Zůstává jen klid, mír a láska.",
   },
+  {
+    id: "i22",
+    title: "Srdce slyší déšť",
+    phase: "vecerni-klid",
+    format: "hudba",
+    type: "text",
+    sample:
+      "Kapky deště dopadají na hladinu jezera. Jemný rytmus djembe jako tlukot srdce v klidu. Hudba návratu domů.",
+  },
+  {
+    id: "i23",
+    title: "Klarinet v tichu",
+    phase: "vecerni-klid",
+    format: "hudba",
+    type: "text",
+    sample:
+      "Pomalé klarinetové linky a jemné smyčce hladí vzduch. Hudba večerní něhy a tichého světla.",
+  },
+  {
+    id: "i24",
+    title: "Dech pro večer",
+    phase: "vecerni-klid",
+    format: "dychani",
+    type: "audio",
+    duration: "3 min",
+    sample: "/media/sample-audio.mp3",
+  },
 
   // Večerní rutina/rodiče s dětmi
   {
@@ -153,6 +259,31 @@ const items: Item[] = [
     format: "usinani",
     type: "audio",
     duration: "7 min",
+    sample: "/media/sample-audio.mp3",
+  },
+  {
+    id: "i25",
+    title: "Společný dech",
+    phase: "rodice",
+    format: "dychani",
+    type: "text",
+    sample: "Rodič a dítě dýchají spolu, rytmus uklidňuje. Každý nádech přináší klid.",
+  },
+  {
+    id: "i26",
+    title: "Klidná náruč",
+    phase: "rodice",
+    format: "afirmace",
+    type: "text",
+    sample: "Jsem tady s tebou. V bezpečí, v teple, spolu usínáme do klidu.",
+  },
+  {
+    id: "i27",
+    title: "Pohádka o kapkách",
+    phase: "rodice",
+    format: "usinani",
+    type: "audio",
+    duration: "6 min",
     sample: "/media/sample-audio.mp3",
   },
 ];
