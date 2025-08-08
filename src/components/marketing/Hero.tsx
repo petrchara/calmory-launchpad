@@ -30,7 +30,7 @@ const Hero = () => {
                 <Sparkles className="size-4" /> Spuštění za 2 měsíce
               </span>
               <h1 className="mt-6 text-3xl md:text-5xl font-extrabold leading-tight">
-                Calmory App – terapeutická mobilní aplikace pro klidnější mysl
+                Calmory – terapeutická mobilní aplikace pro klidnější mysl
               </h1>
               <p className="mt-4 text-lg text-muted-foreground max-w-prose">
                 Klidnější mysl, lehčí dech, více radosti. Objevte techniky a příběhy, které pomáhají zvládat stres a přinášejí pohodu. Přidejte se k nám ještě před spuštěním a získejte přístup dřív než ostatní.
