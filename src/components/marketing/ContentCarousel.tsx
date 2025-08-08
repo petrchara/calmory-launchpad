@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Play, Headphones, Video } from "lucide-react";
 import {
   Carousel,
@@ -6,6 +6,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 import {
   Dialog,
@@ -77,7 +78,20 @@ const PhoneMock = ({ title, description, category }: { title: string; descriptio
 
 const ContentCarousel = () => {
   const [active, setActive] = useState<SampleItem | null>(null);
+  const [api, setApi] = useState<CarouselApi | null>(null);
+  const [current, setCurrent] = useState(0);
 
+  useEffect(() => {
+    if (!api) return;
+    const onSelect = () => setCurrent(api.selectedScrollSnap());
+    onSelect();
+    api.on("select", onSelect);
+    api.on("reInit", onSelect);
+    return () => {
+      api.off("select", onSelect);
+      api.off("reInit", onSelect);
+    };
+  }, [api]);
   return (
     <section id="ukazky" className="py-16 md:py-24">
       <div className="container mx-auto px-6">
@@ -86,41 +100,41 @@ const ContentCarousel = () => {
           <p className="mt-4 text-muted-foreground">Různé formáty v mobilním rozhraní: audio průvodci, krátká videa i textové postupy.</p>
         </div>
 
-        <Carousel className="relative">
+        <Carousel className="relative" setApi={setApi} opts={{ align: "start", containScroll: "trimSnaps" }}>
           <CarouselContent>
             {slides.map((s, i) => (
-              <CarouselItem key={i}>
+              <CarouselItem key={i} className="basis-[85%] md:basis-full">
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                   <PhoneMock title={s.title} description={s.description} category={s.category} />
-          <div>
-            <header className="mb-4">
-              <h3 className="text-xl font-semibold">{s.category}</h3>
-              <p className="text-sm text-muted-foreground">{s.description}</p>
-            </header>
-            <div className="grid gap-4">
-              {s.samples.map((it, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setActive(it)}
-                  className="glass-card rounded-xl p-4 text-left hover-scale animate-fade-in"
-                  aria-label={`Spustit ${it.type} ukázku: ${it.title}`}
-                >
-                  <div className="flex items-center gap-4">
-                    {it.type === "audio" ? (
-                      <Headphones className="size-5 text-primary" aria-hidden="true" />
-                    ) : (
-                      <Video className="size-5 text-primary" aria-hidden="true" />
-                    )}
-                    <div className="flex-1">
-                      <div className="font-medium">{it.title}</div>
-                      <div className="text-sm text-muted-foreground capitalize">{it.type}</div>
+                  <div>
+                    <header className="mb-4">
+                      <h3 className="text-xl font-semibold">{s.category}</h3>
+                      <p className="text-sm text-muted-foreground">{s.description}</p>
+                    </header>
+                    <div className="grid gap-4">
+                      {s.samples.map((it, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setActive(it)}
+                          className="glass-card rounded-xl p-4 text-left hover-scale animate-fade-in"
+                          aria-label={`Spustit ${it.type} ukázku: ${it.title}`}
+                        >
+                          <div className="flex items-center gap-4">
+                            {it.type === "audio" ? (
+                              <Headphones className="size-5 text-primary" aria-hidden="true" />
+                            ) : (
+                              <Video className="size-5 text-primary" aria-hidden="true" />
+                            )}
+                            <div className="flex-1">
+                              <div className="font-medium">{it.title}</div>
+                              <div className="text-sm text-muted-foreground capitalize">{it.type}</div>
+                            </div>
+                            <Play className="size-5 text-muted-foreground" />
+                          </div>
+                        </button>
+                      ))}
                     </div>
-                    <Play className="size-5 text-muted-foreground" />
                   </div>
-                </button>
-              ))}
-            </div>
-          </div>
                 </div>
               </CarouselItem>
             ))}
@@ -128,6 +142,19 @@ const ContentCarousel = () => {
           <CarouselPrevious className="hidden md:inline-flex" />
           <CarouselNext className="hidden md:inline-flex" />
         </Carousel>
+
+        {/* Dots pagination for mobile */}
+        <div className="mt-4 flex justify-center gap-2 md:hidden" aria-label="Posuvník ukázek – indikátory">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => api?.scrollTo(i)}
+              className={`h-2 w-2 rounded-full transition-colors ${current === i ? "bg-primary" : "bg-muted-foreground/40"}`}
+              aria-label={`Přejít na snímek ${i + 1}`}
+              aria-current={current === i ? "true" : undefined}
+            />
+          ))}
+        </div>
       </div>
 
       <Dialog open={!!active} onOpenChange={(open) => !open && setActive(null)}>
