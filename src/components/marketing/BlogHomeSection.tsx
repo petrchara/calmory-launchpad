@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Headphones } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getPosts } from "@/data/blog";
+import type { BlogPost as BlogPostType } from "@/data/blog";
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 
 const BlogHomeSection = () => {
@@ -23,6 +24,43 @@ const BlogHomeSection = () => {
       api.off("reInit", onSelect);
     };
   }, [api]);
+
+  const [playingSlug, setPlayingSlug] = useState<string | null>(null);
+  const listenToPost = (e: any, p: BlogPostType) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const synth = window.speechSynthesis;
+    if (!synth) return;
+
+    if (playingSlug === p.slug) {
+      if (synth.paused) {
+        synth.resume();
+      } else if (synth.speaking) {
+        synth.pause();
+      }
+      return;
+    }
+
+    try {
+      synth.cancel();
+      const utter = new SpeechSynthesisUtterance(`${p.title}. ${p.excerpt}`);
+      utter.lang = "cs-CZ";
+      utter.rate = 1;
+      utter.onend = () => setPlayingSlug(null);
+      utter.onerror = () => setPlayingSlug(null);
+      setPlayingSlug(p.slug);
+      synth.speak(utter);
+    } catch {}
+  };
+
+  useEffect(() => {
+    return () => {
+      try {
+        window.speechSynthesis?.cancel();
+      } catch {}
+      setPlayingSlug(null);
+    };
+  }, []);
 
   return (
     <section id="blog-novinky" className="py-16 md:py-24">
@@ -55,10 +93,21 @@ const BlogHomeSection = () => {
                           </div>
                           <h3 className="text-lg font-semibold group-hover:underline underline-offset-4">{p.title}</h3>
                           <p className="mt-2 text-sm text-muted-foreground line-clamp-2">{p.excerpt}</p>
-                          <div className="mt-4 inline-flex items-center gap-1 text-primary story-link">
-                            <span>Číst článek</span>
-                            <ArrowRight className="size-4" />
-                          </div>
+                            <div className="mt-4 inline-flex items-center gap-1 text-primary story-link">
+                              <span>Číst článek</span>
+                              <ArrowRight className="size-4" />
+                            </div>
+                            <div className="mt-3">
+                              <Button
+                                variant="secondary"
+                                size="sm"
+                                onClick={(e) => listenToPost(e, p)}
+                                aria-label={`Poslechněte si tento článek: ${p.title}`}
+                              >
+                                <Headphones className="size-4 mr-2" />
+                                Poslechněte si tento článek
+                              </Button>
+                            </div>
                         </div>
                       </CardContent>
                     </Card>
@@ -98,6 +147,17 @@ const BlogHomeSection = () => {
                     <div className="mt-4 inline-flex items-center gap-1 text-primary story-link">
                       <span>Číst článek</span>
                       <ArrowRight className="size-4" />
+                    </div>
+                    <div className="mt-3">
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        onClick={(e) => listenToPost(e, p)}
+                        aria-label={`Poslechněte si tento článek: ${p.title}`}
+                      >
+                        <Headphones className="size-4 mr-2" />
+                        Poslechněte si tento článek
+                      </Button>
                     </div>
                   </div>
                 </CardContent>
