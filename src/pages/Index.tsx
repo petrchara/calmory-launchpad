@@ -62,8 +62,8 @@ const Index = () => {
       <Hero />
       <Features />
       <ContentCarousel />
-      <ContentLibrary />
-      <TherapyAlphabet />
+      <ContentLibrary mobileMode="swipe" />
+      <TherapyAlphabet mobileMode="swipe" />
       <BlogHomeSection />
       <Testimonials />
       <Trust />
