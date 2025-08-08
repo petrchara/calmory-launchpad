@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { PlayCircle, PauseCircle, Headphones, Video, Type, ListChecks } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -20,7 +21,7 @@ type Format = { id: string; label: string; icon?: LucideIcon };
 const formats: Format[] = [
   { id: "dychani", label: "Dýchání", icon: Headphones },
   { id: "meditace", label: "Meditace", icon: Headphones },
-  { id: "afirmace", label: "Afirmace", icon: Type },
+  { id: "afirmace", label: "Afirmace", icon: Video },
   { id: "hudba", label: "Hudba", icon: Headphones },
   { id: "usinani", label: "Příběhy na usínání", icon: Headphones },
 ];
@@ -347,6 +348,10 @@ const ContentLibrary = () => {
                   <div>
                     <CardTitle className="text-lg">{it.title}</CardTitle>
                     <div className="mt-2 flex items-center gap-2">
+                      {(() => {
+                        const Icon = formats.find((f) => f.id === it.format)?.icon;
+                        return Icon ? <Icon className="size-4 text-muted-foreground" aria-hidden="true" /> : null;
+                      })()}
                       <Badge variant="secondary">{formats.find((f) => f.id === it.format)?.label}</Badge>
                       {it.duration ? <span className="text-xs text-muted-foreground">{it.duration}</span> : null}
                     </div>
@@ -365,6 +370,16 @@ const ContentLibrary = () => {
                 </div>
               </CardHeader>
               <CardContent>
+                <div className="mb-3">
+                  <AspectRatio ratio={16/9}>
+                    <img
+                      src="/placeholder.svg"
+                      alt={`Ilustrační obrázek: ${it.title}`}
+                      loading="lazy"
+                      className="h-full w-full rounded object-cover"
+                    />
+                  </AspectRatio>
+                </div>
                 {it.type === "audio" && playingId === it.id && it.sample ? (
                   <audio className="w-full" controls autoPlay src={it.sample} aria-label={`Ukázka: ${it.title}`}></audio>
                 ) : null}
