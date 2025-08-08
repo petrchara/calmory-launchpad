@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <nav className="w-full">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 font-bold text-lg" aria-label="Calmory - domů">
+        <a href="/" className="flex items-center gap-2 font-bold text-lg" aria-label="Calmory - domů">
           <img
             src="/lovable-uploads/7d72fd40-49d6-45e8-a440-6676b7d571a4.png"
             alt="Ikona aplikace Calmory"
