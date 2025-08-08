@@ -309,7 +309,7 @@ const ContentLibrary = () => {
 
         {/* Phases selector */}
         <div className="relative -mx-6 px-6 overflow-x-auto pb-2 mb-6">
-          <div className="flex gap-2 min-w-max">
+          <div className="w-max mx-auto flex gap-2">
             {phases.map((p) => (
               <Button
                 key={p.id}
@@ -329,7 +329,7 @@ const ContentLibrary = () => {
 
         {/* Format filters */}
         <Tabs value={activeFormat} onValueChange={(v) => setActiveFormat(v as any)} className="mb-6">
-          <TabsList className="flex flex-wrap gap-2">
+          <TabsList className="flex flex-wrap justify-center gap-2">
             {formats.map((f) => (
               <TabsTrigger key={f.id} value={f.id} className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                 {f.icon ? <f.icon className="mr-2 size-4" /> : null}
