@@ -2,10 +2,10 @@ import { useMemo, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+
+
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { PlayCircle, PauseCircle, Headphones, Video, Type, ListChecks } from "lucide-react";
+import { PlayCircle, PauseCircle, Headphones, Video } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 // Phase categories (daily moments)
@@ -291,12 +291,12 @@ const items: Item[] = [
 
 const ContentLibrary = () => {
   const [activePhase, setActivePhase] = useState<typeof phases[number]["id"]>(phases[0].id);
-  const [activeFormat, setActiveFormat] = useState<string>("dychani");
+  
   const [playingId, setPlayingId] = useState<string | null>(null);
 
   const filtered = useMemo(() => {
-    return items.filter((it) => it.phase === activePhase && it.format === activeFormat);
-  }, [activePhase, activeFormat]);
+    return items.filter((it) => it.phase === activePhase);
+  }, [activePhase]);
 
   const onPlay = (id: string) => setPlayingId((p) => (p === id ? null : id));
 
@@ -305,7 +305,7 @@ const ContentLibrary = () => {
       <div className="container mx-auto px-6">
         <header className="max-w-2xl mx-auto text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold">Knihovna obsahu</h2>
-          <p className="mt-4 text-muted-foreground">Objevujte svět Calmory v krátkých ochutnávkách – od ranního probuzení přes klidné poledne až po večerní ztišení. Tady máte drobnou ochutnávku toho, co můžete v aplikaci nalézt. Procházejte obsah podle denní fáze a formátu, poslouchejte ukázky a nechte se vést hudbou, příběhy, dechovými technikami i meditacemi, které přinášejí klid a radost do každé části dne.</p>
+          <p className="mt-4 text-muted-foreground">Objevujte svět Calmory v krátkých ochutnávkách – od ranního probuzení přes klidné poledne až po večerní ztišení. Tady máte drobnou ochutnávku toho, co můžete v aplikaci nalézt. Procházejte obsah podle denní fáze, poslouchejte ukázky a nechte se vést hudbou, příběhy, dechovými technikami i meditacemi, které přinášejí klid a radost do každé části dne.</p>
         </header>
 
         {/* Phases selector */}
@@ -328,39 +328,6 @@ const ContentLibrary = () => {
           </div>
         </div>
 
-        {/* Format filters */}
-        {/* Mobile swipe */}
-        <div className="mb-6 md:hidden">
-          <Carousel opts={{ align: "start", containScroll: "trimSnaps", dragFree: true }}>
-            <CarouselContent>
-              {formats.map((f) => (
-                <CarouselItem key={f.id} className="basis-[72%] pr-1">
-                  <Button
-                    variant={f.id === activeFormat ? "default" : "secondary"}
-                    className="w-full rounded-full"
-                    onClick={() => setActiveFormat(f.id)}
-                    aria-pressed={f.id === activeFormat}
-                  >
-                    {f.icon ? <f.icon className="mr-2 size-4" /> : null}
-                    {f.label}
-                  </Button>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
-        </div>
-
-        {/* Desktop tabs */}
-        <Tabs value={activeFormat} onValueChange={(v) => setActiveFormat(v as any)} className="mb-6 hidden md:block">
-          <TabsList className="flex flex-wrap justify-center gap-2">
-            {formats.map((f) => (
-              <TabsTrigger key={f.id} value={f.id} className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                {f.icon ? <f.icon className="mr-2 size-4" /> : null}
-                {f.label}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-        </Tabs>
 
         {/* Items grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -416,7 +383,7 @@ const ContentLibrary = () => {
             </Card>
           ))}
           {filtered.length === 0 ? (
-            <div className="col-span-full text-center text-sm text-muted-foreground">Pro tuto kombinaci zatím nemáme ukázky. Zkuste jiný formát.</div>
+            <div className="col-span-full text-center text-sm text-muted-foreground">Pro tuto fázi zatím nemáme ukázky.</div>
           ) : null}
         </div>
       </div>
