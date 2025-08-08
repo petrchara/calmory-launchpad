@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroImg from "@/assets/calmory-hero.jpg";
+import { getPosts } from "@/data/blog";
 
 interface AbecedaItem {
   category: string;
@@ -14,6 +15,18 @@ interface AbecedaItem {
   alt: string;
   audioSrc: string;
 }
+
+const articleItems: AbecedaItem[] = getPosts()
+  .slice(0, 2)
+  .map((p) => ({
+    category: p.category,
+    title: p.title,
+    summary: p.excerpt,
+    how: p.excerpt,
+    image: p.image,
+    alt: p.alt,
+    audioSrc: "/media/sample-audio.mp3",
+  }));
 
 const items: AbecedaItem[] = [
   {
@@ -26,6 +39,7 @@ const items: AbecedaItem[] = [
     alt: "Kontakt se studeným předmětem – terapeutický tip",
     audioSrc: "/media/sample-audio.mp3",
   },
+  ...articleItems,
 ];
 
 const TherapyAlphabet = () => {
