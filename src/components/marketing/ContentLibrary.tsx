@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { PlayCircle, PauseCircle, Headphones, Video } from "lucide-react";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 import type { LucideIcon } from "lucide-react";
 
 // Phase categories (daily moments)
@@ -292,8 +292,22 @@ const items: Item[] = [
 
 const ContentLibrary = () => {
   const [activePhase, setActivePhase] = useState<typeof phases[number]["id"]>(phases[0].id);
-  
   const [playingId, setPlayingId] = useState<string | null>(null);
+
+  // Mobile carousel API for dots pagination
+  const [api, setApi] = useState<CarouselApi | null>(null);
+  const [current, setCurrent] = useState(0);
+  useEffect(() => {
+    if (!api) return;
+    const onSelect = () => setCurrent(api.selectedScrollSnap());
+    onSelect();
+    api.on("select", onSelect);
+    api.on("reInit", onSelect);
+    return () => {
+      api.off("select", onSelect);
+      api.off("reInit", onSelect);
+    };
+  }, [api]);
 
   const filtered = useMemo(() => {
     return items.filter((it) => it.phase === activePhase).slice(0, 3);
@@ -335,7 +349,8 @@ const ContentLibrary = () => {
           {filtered.length === 0 ? (
             <div className="text-center text-sm text-muted-foreground">Pro tuto fázi zatím nemáme ukázky.</div>
           ) : (
-            <Carousel opts={{ align: "start", containScroll: "trimSnaps" }}>
+            <>
+            <Carousel setApi={setApi} opts={{ align: "start", containScroll: "trimSnaps" }}>
               <CarouselContent>
                 {filtered.map((it) => (
                   <CarouselItem key={it.id} className="basis-[85%] pr-1">
@@ -392,6 +407,18 @@ const ContentLibrary = () => {
                 ))}
               </CarouselContent>
             </Carousel>
+            <div className="mt-4 flex justify-center gap-2" aria-label="Posuvník knihovna – indikátory">
+              {filtered.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => api?.scrollTo(i)}
+                  className={`h-2 w-2 rounded-full transition-colors ${current === i ? "bg-primary" : "bg-muted-foreground/40"}`}
+                  aria-label={`Přejít na snímek ${i + 1}`}
+                  aria-current={current === i ? "true" : undefined}
+                />
+              ))}
+            </div>
+            </>
           )}
         </div>
 
