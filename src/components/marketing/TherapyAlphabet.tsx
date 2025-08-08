@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroImg from "@/assets/calmory-hero.jpg";
 import { getPosts } from "@/data/blog";
-
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 
 interface AbecedaItem {
   category: string;
@@ -43,7 +43,7 @@ const items: AbecedaItem[] = [
   ...articleItems,
 ];
 
-const TherapyAlphabet = ({ showAllButton = true }: { showAllButton?: boolean }) => {
+const TherapyAlphabet = ({ showAllButton = true, mobileMode = 'stack' }: { showAllButton?: boolean; mobileMode?: 'stack' | 'swipe' }) => {
   const ld = {
     "@context": "https://schema.org",
     "@type": "ItemList",

@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { PlayCircle, PauseCircle, Headphones, Video } from "lucide-react";
 
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 import type { LucideIcon } from "lucide-react";
 
 // Phase categories (daily moments)
@@ -290,10 +291,23 @@ const items: Item[] = [
   },
 ];
 
-const ContentLibrary = () => {
+const ContentLibrary = ({ mobileMode = 'stack' }: { mobileMode?: 'stack' | 'swipe' }) => {
   const [activePhase, setActivePhase] = useState<typeof phases[number]["id"]>(phases[0].id);
   const [playingId, setPlayingId] = useState<string | null>(null);
-
+  // Mobile carousel API for dots pagination (only used when mobileMode === 'swipe')
+  const [api, setApi] = useState<CarouselApi | null>(null);
+  const [current, setCurrent] = useState(0);
+  useEffect(() => {
+    if (!api) return;
+    const onSelect = () => setCurrent(api.selectedScrollSnap());
+    onSelect();
+    api.on("select", onSelect);
+    api.on("reInit", onSelect);
+    return () => {
+      api.off("select", onSelect);
+      api.off("reInit", onSelect);
+    };
+  }, [api]);
 
   const filtered = useMemo(() => {
     return items.filter((it) => it.phase === activePhase).slice(0, 3);
@@ -330,66 +344,146 @@ const ContentLibrary = () => {
         </div>
 
 
-        {/* Items - mobile stacked list */}
-        <div className="md:hidden">
-          {filtered.length === 0 ? (
-            <div className="text-center text-sm text-muted-foreground">Pro tuto fázi zatím nemáme ukázky.</div>
-          ) : (
-            <div className="space-y-4">
-              {filtered.map((it) => (
-                <Card key={it.id} className="glass-card animate-fade-in">
-                  <CardHeader>
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <CardTitle className="text-lg">{it.title}</CardTitle>
-                        <div className="mt-2 flex items-center gap-2">
-                          {(() => {
-                            const Icon = formats.find((f) => f.id === it.format)?.icon;
-                            return Icon ? <Icon className="size-4 text-muted-foreground" aria-hidden="true" /> : null;
-                          })()}
-                          <Badge variant="secondary">{formats.find((f) => f.id === it.format)?.label}</Badge>
-                          {it.duration ? <span className="text-xs text-muted-foreground">{it.duration}</span> : null}
+        {/* Items - mobile */}
+        {mobileMode === 'swipe' ? (
+          <div className="md:hidden">
+            {filtered.length === 0 ? (
+              <div className="text-center text-sm text-muted-foreground">Pro tuto fázi zatím nemáme ukázky.</div>
+            ) : (
+              <>
+                <Carousel setApi={setApi} opts={{ align: "start", containScroll: "trimSnaps" }}>
+                  <CarouselContent>
+                    {filtered.map((it) => (
+                      <CarouselItem key={it.id} className="basis-[85%] pr-1">
+                        <Card className="glass-card animate-fade-in">
+                          <CardHeader>
+                            <div className="flex items-start justify-between gap-4">
+                              <div>
+                                <CardTitle className="text-lg">{it.title}</CardTitle>
+                                <div className="mt-2 flex items-center gap-2">
+                                  {(() => {
+                                    const Icon = formats.find((f) => f.id === it.format)?.icon;
+                                    return Icon ? <Icon className="size-4 text-muted-foreground" aria-hidden="true" /> : null;
+                                  })()}
+                                  <Badge variant="secondary">{formats.find((f) => f.id === it.format)?.label}</Badge>
+                                  {it.duration ? <span className="text-xs text-muted-foreground">{it.duration}</span> : null}
+                                </div>
+                              </div>
+                              {it.type !== "text" ? (
+                                <Button variant="outline" size="sm" onClick={() => onPlay(it.id)} aria-label="Přehrát ukázku">
+                                  {playingId === it.id ? (
+                                    <PauseCircle className="size-4" />
+                                  ) : it.type === "audio" ? (
+                                    <PlayCircle className="size-4" />
+                                  ) : (
+                                    <Video className="size-4" />
+                                  )}
+                                </Button>
+                              ) : null}
+                            </div>
+                          </CardHeader>
+                          <CardContent>
+                            <div className="mb-3">
+                              <AspectRatio ratio={16/9}>
+                                <img
+                                  src="/placeholder.svg"
+                                  alt={`Ilustrační obrázek: ${it.title}`}
+                                  loading="lazy"
+                                  className="h-full w-full rounded object-cover"
+                                />
+                              </AspectRatio>
+                            </div>
+                            {it.type === "audio" && playingId === it.id && it.sample ? (
+                              <audio className="w-full" controls autoPlay src={it.sample} aria-label={`Ukázka: ${it.title}`}></audio>
+                            ) : null}
+                            {it.type === "video" && playingId === it.id && it.sample ? (
+                              <video className="w-full rounded" controls autoPlay src={it.sample} aria-label={`Ukázka: ${it.title}`}></video>
+                            ) : null}
+                            {it.type === "text" && it.sample ? (
+                              <p className="text-sm text-muted-foreground">{it.sample}</p>
+                            ) : null}
+                          </CardContent>
+                        </Card>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                </Carousel>
+                <div className="mt-4 flex justify-center gap-2" aria-label="Posuvník knihovna – indikátory">
+                  {filtered.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => api?.scrollTo(i)}
+                      className={`h-2 w-2 rounded-full transition-colors ${current === i ? "bg-primary" : "bg-muted-foreground/40"}`}
+                      aria-label={`Přejít na snímek ${i + 1}`}
+                      aria-current={current === i ? "true" : undefined}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        ) : (
+          <div className="md:hidden">
+            {filtered.length === 0 ? (
+              <div className="text-center text-sm text-muted-foreground">Pro tuto fázi zatím nemáme ukázky.</div>
+            ) : (
+              <div className="space-y-4">
+                {filtered.map((it) => (
+                  <Card key={it.id} className="glass-card animate-fade-in">
+                    <CardHeader>
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <CardTitle className="text-lg">{it.title}</CardTitle>
+                          <div className="mt-2 flex items-center gap-2">
+                            {(() => {
+                              const Icon = formats.find((f) => f.id === it.format)?.icon;
+                              return Icon ? <Icon className="size-4 text-muted-foreground" aria-hidden="true" /> : null;
+                            })()}
+                            <Badge variant="secondary">{formats.find((f) => f.id === it.format)?.label}</Badge>
+                            {it.duration ? <span className="text-xs text-muted-foreground">{it.duration}</span> : null}
+                          </div>
                         </div>
+                        {it.type !== "text" ? (
+                          <Button variant="outline" size="sm" onClick={() => onPlay(it.id)} aria-label="Přehrát ukázku">
+                            {playingId === it.id ? (
+                              <PauseCircle className="size-4" />
+                            ) : it.type === "audio" ? (
+                              <PlayCircle className="size-4" />
+                            ) : (
+                              <Video className="size-4" />
+                            )}
+                          </Button>
+                        ) : null}
                       </div>
-                      {it.type !== "text" ? (
-                        <Button variant="outline" size="sm" onClick={() => onPlay(it.id)} aria-label="Přehrát ukázku">
-                          {playingId === it.id ? (
-                            <PauseCircle className="size-4" />
-                          ) : it.type === "audio" ? (
-                            <PlayCircle className="size-4" />
-                          ) : (
-                            <Video className="size-4" />
-                          )}
-                        </Button>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="mb-3">
+                        <AspectRatio ratio={16/9}>
+                          <img
+                            src="/placeholder.svg"
+                            alt={`Ilustrační obrázek: ${it.title}`}
+                            loading="lazy"
+                            className="h-full w-full rounded object-cover"
+                          />
+                        </AspectRatio>
+                      </div>
+                      {it.type === "audio" && playingId === it.id && it.sample ? (
+                        <audio className="w-full" controls autoPlay src={it.sample} aria-label={`Ukázka: ${it.title}`}></audio>
                       ) : null}
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="mb-3">
-                      <AspectRatio ratio={16/9}>
-                        <img
-                          src="/placeholder.svg"
-                          alt={`Ilustrační obrázek: ${it.title}`}
-                          loading="lazy"
-                          className="h-full w-full rounded object-cover"
-                        />
-                      </AspectRatio>
-                    </div>
-                    {it.type === "audio" && playingId === it.id && it.sample ? (
-                      <audio className="w-full" controls autoPlay src={it.sample} aria-label={`Ukázka: ${it.title}`}></audio>
-                    ) : null}
-                    {it.type === "video" && playingId === it.id && it.sample ? (
-                      <video className="w-full rounded" controls autoPlay src={it.sample} aria-label={`Ukázka: ${it.title}`}></video>
-                    ) : null}
-                    {it.type === "text" && it.sample ? (
-                      <p className="text-sm text-muted-foreground">{it.sample}</p>
-                    ) : null}
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          )}
-        </div>
+                      {it.type === "video" && playingId === it.id && it.sample ? (
+                        <video className="w-full rounded" controls autoPlay src={it.sample} aria-label={`Ukázka: ${it.title}`}></video>
+                      ) : null}
+                      {it.type === "text" && it.sample ? (
+                        <p className="text-sm text-muted-foreground">{it.sample}</p>
+                      ) : null}
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
 
         {/* Items - desktop grid (3 per row) */}
         <div className="hidden md:grid grid-cols-3 gap-6">
