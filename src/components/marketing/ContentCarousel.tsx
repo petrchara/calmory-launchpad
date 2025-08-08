@@ -92,31 +92,35 @@ const ContentCarousel = () => {
               <CarouselItem key={i}>
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                   <PhoneMock title={s.title} description={s.description} category={s.category} />
-                  <div className="grid gap-4">
-                    {s.samples.map((it, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => setActive(it)}
-                        className="glass-card rounded-xl p-4 text-left hover-scale animate-fade-in"
-                        aria-label={`Spustit ${it.type} ukázku: ${it.title}`}
-                      >
-                        <div className="flex items-center gap-4">
-                          <div className="size-10 rounded-lg bg-accent flex items-center justify-center">
-                            {it.type === "audio" ? (
-                              <Headphones className="size-5 text-primary" />
-                            ) : (
-                              <Video className="size-5 text-primary" />
-                            )}
-                          </div>
-                          <div className="flex-1">
-                            <div className="font-medium">{it.title}</div>
-                            <div className="text-sm text-muted-foreground capitalize">{it.type}</div>
-                          </div>
-                          <Play className="size-5 text-muted-foreground" />
-                        </div>
-                      </button>
-                    ))}
+          <div>
+            <header className="mb-4">
+              <h3 className="text-xl font-semibold">{s.category}</h3>
+              <p className="text-sm text-muted-foreground">{s.description}</p>
+            </header>
+            <div className="grid gap-4">
+              {s.samples.map((it, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActive(it)}
+                  className="glass-card rounded-xl p-4 text-left hover-scale animate-fade-in"
+                  aria-label={`Spustit ${it.type} ukázku: ${it.title}`}
+                >
+                  <div className="flex items-center gap-4">
+                    {it.type === "audio" ? (
+                      <Headphones className="size-5 text-primary" aria-hidden="true" />
+                    ) : (
+                      <Video className="size-5 text-primary" aria-hidden="true" />
+                    )}
+                    <div className="flex-1">
+                      <div className="font-medium">{it.title}</div>
+                      <div className="text-sm text-muted-foreground capitalize">{it.type}</div>
+                    </div>
+                    <Play className="size-5 text-muted-foreground" />
                   </div>
+                </button>
+              ))}
+            </div>
+          </div>
                 </div>
               </CarouselItem>
             ))}
