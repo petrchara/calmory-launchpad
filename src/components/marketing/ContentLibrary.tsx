@@ -18,7 +18,6 @@ const phases = [
 // Formats
 type Format = { id: string; label: string; icon?: LucideIcon };
 const formats: Format[] = [
-  { id: "all", label: "Vše" },
   { id: "dychani", label: "Dýchání", icon: Headphones },
   { id: "meditace", label: "Meditace", icon: Headphones },
   { id: "afirmace", label: "Afirmace", icon: Type },
@@ -290,11 +289,11 @@ const items: Item[] = [
 
 const ContentLibrary = () => {
   const [activePhase, setActivePhase] = useState<typeof phases[number]["id"]>(phases[0].id);
-  const [activeFormat, setActiveFormat] = useState<string>("all");
+  const [activeFormat, setActiveFormat] = useState<string>("dychani");
   const [playingId, setPlayingId] = useState<string | null>(null);
 
   const filtered = useMemo(() => {
-    return items.filter((it) => it.phase === activePhase && (activeFormat === "all" || it.format === activeFormat));
+    return items.filter((it) => it.phase === activePhase && it.format === activeFormat);
   }, [activePhase, activeFormat]);
 
   const onPlay = (id: string) => setPlayingId((p) => (p === id ? null : id));
