@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroImg from "@/assets/calmory-hero.jpg";
 import { getPosts } from "@/data/blog";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 
 interface AbecedaItem {
   category: string;
@@ -81,7 +82,70 @@ const TherapyAlphabet = ({ showAllButton = true }: { showAllButton?: boolean }) 
           </div>
         )}
 
-        <div className="grid grid-cols-3 gap-6">
+        {/* Mobile carousel */}
+        <div className="md:hidden">
+          <Carousel opts={{ align: "start", containScroll: "trimSnaps" }}>
+            <CarouselContent>
+              {items.map((it, idx) => (
+                <CarouselItem key={it.title} className="basis-[85%]">
+                  <article itemScope itemType="https://schema.org/HowTo">
+                    <Card className="h-full overflow-hidden">
+                      <img
+                        src={it.image}
+                        alt={it.alt}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-40 object-cover"
+                        itemProp="image"
+                      />
+                      <CardContent className="p-6">
+                        <div className="flex items-center justify-between">
+                          <Badge variant="secondary" className="capitalize">
+                            {it.category}
+                          </Badge>
+                        </div>
+                        <CardTitle className="mt-3" itemProp="name">
+                          {it.title}
+                        </CardTitle>
+                        <p className="mt-2 text-sm text-muted-foreground" itemProp="description">
+                          {it.summary}
+                        </p>
+                        <div className="mt-4 space-y-2 text-sm">
+                          <p>
+                            <span className="font-medium">Co to je: </span>
+                            {it.summary}
+                          </p>
+                          <p>
+                            <span className="font-medium">Jak na to: </span>
+                            {it.how}
+                          </p>
+                        </div>
+                        <div className="mt-5">
+                          <label className="sr-only" htmlFor={`abeceda-audio-${idx}`}>
+                            Audio ukázka: {it.title}
+                          </label>
+                          <audio
+                            id={`abeceda-audio-${idx}`}
+                            controls
+                            preload="none"
+                            className="w-full"
+                            aria-label={`Audio ukázka: ${it.title}`}
+                          >
+                            <source src={it.audioSrc} type="audio/mpeg" />
+                            Váš prohlížeč nepodporuje přehrávání audia.
+                          </audio>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </article>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </div>
+
+        {/* Desktop grid */}
+        <div className="hidden md:grid grid-cols-3 gap-6">
           {items.map((it, idx) => (
             <article key={it.title} itemScope itemType="https://schema.org/HowTo">
               <Card className="h-full overflow-hidden">

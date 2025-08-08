@@ -5,6 +5,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getPosts } from "@/data/blog";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 
 const BlogHomeSection = () => {
   const latest = getPosts().slice(0, 3);
@@ -21,8 +22,40 @@ const BlogHomeSection = () => {
             <Link to="/blog" aria-label="Zobrazit vše – články">All</Link>
           </Button>
         </div>
+        {/* Mobile carousel */}
+        <div className="md:hidden mb-6">
+          <Carousel opts={{ align: "start", containScroll: "trimSnaps" }}>
+            <CarouselContent>
+              {latest.map((p) => (
+                <CarouselItem key={p.slug} className="basis-[85%]">
+                  <Link to={`/blog/${p.slug}`} className="group block focus:outline-none focus:ring-2 focus:ring-primary rounded-lg">
+                    <Card className="glass-card hover-scale h-full">
+                      <CardContent className="p-0">
+                        <AspectRatio ratio={1}>
+                          <img src={p.image} alt={p.alt} loading="lazy" className="h-full w-full object-cover rounded-t-lg" />
+                        </AspectRatio>
+                        <div className="p-5">
+                          <div className="mb-2 flex items-center gap-2">
+                            <Badge variant="secondary">{p.category}</Badge>
+                            <span className="text-xs text-muted-foreground">{new Date(p.date).toLocaleDateString("cs-CZ")}</span>
+                          </div>
+                          <h3 className="text-lg font-semibold group-hover:underline underline-offset-4">{p.title}</h3>
+                          <p className="mt-2 text-sm text-muted-foreground line-clamp-2">{p.excerpt}</p>
+                          <div className="mt-4 inline-flex items-center gap-1 text-primary story-link">
+                            <span>Číst článek</span>
+                            <ArrowRight className="size-4" />
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </div>
 
-        <div className="grid grid-cols-3 gap-6">
+        <div className="hidden md:grid grid-cols-3 gap-6">
           {latest.map((p) => (
             <Link key={p.slug} to={`/blog/${p.slug}`} className="group block focus:outline-none focus:ring-2 focus:ring-primary rounded-lg">
               <Card className="glass-card hover-scale h-full">

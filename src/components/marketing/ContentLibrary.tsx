@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { PlayCircle, PauseCircle, Headphones, Video, Type, ListChecks } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -328,7 +329,29 @@ const ContentLibrary = () => {
         </div>
 
         {/* Format filters */}
-        <Tabs value={activeFormat} onValueChange={(v) => setActiveFormat(v as any)} className="mb-6">
+        {/* Mobile swipe */}
+        <div className="mb-6 md:hidden">
+          <Carousel opts={{ align: "start", containScroll: "trimSnaps", dragFree: true }}>
+            <CarouselContent>
+              {formats.map((f) => (
+                <CarouselItem key={f.id} className="basis-[72%] pr-1">
+                  <Button
+                    variant={f.id === activeFormat ? "default" : "secondary"}
+                    className="w-full rounded-full"
+                    onClick={() => setActiveFormat(f.id)}
+                    aria-pressed={f.id === activeFormat}
+                  >
+                    {f.icon ? <f.icon className="mr-2 size-4" /> : null}
+                    {f.label}
+                  </Button>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </div>
+
+        {/* Desktop tabs */}
+        <Tabs value={activeFormat} onValueChange={(v) => setActiveFormat(v as any)} className="mb-6 hidden md:block">
           <TabsList className="flex flex-wrap justify-center gap-2">
             {formats.map((f) => (
               <TabsTrigger key={f.id} value={f.id} className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
