@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { getPosts } from "@/data/blog";
 
 const BlogHomeSection = () => {
@@ -15,8 +16,13 @@ const BlogHomeSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold">Nové terapeutické články</h2>
           <p className="mt-4 text-muted-foreground">Krátké, praktické tipy od týmu Calmory – pro klid během dne i večer.</p>
         </header>
+        <div className="mb-8 flex justify-center md:justify-end">
+          <Button asChild>
+            <Link to="/blog" aria-label="Zobrazit vše – články">All</Link>
+          </Button>
+        </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-3 gap-6">
           {latest.map((p) => (
             <Link key={p.slug} to={`/blog/${p.slug}`} className="group block focus:outline-none focus:ring-2 focus:ring-primary rounded-lg">
               <Card className="glass-card hover-scale h-full">
@@ -42,11 +48,6 @@ const BlogHomeSection = () => {
           ))}
         </div>
 
-        <div className="mt-8 text-center">
-          <Link to="/blog" className="inline-flex items-center gap-2 text-sm font-medium text-primary story-link">
-            Další články na blogu <ArrowRight className="size-4" />
-          </Link>
-        </div>
       </div>
     </section>
   );
