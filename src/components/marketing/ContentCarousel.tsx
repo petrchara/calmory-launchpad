@@ -119,18 +119,29 @@ const ContentCarousel = () => {
                           className="glass-card rounded-xl p-4 text-left hover-scale animate-fade-in"
                           aria-label={`Spustit ${it.type} ukázku: ${it.title}`}
                         >
-                          <div className="flex items-center gap-4">
-                            {it.type === "audio" ? (
-                              <Headphones className="size-5 text-primary" aria-hidden="true" />
-                            ) : (
-                              <Video className="size-5 text-primary" aria-hidden="true" />
-                            )}
-                            <div className="flex-1">
-                              <div className="font-medium">{it.title}</div>
-                              <div className="text-sm text-muted-foreground capitalize">{it.type}</div>
-                            </div>
-                            <Play className="size-5 text-muted-foreground" />
-                          </div>
+          <div className="flex items-center gap-4">
+            <div className="size-12 shrink-0 rounded-lg overflow-hidden bg-muted">
+              <img
+                src="/placeholder.svg"
+                alt=""
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div className="flex-1">
+              <div className="font-medium">{it.title}</div>
+              <div className="text-sm text-muted-foreground">
+                {it.type === "audio" ? (
+                  <Headphones className="size-4" aria-label="Audio" />
+                ) : (
+                  <Video className="size-4" aria-label="Video" />
+                )}
+                <span className="sr-only">{it.type}</span>
+              </div>
+            </div>
+            <Play className="size-5 text-muted-foreground" />
+          </div>
                         </button>
                       ))}
                     </div>
