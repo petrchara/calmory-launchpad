@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import waitlistBg from "@/assets/calmory-hero.jpg";
+import { Info, Sparkles } from "lucide-react";
 
 const STORAGE_KEY = "calmory_waitlist";
 
@@ -81,7 +82,10 @@ const WaitlistForm = () => {
       </div>
       <div className="container mx-auto px-6">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold">Přidejte se a objevte Calmory dřív než ostatní</h2>
+          <span className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold bg-secondary/60 text-secondary-foreground">
+            <Sparkles className="size-4" /> Spuštění za 2 měsíce
+          </span>
+          <h2 className="mt-3 text-3xl md:text-4xl font-bold">Přidejte se a objevte Calmory dřív než ostatní</h2>
           <p className="mt-4 text-muted-foreground">
             Získejte brzký přístup k aplikaci a bonusové tipy pro zvládání stresu, zlepšení spánku a podporu dobré nálady. Stačí zadat svůj e-mail a my vám dáme vědět, až si Calmory budete moci stáhnout jako první.
           </p>
@@ -109,9 +113,10 @@ const WaitlistForm = () => {
             {loading ? "Odesílám…" : "Přidat se pro přednostní přístup"}
           </Button>
         </form>
-        <p className="mt-3 max-w-xl mx-auto text-sm text-muted-foreground text-center">
-          Vaši adresu použijeme jen k informování o spuštění aplikace a zaslání slíbených bonusů.
-        </p>
+        <div className="mt-3 max-w-xl mx-auto text-sm text-muted-foreground flex items-start justify-center gap-2 text-center">
+          <Info className="size-4 mt-0.5" aria-hidden="true" />
+          <span>Vaši adresu použijeme jen k informování o spuštění aplikace a zaslání slíbených bonusů.</span>
+        </div>
       </div>
     </section>
   );
