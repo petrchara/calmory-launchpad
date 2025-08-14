@@ -82,10 +82,13 @@ const WaitlistForm = () => {
       </div>
       <div className="container mx-auto px-6">
         <div className="max-w-2xl mx-auto text-center">
-          <span className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold bg-secondary/60 text-secondary-foreground">
+          <h2 className="mt-3 text-3xl md:text-4xl font-bold">
+            <span className="block">Přidejte se a objevte Calmory</span>
+            <span className="block">dřív než ostatní</span>
+          </h2>
+          <span className="mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold bg-secondary/60 text-secondary-foreground">
             <Sparkles className="size-4" /> Spuštění za 2 měsíce
           </span>
-          <h2 className="mt-3 text-3xl md:text-4xl font-bold">Přidejte se a objevte Calmory dřív než ostatní</h2>
           <p className="mt-4 text-muted-foreground">
             Získejte brzký přístup k aplikaci a bonusové tipy pro zvládání stresu, zlepšení spánku a podporu dobré nálady. Stačí zadat svůj e-mail a my vám dáme vědět, až si Calmory budete moci stáhnout jako první.
           </p>
