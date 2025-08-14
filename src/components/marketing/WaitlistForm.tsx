@@ -9,7 +9,7 @@ const STORAGE_KEY = "calmory_waitlist";
 const WaitlistForm = () => {
   
   const [email, setEmail] = useState("");
-  const [agree, setAgree] = useState(false);
+  
   const [loading, setLoading] = useState(false);
   const [hp, setHp] = useState(""); // honeypot
   const [meta, setMeta] = useState({
@@ -38,10 +38,6 @@ const WaitlistForm = () => {
       toast.error("Zadejte platný e‑mail.");
       return;
     }
-    if (!agree) {
-      toast.warning("Prosím potvrďte souhlas se zasíláním novinek.");
-      return;
-    }
 
     setLoading(true);
     try {
@@ -50,14 +46,11 @@ const WaitlistForm = () => {
       if (exists) {
         toast.success("Děkujeme! Tento e‑mail už je na seznamu.");
         setEmail("");
-        setAgree(false);
         return;
       }
 
       const record = {
         email,
-        
-        consent: agree,
         source: "waitlist-section",
         ...meta,
         created_at: new Date().toISOString(),
@@ -65,7 +58,7 @@ const WaitlistForm = () => {
       localStorage.setItem(STORAGE_KEY, JSON.stringify([record, ...prev]));
       toast.success("Děkujeme! Brzy se vám ozveme.");
       setEmail("");
-      setAgree(false);
+      
       
     } catch (e) {
       toast.error("Něco se pokazilo. Zkuste to prosím znovu.");
@@ -88,9 +81,9 @@ const WaitlistForm = () => {
       </div>
       <div className="container mx-auto px-6">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold">Připojte se k čekací listině</h2>
+          <h2 className="text-3xl md:text-4xl font-bold">Přidejte se a objevte Calmory dřív než ostatní</h2>
           <p className="mt-4 text-muted-foreground">
-            Získejte brzký přístup, slevu pro první uživatele a praktické tipy pro klidnější den.
+            Získejte brzký přístup k aplikaci a bonusové tipy pro zvládání stresu, zlepšení spánku a podporu dobré nálady. Stačí zadat svůj e-mail a my vám dáme vědět, až si Calmory budete moci stáhnout jako první.
           </p>
         </div>
         <form onSubmit={handleSubmit} className="mt-8 max-w-xl mx-auto grid sm:grid-cols-[1fr_auto] gap-3">
@@ -113,20 +106,12 @@ const WaitlistForm = () => {
             autoComplete="off"
           />
           <Button type="submit" disabled={loading} className="hover-scale">
-            {loading ? "Odesílám…" : "Chci být u toho"}
+            {loading ? "Odesílám…" : "Přidat se pro přednostní přístup"}
           </Button>
         </form>
-        <label className="mt-3 flex items-start gap-2 max-w-xl mx-auto text-sm text-muted-foreground">
-          <input
-            type="checkbox"
-            className="mt-1"
-            checked={agree}
-            onChange={(e) => setAgree(e.target.checked)}
-            aria-label="Souhlasím se zasíláním novinek"
-          />
-          Odesláním souhlasíte se zasíláním novinek a se zpracováním osobních údajů dle
-          <a href="#" className="story-link ml-1">Zásad ochrany osobních údajů</a>. Odhlášení kdykoliv jedním klikem.
-        </label>
+        <p className="mt-3 max-w-xl mx-auto text-sm text-muted-foreground text-center">
+          Vaši adresu použijeme jen k informování o spuštění aplikace a zaslání slíbených bonusů.
+        </p>
       </div>
     </section>
   );
