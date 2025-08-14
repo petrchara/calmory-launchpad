@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import waitlistBg from "@/assets/calmory-hero.jpg";
 
 const STORAGE_KEY = "calmory_waitlist";
 
 const WaitlistForm = () => {
-  const [name, setName] = useState("");
+  
   const [email, setEmail] = useState("");
   const [agree, setAgree] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -50,13 +51,12 @@ const WaitlistForm = () => {
         toast.success("Děkujeme! Tento e‑mail už je na seznamu.");
         setEmail("");
         setAgree(false);
-        setName("");
         return;
       }
 
       const record = {
         email,
-        name: name || undefined,
+        
         consent: agree,
         source: "waitlist-section",
         ...meta,
@@ -66,7 +66,7 @@ const WaitlistForm = () => {
       toast.success("Děkujeme! Brzy se vám ozveme.");
       setEmail("");
       setAgree(false);
-      setName("");
+      
     } catch (e) {
       toast.error("Něco se pokazilo. Zkuste to prosím znovu.");
     } finally {
@@ -75,7 +75,17 @@ const WaitlistForm = () => {
   };
 
   return (
-    <section id="cekaci-listina" className="py-16 md:py-24">
+    <section id="cekaci-listina" className="relative py-16 md:py-24 overflow-hidden">
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <img
+          src={waitlistBg}
+          alt="Calmory pozadí — ilustrační fotografie"
+          loading="lazy"
+          decoding="async"
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/70 to-transparent" aria-hidden="true" />
+      </div>
       <div className="container mx-auto px-6">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold">Připojte se k čekací listině</h2>
@@ -83,14 +93,7 @@ const WaitlistForm = () => {
             Získejte brzký přístup, slevu pro první uživatele a praktické tipy pro klidnější den.
           </p>
         </div>
-        <form onSubmit={handleSubmit} className="mt-8 max-w-xl mx-auto grid sm:grid-cols-[1fr_1fr_auto] gap-3">
-          <Input
-            type="text"
-            placeholder="Jméno (nepovinné)"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            aria-label="Jméno"
-          />
+        <form onSubmit={handleSubmit} className="mt-8 max-w-xl mx-auto grid sm:grid-cols-[1fr_auto] gap-3">
           <Input
             type="email"
             placeholder="Váš e‑mail"
