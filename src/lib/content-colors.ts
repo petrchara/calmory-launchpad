@@ -52,23 +52,23 @@ const formatColors: Record<string, ContentColor> = {
   },
   "detske-pohadky": {
     background: hexToHsl("#E0F7FA"),
-    text: hexToHsl("#2F5D3A"), // Dark text for light background
+    text: hexToHsl("#7A9E7E"), // Dark text for light background
   },
   "hudba": {
-    background: hexToHsl("#2F5D3A"),
+    background: hexToHsl("#7A9E7E"),
     text: "0 0% 100%", // White text
   },
   "zvuky-prirody": {
     background: hexToHsl("#A8D5BA"),
-    text: hexToHsl("#2F5D3A"), // Dark text
+    text: hexToHsl("#7A9E7E"), // Dark text
   },
   "afirmace": {
     background: hexToHsl("#F5F5DC"),
-    text: hexToHsl("#2F5D3A"), // Dark text for light background
+    text: hexToHsl("#7A9E7E"), // Dark text for light background
   },
   "pribehy-ze-zivota": {
     background: hexToHsl("#FFB74D"),
-    text: hexToHsl("#2F5D3A"), // Dark text
+    text: hexToHsl("#7A9E7E"), // Dark text
   },
   "vyzvy-ukoly": {
     background: hexToHsl("#FF5722"),
@@ -80,11 +80,11 @@ const formatColors: Record<string, ContentColor> = {
 const categoryColors: Record<string, ContentColor> = {
   "regulace emocí": {
     background: hexToHsl("#BDBDBD"),
-    text: hexToHsl("#2F2F2F"), // Dark text for light background
+    text: hexToHsl("#7A9E7E"), // Dark text for light background
   },
   "terapeutické techniky": {
     background: hexToHsl("#BDBDBD"),
-    text: hexToHsl("#2F2F2F"), // Dark text
+    text: hexToHsl("#7A9E7E"), // Dark text
   },
   "mindfulness": {
     background: hexToHsl("#673AB7"),
@@ -93,7 +93,7 @@ const categoryColors: Record<string, ContentColor> = {
   // Default for unknown categories
   "default": {
     background: hexToHsl("#BDBDBD"),
-    text: hexToHsl("#2F2F2F"),
+    text: hexToHsl("#7A9E7E"),
   },
 };
 
