@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/calmory-hero.jpg";
 import { Sparkles, ShieldCheck, HeartPulse } from "lucide-react";
 import { useEffect, useRef } from "react";
+import MobileScreenCarousel from "./MobileScreenCarousel";
 
 const Hero = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -48,14 +48,7 @@ const Hero = () => {
                 <div className="flex items-center gap-2"><HeartPulse className="size-4"/> Vědecky podložené</div>
               </div>
             </div>
-            <div className="relative">
-              <img
-                src={heroImage}
-                alt="Calmory App hrdina – náhled terapeutické aplikace"
-                className="w-full max-w-lg mx-auto rounded-xl shadow-xl animate-float"
-                loading="lazy"
-              />
-            </div>
+            <MobileScreenCarousel />
           </div>
         </div>
       </div>
