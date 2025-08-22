@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { getFormatColor } from "@/lib/content-colors";
 
 
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -365,7 +366,22 @@ const ContentLibrary = ({ mobileMode = 'stack' }: { mobileMode?: 'stack' | 'swip
                                     const Icon = formats.find((f) => f.id === it.format)?.icon;
                                     return Icon ? <Icon className="size-4 text-muted-foreground" aria-hidden="true" /> : null;
                                   })()}
-                                  <Badge variant="secondary">{formats.find((f) => f.id === it.format)?.label}</Badge>
+                                   {(() => {
+                                     const formatLabel = formats.find((f) => f.id === it.format)?.label;
+                                     const colors = getFormatColor(it.format);
+                                     return (
+                                       <Badge 
+                                         variant="secondary" 
+                                         style={{
+                                           backgroundColor: `hsl(${colors.background})`,
+                                           color: `hsl(${colors.text})`,
+                                           border: 'none'
+                                         }}
+                                       >
+                                         {formatLabel}
+                                       </Badge>
+                                     );
+                                   })()}
                                   {it.duration ? <span className="text-xs text-muted-foreground">{it.duration}</span> : null}
                                 </div>
                               </div>
@@ -439,7 +455,22 @@ const ContentLibrary = ({ mobileMode = 'stack' }: { mobileMode?: 'stack' | 'swip
                               const Icon = formats.find((f) => f.id === it.format)?.icon;
                               return Icon ? <Icon className="size-4 text-muted-foreground" aria-hidden="true" /> : null;
                             })()}
-                            <Badge variant="secondary">{formats.find((f) => f.id === it.format)?.label}</Badge>
+                             {(() => {
+                               const formatLabel = formats.find((f) => f.id === it.format)?.label;
+                               const colors = getFormatColor(it.format);
+                               return (
+                                 <Badge 
+                                   variant="secondary" 
+                                   style={{
+                                     backgroundColor: `hsl(${colors.background})`,
+                                     color: `hsl(${colors.text})`,
+                                     border: 'none'
+                                   }}
+                                 >
+                                   {formatLabel}
+                                 </Badge>
+                               );
+                             })()}
                             {it.duration ? <span className="text-xs text-muted-foreground">{it.duration}</span> : null}
                           </div>
                         </div>
@@ -498,7 +529,22 @@ const ContentLibrary = ({ mobileMode = 'stack' }: { mobileMode?: 'stack' | 'swip
                         const Icon = formats.find((f) => f.id === it.format)?.icon;
                         return Icon ? <Icon className="size-4 text-muted-foreground" aria-hidden="true" /> : null;
                       })()}
-                      <Badge variant="secondary">{formats.find((f) => f.id === it.format)?.label}</Badge>
+                       {(() => {
+                         const formatLabel = formats.find((f) => f.id === it.format)?.label;
+                         const colors = getFormatColor(it.format);
+                         return (
+                           <Badge 
+                             variant="secondary" 
+                             style={{
+                               backgroundColor: `hsl(${colors.background})`,
+                               color: `hsl(${colors.text})`,
+                               border: 'none'
+                             }}
+                           >
+                             {formatLabel}
+                           </Badge>
+                         );
+                       })()}
                       {it.duration ? <span className="text-xs text-muted-foreground">{it.duration}</span> : null}
                     </div>
                   </div>

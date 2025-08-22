@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { getCategoryColor } from "@/lib/content-colors";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroImg from "@/assets/calmory-hero.jpg";
@@ -116,9 +117,22 @@ const TherapyAlphabet = ({ showAllButton = true, mobileMode = 'stack' }: { showA
                         />
                         <CardContent className="p-6">
                           <div className="flex items-center justify-between">
-                            <Badge variant="secondary" className="capitalize">
-                              {it.category}
-                            </Badge>
+                             {(() => {
+                               const colors = getCategoryColor(it.category);
+                               return (
+                                 <Badge 
+                                   variant="secondary" 
+                                   className="capitalize"
+                                   style={{
+                                     backgroundColor: `hsl(${colors.background})`,
+                                     color: `hsl(${colors.text})`,
+                                     border: 'none'
+                                   }}
+                                 >
+                                   {it.category}
+                                 </Badge>
+                               );
+                             })()}
                           </div>
                           <CardTitle className="mt-3" itemProp="name">
                             {it.title}
@@ -185,9 +199,22 @@ const TherapyAlphabet = ({ showAllButton = true, mobileMode = 'stack' }: { showA
                   />
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between">
-                      <Badge variant="secondary" className="capitalize">
-                        {it.category}
-                      </Badge>
+                       {(() => {
+                         const colors = getCategoryColor(it.category);
+                         return (
+                           <Badge 
+                             variant="secondary" 
+                             className="capitalize"
+                             style={{
+                               backgroundColor: `hsl(${colors.background})`,
+                               color: `hsl(${colors.text})`,
+                               border: 'none'
+                             }}
+                           >
+                             {it.category}
+                           </Badge>
+                         );
+                       })()}
                     </div>
                     <CardTitle className="mt-3" itemProp="name">
                       {it.title}
@@ -242,9 +269,22 @@ const TherapyAlphabet = ({ showAllButton = true, mobileMode = 'stack' }: { showA
                 />
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
-                    <Badge variant="secondary" className="capitalize">
-                      {it.category}
-                    </Badge>
+                   {(() => {
+                     const colors = getCategoryColor(it.category);
+                     return (
+                       <Badge 
+                         variant="secondary" 
+                         className="capitalize"
+                         style={{
+                           backgroundColor: `hsl(${colors.background})`,
+                           color: `hsl(${colors.text})`,
+                           border: 'none'
+                         }}
+                       >
+                         {it.category}
+                       </Badge>
+                     );
+                   })()}
                   </div>
                   <CardTitle className="mt-3" itemProp="name">
                     {it.title}
