@@ -180,11 +180,11 @@ const MobileScreenCarousel = () => {
 
   return (
     <div className="relative w-full max-w-md mx-auto">
-      {/* Navigační tlačítka mimo rám telefonu */}
+      {/* Navigační tlačítka mimo rám telefonu - pouze na desktopu */}
       <Button
         variant="outline"
         size="icon"
-        className="absolute -left-12 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/90 backdrop-blur-sm hover:bg-background border-2 shadow-lg z-10"
+        className="hidden md:flex absolute -left-12 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/90 backdrop-blur-sm hover:bg-background border-2 shadow-lg z-10 items-center justify-center"
         onClick={() => api?.scrollPrev()}
       >
         <ChevronLeft className="h-5 w-5" />
@@ -193,7 +193,7 @@ const MobileScreenCarousel = () => {
       <Button
         variant="outline"
         size="icon"
-        className="absolute -right-12 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/90 backdrop-blur-sm hover:bg-background border-2 shadow-lg z-10"
+        className="hidden md:flex absolute -right-12 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/90 backdrop-blur-sm hover:bg-background border-2 shadow-lg z-10 items-center justify-center"
         onClick={() => api?.scrollNext()}
       >
         <ChevronRight className="h-5 w-5" />
