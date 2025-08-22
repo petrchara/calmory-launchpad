@@ -3,9 +3,13 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
 } from "@/components/ui/carousel";
+import { Button } from "@/components/ui/button";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const screens = [
   {
@@ -114,9 +118,17 @@ const screens = [
 
 const MobileScreenCarousel = () => {
   const [api, setApi] = useState<any>();
+  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     if (!api) return;
+
+    const onSelect = () => {
+      setCurrent(api.selectedScrollSnap());
+    };
+
+    api.on("select", onSelect);
+    onSelect();
 
     const autoplay = setInterval(() => {
       if (api.canScrollNext()) {
@@ -124,25 +136,31 @@ const MobileScreenCarousel = () => {
       } else {
         api.scrollTo(0);
       }
-    }, 3000);
+    }, 5000); // Zpomaleno na 5 sekund
 
-    return () => clearInterval(autoplay);
+    return () => {
+      clearInterval(autoplay);
+      api.off("select", onSelect);
+    };
   }, [api]);
 
   return (
-    <div className="relative w-full max-w-sm mx-auto">
-      {/* Telefon rám */}
-      <div className="relative bg-slate-800 rounded-[3rem] p-2 shadow-2xl">
-        <div className="bg-black rounded-[2.5rem] p-1">
-          <div className="bg-slate-900 rounded-[2rem] overflow-hidden relative">
+    <div className="relative w-full max-w-xs mx-auto">
+      {/* Telefon rám - zmenšený z 720x1280 */}
+      <div className="relative bg-slate-800 rounded-[2rem] p-1.5 shadow-2xl w-48 mx-auto">
+        <div className="bg-black rounded-[1.75rem] p-0.5">
+          <div className="bg-slate-900 rounded-[1.5rem] overflow-hidden relative">
             {/* Notch */}
-            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-black rounded-b-xl z-10"></div>
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-4 bg-black rounded-b-lg z-10"></div>
             
-            {/* Screen content */}
-            <div className="w-full aspect-[9/19.5] bg-background">
+            {/* Screen content - poměr 720:1280 = 9:16 */}
+            <div className="w-full aspect-[9/16] bg-background">
               <Carousel 
-                opts={{ loop: true }}
-                plugins={[Autoplay({ delay: 3000 })]}
+                opts={{ 
+                  loop: true,
+                  duration: 40 // Pomalejší přechod
+                }}
+                plugins={[Autoplay({ delay: 5000, stopOnInteraction: false })]}
                 setApi={setApi}
                 className="w-full h-full"
               >
@@ -155,24 +173,47 @@ const MobileScreenCarousel = () => {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
+                
+                {/* Navigační tlačítka */}
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background/90"
+                  onClick={() => api?.scrollPrev()}
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </Button>
+                
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background/90"
+                  onClick={() => api?.scrollNext()}
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </Button>
               </Carousel>
             </div>
           </div>
         </div>
         
         {/* Tlačítka na straně telefonu */}
-        <div className="absolute -left-1 top-20 w-1 h-8 bg-slate-700 rounded-l"></div>
-        <div className="absolute -left-1 top-32 w-1 h-12 bg-slate-700 rounded-l"></div>
-        <div className="absolute -left-1 top-48 w-1 h-12 bg-slate-700 rounded-l"></div>
+        <div className="absolute -left-0.5 top-12 w-0.5 h-6 bg-slate-700 rounded-l"></div>
+        <div className="absolute -left-0.5 top-20 w-0.5 h-8 bg-slate-700 rounded-l"></div>
+        <div className="absolute -left-0.5 top-32 w-0.5 h-8 bg-slate-700 rounded-l"></div>
       </div>
 
       {/* Indikátory slideů */}
-      <div className="flex justify-center mt-4 space-x-2">
+      <div className="flex justify-center mt-6 space-x-3">
         {screens.map((_, index) => (
           <button
             key={index}
             onClick={() => api?.scrollTo(index)}
-            className="w-2 h-2 rounded-full bg-muted hover:bg-primary transition-colors"
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              current === index 
+                ? "bg-primary scale-110" 
+                : "bg-muted hover:bg-muted-foreground/50"
+            }`}
             aria-label={`Přejít na slide ${index + 1}`}
           />
         ))}
