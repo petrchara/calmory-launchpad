@@ -80,11 +80,11 @@ const formatColors: Record<string, ContentColor> = {
 const categoryColors: Record<string, ContentColor> = {
   "regulace emocí": {
     background: hexToHsl("#BDBDBD"),
-    text: hexToHsl("#7A9E7E"), // Dark text for light background
+    text: hexToHsl("#2F2F2F"), // Dark text for light background
   },
   "terapeutické techniky": {
     background: hexToHsl("#BDBDBD"),
-    text: hexToHsl("#7A9E7E"), // Dark text
+    text: hexToHsl("#2F2F2F"), // Dark text
   },
   "mindfulness": {
     background: hexToHsl("#673AB7"),
@@ -93,7 +93,7 @@ const categoryColors: Record<string, ContentColor> = {
   // Default for unknown categories
   "default": {
     background: hexToHsl("#BDBDBD"),
-    text: hexToHsl("#7A9E7E"),
+    text: hexToHsl("#2F2F2F"),
   },
 };
 
