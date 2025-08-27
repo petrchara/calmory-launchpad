@@ -6,6 +6,7 @@ import ContentCarousel from "@/components/marketing/ContentCarousel";
 import ContentLibrary from "@/components/marketing/ContentLibrary";
 import TherapyAlphabet from "@/components/marketing/TherapyAlphabet";
 import BlogHomeSection from "@/components/marketing/BlogHomeSection";
+import WallpaperSection from "@/components/marketing/WallpaperSection";
 import WaitlistForm from "@/components/marketing/WaitlistForm";
 import Testimonials from "@/components/marketing/Testimonials";
 import Trust from "@/components/marketing/Trust";
@@ -65,6 +66,7 @@ const Index = () => {
       <ContentLibrary mobileMode="swipe" />
       <TherapyAlphabet mobileMode="swipe" />
       <BlogHomeSection />
+      <WallpaperSection />
       <Testimonials />
       <Trust />
       <WaitlistForm />
