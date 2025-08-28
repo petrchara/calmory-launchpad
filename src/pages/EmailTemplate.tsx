@@ -161,12 +161,12 @@ const EmailTemplate = () => {
         <div className="bg-white rounded-lg shadow-xl overflow-hidden max-w-2xl mx-auto">
           {/* Email Header */}
           <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-transparent p-6 border-b">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                   <Heart className="w-4 h-4 text-primary-foreground" />
                 </div>
-                <span className="font-semibold text-lg">Calmory tipy a novinky</span>
+                <span className="font-semibold text-lg">Calmory - Vaše malá dávka klidu na tento týden</span>
               </div>
               <div className="text-right">
                 <a href="#" className="text-xs text-primary hover:text-primary/80 flex items-center gap-1">
@@ -174,9 +174,6 @@ const EmailTemplate = () => {
                   Webová verze newsletteru
                 </a>
               </div>
-            </div>
-            <div className="text-center">
-              <p className="text-sm font-medium text-foreground">Vaše malá dávka klidu na tento týden</p>
             </div>
           </div>
 
