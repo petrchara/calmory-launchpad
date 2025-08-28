@@ -39,48 +39,49 @@ const formatColors: Record<string, ContentColor> = {
     text: "0 0% 100%", // White text for dark backgrounds
   },
   "meditace": {
-    background: hexToHsl("#3F51B5"), // Using breathing colors as requested
+    background: hexToHsl("#673AB7"),
     text: "0 0% 100%", // White text
   },
   "detske-meditace": {
     background: hexToHsl("#F4EDFF"),
     text: hexToHsl("#673AB7"), // Dark text for light background
   },
-  "usinani": { // Maps to "Příběhy na spaní"
+  "usinani": {
     background: hexToHsl("#A68A79"),
     text: "0 0% 100%", // White text
   },
-  "detske-pohadky": {
-    background: hexToHsl("#E0F7FA"),
-    text: hexToHsl("#7A9E7E"), // Dark text for light background
-  },
-  "hudba": {
-    background: hexToHsl("#7A9E7E"),
-    text: "0 0% 100%", // White text
-  },
-  "zvuky-prirody": {
-    background: hexToHsl("#A8D5BA"),
-    text: hexToHsl("#7A9E7E"), // Dark text
-  },
-  "afirmace": {
-    background: hexToHsl("#F5F5DC"),
-    text: hexToHsl("#7A9E7E"), // Dark text for light background
+  "pribeh": {
+    background: hexToHsl("#FFB74D"),
+    text: "0 0% 0%", // Black text for better readability
   },
   "pribehy-ze-zivota": {
     background: hexToHsl("#FFB74D"),
-    text: hexToHsl("#7A9E7E"), // Dark text
+    text: "0 0% 0%", // Black text for better readability
   },
-  "pribeh": { // Adding for newsletter content
-    background: hexToHsl("#FFB74D"),
-    text: hexToHsl("#7A9E7E"), // Dark text
+  // Default gray style for other badges
+  "detske-pohadky": {
+    background: "transparent",
+    text: "0 0% 50%", // Gray text, no fill
   },
-  "tip": { // Adding for newsletter content
-    background: hexToHsl("#A8D5BA"),
-    text: hexToHsl("#7A9E7E"), // Dark text
+  "hudba": {
+    background: "transparent",
+    text: "0 0% 50%", // Gray text, no fill
+  },
+  "zvuky-prirody": {
+    background: "transparent",
+    text: "0 0% 50%", // Gray text, no fill
+  },
+  "afirmace": {
+    background: "transparent",
+    text: "0 0% 50%", // Gray text, no fill
+  },
+  "tip": {
+    background: "transparent",
+    text: "0 0% 50%", // Gray text, no fill
   },
   "vyzvy-ukoly": {
-    background: hexToHsl("#FF5722"),
-    text: "0 0% 100%", // White text
+    background: "transparent",
+    text: "0 0% 50%", // Gray text, no fill
   },
 };
 
@@ -107,7 +108,10 @@ const categoryColors: Record<string, ContentColor> = {
 
 export const getFormatColor = (format: string): ContentColor => {
   const normalizedFormat = format.toLowerCase().replace(/\s+/g, "-");
-  return formatColors[normalizedFormat] || categoryColors["default"];
+  return formatColors[normalizedFormat] || {
+    background: "transparent",
+    text: "0 0% 50%", // Gray text, no fill as default
+  };
 };
 
 export const getCategoryColor = (category: string): ContentColor => {
