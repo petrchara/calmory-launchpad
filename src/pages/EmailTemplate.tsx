@@ -277,7 +277,11 @@ const EmailTemplate = () => {
                           <div className="p-4 text-center">
                             <Badge 
                               className="mb-3 gap-1" 
-                              style={{ backgroundColor: colors.background, color: colors.text }}
+                              style={{ 
+                                backgroundColor: colors.background === "transparent" ? "transparent" : `hsl(${colors.background})`,
+                                color: `hsl(${colors.text})`,
+                                border: colors.background === "transparent" ? "1px solid hsl(0 0% 80%)" : "none"
+                              }}
                             >
                               <item.icon className="w-3 h-3" />
                               {item.format}
@@ -352,7 +356,11 @@ const EmailTemplate = () => {
                                 <h4 className="font-semibold text-sm flex-1">{item.title}</h4>
                                 <Badge 
                                   className="text-xs gap-1" 
-                                  style={{ backgroundColor: colors.background, color: colors.text }}
+                                  style={{ 
+                                    backgroundColor: colors.background === "transparent" ? "transparent" : `hsl(${colors.background})`,
+                                    color: `hsl(${colors.text})`,
+                                    border: colors.background === "transparent" ? "1px solid hsl(0 0% 80%)" : "none"
+                                  }}
                                 >
                                   <item.icon className="w-3 h-3" />
                                   {item.format}
@@ -387,8 +395,9 @@ const EmailTemplate = () => {
                           <div 
                             className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
                             style={{ 
-                              backgroundColor: colors.background,
-                              color: colors.text 
+                              backgroundColor: colors.background === "transparent" ? "transparent" : `hsl(${colors.background})`,
+                              color: `hsl(${colors.text})`,
+                              border: colors.background === "transparent" ? "1px solid hsl(0 0% 80%)" : "none"
                             }}
                           >
                             <type.icon className="w-4 h-4" />
