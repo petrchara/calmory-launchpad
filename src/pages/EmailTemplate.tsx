@@ -166,7 +166,7 @@ const EmailTemplate = () => {
                 <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                   <Heart className="w-4 h-4 text-primary-foreground" />
                 </div>
-                <span className="font-semibold text-lg">Calmory</span>
+                <span className="font-semibold text-lg">Calmory tipy a novinky</span>
               </div>
               <div className="text-right">
                 <p className="text-sm font-medium text-foreground mb-1">Vaše malá dávka klidu na tento týden</p>
