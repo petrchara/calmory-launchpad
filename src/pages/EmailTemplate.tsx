@@ -232,7 +232,15 @@ const EmailTemplate = () => {
 
                 {/* Content Showcase - 3 blocks side by side */}
                 <div className="mb-8">
-                  <h3 className="font-semibold mb-4 text-center">Ukázka obsahu / Vyzkoušejte</h3>
+                  <div className="text-center mb-6">
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <Play className="w-5 h-5 text-primary" />
+                      <h3 className="font-semibold">Ukázka obsahu / Vyzkoušejte</h3>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      Prozkoumejte naše terapeutické obsahy a najděte si tu pravou techniku pro váš klid
+                    </p>
+                  </div>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {showcaseContent.map((item, index) => {
                       const colors = getFormatColor(item.format);
@@ -268,9 +276,16 @@ const EmailTemplate = () => {
                   </div>
                 </div>
 
+                {/* Bonus Material Section Title */}
+                <div className="text-center mb-6">
+                  <div className="flex items-center justify-center gap-2">
+                    <Gift className="w-5 h-5 text-primary" />
+                    <h3 className="font-semibold">Bonusový materiál týdne</h3>
+                  </div>
+                </div>
+
                 {/* Bonus Material Section */}
                 <Card className="p-6 bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20 mb-8">
-                  <h3 className="font-semibold mb-4 text-center">🎁 Bonusový materiál týdne</h3>
                   <div className="flex items-start gap-4">
                     <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-primary/30 rounded-lg flex items-center justify-center flex-shrink-0">
                       <Download className="w-8 h-8 text-primary" />
