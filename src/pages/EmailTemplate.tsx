@@ -330,11 +330,18 @@ const EmailTemplate = () => {
                       const colors = getFormatColor(item.format);
                       return (
                         <Card key={index} className="p-4 hover:shadow-md transition-shadow">
-                          <div className="flex items-start gap-3">
+                          <div className="flex items-start gap-4">
+                            {/* Preview Image */}
+                            <div className="w-20 h-20 bg-gradient-to-br from-muted to-muted/50 rounded-lg border flex items-center justify-center flex-shrink-0">
+                              <span className="text-xs text-muted-foreground">IMG</span>
+                            </div>
+                            
+                            {/* Icon */}
                             <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
                                  style={{ backgroundColor: colors.background }}>
                               <item.icon className="w-5 h-5" style={{ color: colors.text }} />
                             </div>
+                            
                             <div className="flex-1">
                               <div className="flex items-start gap-2 mb-2">
                                 <h4 className="font-semibold text-sm flex-1">{item.title}</h4>
