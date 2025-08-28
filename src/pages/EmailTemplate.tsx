@@ -293,6 +293,7 @@ const EmailTemplate = () => {
                               asChild
                             >
                               <a href={item.link} target="_blank" rel="noopener noreferrer">
+                                <Play className="w-3 h-3 mr-1" />
                                 Spustit ukázku
                               </a>
                             </Button>
