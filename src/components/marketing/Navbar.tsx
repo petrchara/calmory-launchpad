@@ -34,6 +34,7 @@ const Navbar = () => {
                 <a href="#funkce" className="text-foreground hover:underline">Funkce a obsah aplikace</a>
                 <a href="/abeceda" className="text-foreground hover:underline">Terapeutická abeceda</a>
                 <a href="/blog" className="text-foreground hover:underline">Články a příběhy</a>
+                <a href="/email-sablona" className="text-foreground hover:underline">Email šablony</a>
                 <a href="#faq" className="text-foreground hover:underline">FAQ</a>
                 <Button asChild variant="hero" size="sm" className="mt-2">
                   <a href="#cekaci-listina">Přidat se</a>
@@ -48,6 +49,7 @@ const Navbar = () => {
           <a href="#funkce" className="text-muted-foreground hover:text-foreground transition-colors">Funkce a obsah aplikace</a>
           <a href="/abeceda" className="text-muted-foreground hover:text-foreground transition-colors">Terapeutická abeceda</a>
           <a href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">Články a příběhy</a>
+          <a href="/email-sablona" className="text-muted-foreground hover:text-foreground transition-colors">Email šablony</a>
           <a href="#faq" className="text-muted-foreground hover:text-foreground transition-colors">FAQ</a>
           <Button asChild variant="hero" size="sm">
             <a href="#cekaci-listina">Přidat se</a>
