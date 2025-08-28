@@ -195,12 +195,6 @@ const EmailTemplate = () => {
                   filter: 'brightness(0.6)'
                 }}
               />
-              <div 
-                className="absolute inset-0"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 100%)'
-                }}
-              />
               
               {/* Content */}
               <div className="relative z-10 p-8">
