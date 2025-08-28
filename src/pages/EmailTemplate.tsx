@@ -169,12 +169,14 @@ const EmailTemplate = () => {
                 <span className="font-semibold text-lg">Calmory tipy a novinky</span>
               </div>
               <div className="text-right">
-                <p className="text-sm font-medium text-foreground mb-1">Vaše malá dávka klidu na tento týden</p>
                 <a href="#" className="text-xs text-primary hover:text-primary/80 flex items-center gap-1">
                   <ExternalLink className="w-3 h-3" />
                   Webová verze newsletteru
                 </a>
               </div>
+            </div>
+            <div className="text-center">
+              <p className="text-sm font-medium text-foreground">Vaše malá dávka klidu na tento týden</p>
             </div>
           </div>
 
