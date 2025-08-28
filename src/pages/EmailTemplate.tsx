@@ -330,7 +330,12 @@ const EmailTemplate = () => {
 
                 {/* Newsletter Weekly Content */}
                 <div className="mb-8">
-                  <h3 className="font-semibold mb-4 text-center">Týdenní obsah</h3>
+                  <div className="text-center mb-4">
+                    <div className="flex items-center justify-center gap-2">
+                      <BookOpen className="w-5 h-5 text-primary" />
+                      <h3 className="font-semibold">Týdenní obsah</h3>
+                    </div>
+                  </div>
                   <div className="space-y-4">
                     {newsletterContent.map((item, index) => {
                       const colors = getFormatColor(item.format);
