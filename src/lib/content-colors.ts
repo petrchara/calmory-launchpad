@@ -39,7 +39,7 @@ const formatColors: Record<string, ContentColor> = {
     text: "0 0% 100%", // White text for dark backgrounds
   },
   "meditace": {
-    background: hexToHsl("#673AB7"),
+    background: hexToHsl("#3F51B5"), // Using breathing colors as requested
     text: "0 0% 100%", // White text
   },
   "detske-meditace": {
@@ -68,6 +68,14 @@ const formatColors: Record<string, ContentColor> = {
   },
   "pribehy-ze-zivota": {
     background: hexToHsl("#FFB74D"),
+    text: hexToHsl("#7A9E7E"), // Dark text
+  },
+  "pribeh": { // Adding for newsletter content
+    background: hexToHsl("#FFB74D"),
+    text: hexToHsl("#7A9E7E"), // Dark text
+  },
+  "tip": { // Adding for newsletter content
+    background: hexToHsl("#A8D5BA"),
     text: hexToHsl("#7A9E7E"), // Dark text
   },
   "vyzvy-ukoly": {
