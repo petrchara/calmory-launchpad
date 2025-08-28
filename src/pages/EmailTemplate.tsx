@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { CheckCircle2, Heart, Brain, Moon, Play, Download, Star } from "lucide-react";
+import { CheckCircle2, Heart, Brain, Moon, Play, Download, Star, BookOpen, Leaf, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { getFormatColor } from "@/lib/content-colors";
 
 const EmailTemplate = () => {
-  const [selectedTemplate, setSelectedTemplate] = useState("launch");
+  const [selectedTemplate, setSelectedTemplate] = useState("newsletter");
 
   const contentTypes = [
     {
@@ -36,25 +36,66 @@ const EmailTemplate = () => {
   ];
 
   const templates = {
+    newsletter: {
+      subject: "Novinky z Calmory: Ta druhá, Odlož den a tip na klid offline 🍃",
+      preheader: "Meditace, příběh a tip – vaše malá dávka klidu na tento týden.",
+      title: "Novinky z Calmory",
+      subtitle: "Vaše týdenní dávka klidu",
+      cta: "Vyzkoušet Calmory"
+    },
     launch: {
       subject: "🌟 Calmory už brzy - Vaše klidná mysl čeká",
+      preheader: "Připravte se na revoluci v terapeutické péči o duševní zdraví.",
       title: "Calmory přichází za 2 měsíce",
       subtitle: "Připravte se na revolutionizující terapeutickou aplikaci",
       cta: "Získat časný přístup"
     },
     content: {
       subject: "🧘 Objevte sílu řízených meditací s Calmory",
+      preheader: "Praktické techniky pro váš lepší den již brzy ve vaší kapse.",
       title: "Každý den klidnější mysl",
       subtitle: "Praktické techniky pro váš lepší den",
       cta: "Vyzkoušet zdarma"
     },
     countdown: {
       subject: "⏰ Pouze 30 dní do spuštění Calmory",
+      preheader: "Buďte mezi prvními, kdo si vyzkouší revolutionizující aplikaci.",
       title: "Odpočítávání začalo",
       subtitle: "Buďte mezi prvními, kdo si vyzkouší Calmory",
       cta: "Rezervovat místo"
     }
   };
+
+  const newsletterContent = [
+    {
+      icon: Brain,
+      title: "🧘‍♀️ Meditace týdne: Odlož den",
+      description: "Krátká praxe, která vám pomůže uvolnit napětí a odložit tíhu každodennosti.",
+      link: "https://dev.calmoryapp.com/#registrace",
+      format: "meditace"
+    },
+    {
+      icon: BookOpen,
+      title: "📖 Článek týdne: Ta druhá",
+      description: "Příběh dvou sester, které se přestaly srovnávat a začaly růst vedle sebe. O přijetí, blízkosti i rozdílnosti.",
+      link: "https://calmoryapp.com/cs/a-600-ta-druha",
+      format: "pribeh"
+    },
+    {
+      icon: Leaf,
+      title: "🌿 Offline tip Calmory",
+      description: "Vytvořte si doma malý ostrůvek klidu: zapalte svíčku, odložte telefon a nalaďte se na dech.",
+      link: "https://dev.calmoryapp.com/#registrace",
+      format: "tip"
+    }
+  ];
+
+  const bonusOptions = [
+    "Brzy nové pohádky na spaní 🌙",
+    "\"Aplikace mi pomohla najít klid i v nejrušnějších dnech.\" - Uživatel",
+    "Příští týden: Řízené dýchání pro začátečníky",
+    "Denní afirmace: Jsem v klidu a přijímám tento moment takový, jaký je."
+  ];
 
   const currentTemplate = templates[selectedTemplate as keyof typeof templates];
 
@@ -72,6 +113,7 @@ const EmailTemplate = () => {
                 onClick={() => setSelectedTemplate(key)}
                 className="capitalize"
               >
+                {key === "newsletter" && "Newsletter"}
                 {key === "launch" && "Spuštění"}
                 {key === "content" && "Obsah"}
                 {key === "countdown" && "Odpočítávání"}
@@ -93,6 +135,11 @@ const EmailTemplate = () => {
             <p className="text-sm text-muted-foreground">
               Předmět: {currentTemplate.subject}
             </p>
+            {currentTemplate.preheader && (
+              <p className="text-xs text-muted-foreground mt-1">
+                Náhled: {currentTemplate.preheader}
+              </p>
+            )}
           </div>
 
           {/* Email Body */}
@@ -122,6 +169,52 @@ const EmailTemplate = () => {
                 </div>
               )}
             </div>
+
+            {/* Newsletter Content */}
+            {selectedTemplate === "newsletter" && (
+              <div className="mb-8 space-y-6">
+                {newsletterContent.map((item, index) => (
+                  <Card key={index} className="p-4 hover:shadow-md transition-shadow">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <item.icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-sm mb-2">{item.title}</h4>
+                        <p className="text-sm text-muted-foreground mb-3">{item.description}</p>
+                        <Button variant="outline" size="sm" asChild>
+                          <a href={item.link} target="_blank" rel="noopener noreferrer">
+                            Zobrazit →
+                          </a>
+                        </Button>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+                
+                {/* Bonus Section */}
+                <Card className="p-4 bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20">
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Gift className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-sm mb-2">🎁 Bonus týdne</h4>
+                      <div className="space-y-2">
+                        {bonusOptions.map((bonus, index) => (
+                          <p key={index} className="text-sm text-muted-foreground p-2 bg-white/50 rounded border-l-2 border-primary/30">
+                            {bonus}
+                          </p>
+                        ))}
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-2 italic">
+                        Vyberte jeden z variant pro finální newsletter
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+            )}
 
             {/* Content Types */}
             {selectedTemplate === "content" && (
