@@ -342,19 +342,14 @@ const EmailTemplate = () => {
                               <span className="text-xs text-muted-foreground">IMG</span>
                             </div>
                             
-                            {/* Icon */}
-                            <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
-                                 style={{ backgroundColor: colors.background }}>
-                              <item.icon className="w-5 h-5" style={{ color: colors.text }} />
-                            </div>
-                            
                             <div className="flex-1">
                               <div className="flex items-start gap-2 mb-2">
                                 <h4 className="font-semibold text-sm flex-1">{item.title}</h4>
                                 <Badge 
-                                  className="text-xs" 
+                                  className="text-xs gap-1" 
                                   style={{ backgroundColor: colors.background, color: colors.text }}
                                 >
+                                  <item.icon className="w-3 h-3" />
                                   {item.format}
                                 </Badge>
                               </div>
