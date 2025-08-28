@@ -444,8 +444,6 @@ const EmailTemplate = () => {
 
             {/* Footer */}
             <div className="text-center text-xs text-muted-foreground border-t pt-4">
-              <p className="mb-4">© 2024 Calmory. Všechna práva vyhrazena.</p>
-              
               {/* Social Media Icons */}
               <div className="flex justify-center gap-4 mb-4">
                 <a href="#" className="w-8 h-8 bg-muted rounded-full flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
@@ -465,10 +463,13 @@ const EmailTemplate = () => {
                 <a href="mailto:hello@calmoryapp.com" className="hover:text-foreground">Kontakt</a>
               </div>
               
+              <p className="mb-4">© 2024 Calmory. Všechna práva vyhrazena.</p>
+              
               {/* Legal Information */}
               <div className="border-t pt-4 text-xs text-muted-foreground">
                 <p className="mb-2">Tento e-mail byl odeslán na adresu standa@knotek.eu.</p>
-                <p>Odesilatelem je Booker Fish, s.r.o., provozovatel terapeutické aplikace Calmory. Tento e-mail je podle zákona obchodním sdělením.</p>
+                <p className="mb-1">Odesilatelem je Booker Fish, s.r.o., provozovatel terapeutické aplikace Calmory.</p>
+                <p>Tento e-mail je podle zákona obchodním sdělením.</p>
               </div>
             </div>
           </div>
