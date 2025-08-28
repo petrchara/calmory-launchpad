@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CheckCircle2, Heart, Brain, Moon, Play, Download, Star, BookOpen, Leaf, Gift } from "lucide-react";
+import { CheckCircle2, Heart, Brain, Moon, Play, Download, Star, BookOpen, Leaf, Gift, Facebook, Instagram, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -65,6 +65,41 @@ const EmailTemplate = () => {
       cta: "Rezervovat místo"
     }
   };
+
+  const heroTitles = [
+    "Díky za předregistraci",
+    "Vyzkoušejte meditace", 
+    "Naši odborníci doporučují",
+    "Recenze zapojených lidí",
+    "Ukázky vzhledu aplikace",
+    "Doporučte Calmory známým",
+    "Recenze influencerů",
+    "Naše sociální sítě"
+  ];
+
+  const showcaseContent = [
+    {
+      icon: Brain,
+      title: "Řízené meditace",
+      description: "Krátké praxe pro každodenní klid",
+      format: "meditace",
+      link: "https://dev.calmoryapp.com/#registrace"
+    },
+    {
+      icon: Heart,
+      title: "Dechová cvičení", 
+      description: "Techniky pro okamžité uklidnění",
+      format: "dychani",
+      link: "https://dev.calmoryapp.com/#registrace"
+    },
+    {
+      icon: Moon,
+      title: "Podpora spánku",
+      description: "Relaxační příběhy na dobrou noc",
+      format: "usinani", 
+      link: "https://dev.calmoryapp.com/#registrace"
+    }
+  ];
 
   const newsletterContent = [
     {
@@ -172,47 +207,167 @@ const EmailTemplate = () => {
 
             {/* Newsletter Content */}
             {selectedTemplate === "newsletter" && (
-              <div className="mb-8 space-y-6">
-                {newsletterContent.map((item, index) => (
-                  <Card key={index} className="p-4 hover:shadow-md transition-shadow">
-                    <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <item.icon className="w-5 h-5 text-primary" />
+              <div className="mb-8 space-y-8">
+                {/* Hero Title Options */}
+                <div className="text-center bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg p-4 mb-6">
+                  <h3 className="font-semibold mb-3">Hero nadpis (vyberte jeden):</h3>
+                  <div className="grid grid-cols-2 gap-2">
+                    {heroTitles.map((title, index) => (
+                      <div key={index} className="text-sm p-2 bg-white/50 rounded border-l-2 border-primary/30">
+                        {title}
                       </div>
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-sm mb-2">{item.title}</h4>
-                        <p className="text-sm text-muted-foreground mb-3">{item.description}</p>
-                        <Button variant="outline" size="sm" asChild>
-                          <a href={item.link} target="_blank" rel="noopener noreferrer">
-                            Zobrazit →
-                          </a>
-                        </Button>
-                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Dynamic Countdown */}
+                <div className="text-center bg-gradient-to-r from-primary/10 to-transparent rounded-lg p-4 mb-6">
+                  <p className="text-lg font-semibold text-primary mb-2">Již za 8 týdnů bude aplikace ke stažení! 📱</p>
+                  <div className="flex justify-center gap-4">
+                    <div className="text-center">
+                      <div className="text-xl font-bold text-primary">56</div>
+                      <div className="text-xs text-muted-foreground">DNÍ</div>
                     </div>
-                  </Card>
-                ))}
-                
-                {/* Bonus Section */}
-                <Card className="p-4 bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20">
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Gift className="w-5 h-5 text-primary" />
+                    <div className="text-center">
+                      <div className="text-xl font-bold text-primary">8</div>
+                      <div className="text-xs text-muted-foreground">HODIN</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-xl font-bold text-primary">23</div>
+                      <div className="text-xs text-muted-foreground">MINUT</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Content Showcase - 3 blocks side by side */}
+                <div className="mb-8">
+                  <h3 className="font-semibold mb-4 text-center">Ukázka obsahu / Vyzkoušejte</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {showcaseContent.map((item, index) => {
+                      const colors = getFormatColor(item.format);
+                      return (
+                        <Card key={index} className="p-4 text-center hover:shadow-md transition-shadow">
+                          <div className="w-12 h-12 mx-auto mb-3 rounded-lg flex items-center justify-center" 
+                               style={{ backgroundColor: colors.background }}>
+                            <item.icon className="w-6 h-6" style={{ color: colors.text }} />
+                          </div>
+                          <Badge 
+                            className="mb-2" 
+                            style={{ backgroundColor: colors.background, color: colors.text }}
+                          >
+                            {item.format}
+                          </Badge>
+                          <h4 className="font-semibold text-sm mb-2">{item.title}</h4>
+                          <p className="text-xs text-muted-foreground mb-3">{item.description}</p>
+                          <Button variant="outline" size="sm" asChild>
+                            <a href={item.link} target="_blank" rel="noopener noreferrer">
+                              Vyzkoušet →
+                            </a>
+                          </Button>
+                        </Card>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Newsletter Weekly Content */}
+                <div className="mb-8">
+                  <h3 className="font-semibold mb-4 text-center">Týdenní obsah</h3>
+                  <div className="space-y-4">
+                    {newsletterContent.map((item, index) => {
+                      const colors = getFormatColor(item.format);
+                      return (
+                        <Card key={index} className="p-4 hover:shadow-md transition-shadow">
+                          <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                                 style={{ backgroundColor: colors.background }}>
+                              <item.icon className="w-5 h-5" style={{ color: colors.text }} />
+                            </div>
+                            <div className="flex-1">
+                              <div className="flex items-start gap-2 mb-2">
+                                <h4 className="font-semibold text-sm flex-1">{item.title}</h4>
+                                <Badge 
+                                  className="text-xs" 
+                                  style={{ backgroundColor: colors.background, color: colors.text }}
+                                >
+                                  {item.format}
+                                </Badge>
+                              </div>
+                              <p className="text-sm text-muted-foreground mb-3">{item.description}</p>
+                              <Button variant="outline" size="sm" asChild>
+                                <a href={item.link} target="_blank" rel="noopener noreferrer">
+                                  Zobrazit →
+                                </a>
+                              </Button>
+                            </div>
+                          </div>
+                        </Card>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Bonus Material Section */}
+                <Card className="p-6 bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20">
+                  <h3 className="font-semibold mb-4 text-center">🎁 Bonusový materiál týdne</h3>
+                  <div className="flex items-start gap-4">
+                    <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-primary/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Download className="w-8 h-8 text-primary" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-semibold text-sm mb-2">🎁 Bonus týdne</h4>
-                      <div className="space-y-2">
-                        {bonusOptions.map((bonus, index) => (
-                          <p key={index} className="text-sm text-muted-foreground p-2 bg-white/50 rounded border-l-2 border-primary/30">
-                            {bonus}
-                          </p>
-                        ))}
-                      </div>
-                      <p className="text-xs text-muted-foreground mt-2 italic">
-                        Vyberte jeden z variant pro finální newsletter
+                      <h4 className="font-semibold mb-2">Zdarma ke stažení: Průvodce klidným dnem</h4>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        PDF s praktickými tipy a cvičeními, která vám pomohou najít klid v každé situaci. 
+                        Ideální pro začátečníky i pokročilé.
                       </p>
+                      <Button size="sm" className="w-full sm:w-auto">
+                        <Download className="w-4 h-4 mr-2" />
+                        Stáhnout zdarma
+                      </Button>
                     </div>
                   </div>
                 </Card>
+
+                {/* Blog Section with #CalmStories */}
+                <Card className="p-4 bg-gradient-to-r from-blue-50 to-blue-100 border-blue-200">
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 bg-blue-200 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <BookOpen className="w-5 h-5 text-blue-600" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-sm mb-2">📝 Blog #CalmStories</h4>
+                      <p className="text-sm text-muted-foreground mb-3">
+                        Sdílejte své příběhy klidu a inspirujte ostatní. Označte své příspěvky hashtagem #CalmStories.
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        <Badge variant="outline" className="text-xs bg-blue-50 text-blue-600 border-blue-200">
+                          #CalmStories
+                        </Badge>
+                        <Badge variant="outline" className="text-xs bg-blue-50 text-blue-600 border-blue-200">
+                          #Calmory
+                        </Badge>
+                        <Badge variant="outline" className="text-xs bg-blue-50 text-blue-600 border-blue-200">
+                          #Mindfulness
+                        </Badge>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+
+                {/* Review Section */}
+                <div className="bg-muted/30 rounded-lg p-4">
+                  <div className="text-center">
+                    <div className="flex justify-center mb-2">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      ))}
+                    </div>
+                    <p className="text-sm italic mb-2">
+                      "Už po týdnu používání Calmory cítím obrovskou změnu. Meditace mi pomáhají zvládat stres a najít klid i v nejrušnějších dnech."
+                    </p>
+                    <p className="text-xs text-muted-foreground">- Marie K., beta testerka</p>
+                  </div>
+                </div>
               </div>
             )}
 
@@ -291,7 +446,21 @@ const EmailTemplate = () => {
 
             {/* Footer */}
             <div className="text-center text-xs text-muted-foreground border-t pt-4">
-              <p className="mb-2">© 2024 Calmory. Všechna práva vyhrazena.</p>
+              <p className="mb-4">© 2024 Calmory. Všechna práva vyhrazena.</p>
+              
+              {/* Social Media Icons */}
+              <div className="flex justify-center gap-4 mb-4">
+                <a href="#" className="w-8 h-8 bg-muted rounded-full flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                  <Facebook className="w-4 h-4" />
+                </a>
+                <a href="#" className="w-8 h-8 bg-muted rounded-full flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                  <Instagram className="w-4 h-4" />
+                </a>
+                <a href="#" className="w-8 h-8 bg-muted rounded-full flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                  <Youtube className="w-4 h-4" />
+                </a>
+              </div>
+              
               <div className="flex justify-center gap-4">
                 <a href="#" className="hover:text-foreground">Zásady ochrany</a>
                 <a href="#" className="hover:text-foreground">Odhlásit</a>
