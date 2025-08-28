@@ -186,7 +186,7 @@ const EmailTemplate = () => {
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                 style={{
                   backgroundImage: `url('/lovable-uploads/61360993-992c-4560-9f2a-8748066df71a.png')`,
-                  filter: 'brightness(0.8)'
+                  filter: 'brightness(0.6)'
                 }}
               />
               <div 
