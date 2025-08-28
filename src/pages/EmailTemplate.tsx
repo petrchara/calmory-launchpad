@@ -425,12 +425,6 @@ const EmailTemplate = () => {
               </div>
             )}
 
-            {/* CTA Button */}
-            <div className="text-center mb-6">
-              <Button size="lg" className="w-full sm:w-auto px-8">
-                {currentTemplate.cta}
-              </Button>
-            </div>
 
             {/* Social Proof */}
             <div className="bg-muted/30 rounded-lg p-4 mb-6">
@@ -443,7 +437,7 @@ const EmailTemplate = () => {
                 <p className="text-sm italic mb-2">
                   "Konečně aplikace, která skutečně pomáhá s každodenním stresem. Těším se na plnou verzi!"
                 </p>
-                <p className="text-xs text-muted-foreground">- Beta tester</p>
+                <p className="text-xs text-muted-foreground">- Michaela P. - maminka na mateřské dovolené</p>
               </div>
             </div>
 
