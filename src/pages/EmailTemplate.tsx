@@ -185,8 +185,8 @@ const EmailTemplate = () => {
               <div 
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                 style={{
-                  backgroundImage: `url('/src/assets/calmory-hero.jpg')`,
-                  filter: 'brightness(0.3)'
+                  backgroundImage: `url('/lovable-uploads/61360993-992c-4560-9f2a-8748066df71a.png')`,
+                  filter: 'brightness(0.4)'
                 }}
               />
               <div 
