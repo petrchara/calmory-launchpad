@@ -104,21 +104,21 @@ const EmailTemplate = () => {
   const newsletterContent = [
     {
       icon: Brain,
-      title: "🧘‍♀️ Meditace týdne: Odlož den",
+      title: "Meditace týdne: Odlož den",
       description: "Krátká praxe, která vám pomůže uvolnit napětí a odložit tíhu každodennosti.",
       link: "https://dev.calmoryapp.com/#registrace",
       format: "meditace"
     },
     {
       icon: BookOpen,
-      title: "📖 Článek týdne: Ta druhá",
+      title: "Článek týdne: Ta druhá",
       description: "Příběh dvou sester, které se přestaly srovnávat a začaly růst vedle sebe. O přijetí, blízkosti i rozdílnosti.",
       link: "https://calmoryapp.com/cs/a-600-ta-druha",
       format: "pribeh"
     },
     {
       icon: Leaf,
-      title: "🌿 Offline tip Calmory",
+      title: "Offline tip Calmory",
       description: "Vytvořte si doma malý ostrůvek klidu: zapalte svíčku, odložte telefon a nalaďte se na dech.",
       link: "https://dev.calmoryapp.com/#registrace",
       format: "tip"
