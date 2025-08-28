@@ -186,13 +186,13 @@ const EmailTemplate = () => {
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                 style={{
                   backgroundImage: `url('/lovable-uploads/61360993-992c-4560-9f2a-8748066df71a.png')`,
-                  filter: 'brightness(0.4)'
+                  filter: 'brightness(0.8)'
                 }}
               />
               <div 
                 className="absolute inset-0"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%)'
+                  background: 'linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 100%)'
                 }}
               />
               
