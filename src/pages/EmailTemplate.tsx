@@ -176,14 +176,6 @@ const EmailTemplate = () => {
                 </a>
               </div>
             </div>
-            <p className="text-sm text-muted-foreground">
-              Předmět: {currentTemplate.subject}
-            </p>
-            {currentTemplate.preheader && (
-              <p className="text-xs text-muted-foreground mt-1">
-                Náhled: {currentTemplate.preheader}
-              </p>
-            )}
           </div>
 
           {/* Email Body */}
