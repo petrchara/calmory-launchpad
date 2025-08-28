@@ -237,28 +237,31 @@ const EmailTemplate = () => {
                     {showcaseContent.map((item, index) => {
                       const colors = getFormatColor(item.format);
                       return (
-                        <Card key={index} className="p-4 text-center hover:shadow-md transition-shadow">
-                          {/* Square Image Placeholder */}
-                          <div className="w-16 h-16 mx-auto mb-3 bg-gradient-to-br from-muted to-muted/50 rounded-lg border-2 border-dashed border-muted-foreground/20 flex items-center justify-center">
-                            <span className="text-xs text-muted-foreground">IMG</span>
+                        <Card key={index} className="p-0 overflow-hidden hover:shadow-md transition-shadow">
+                          {/* Full width square image */}
+                          <div className="w-full aspect-square bg-gradient-to-br from-muted to-muted/50 border-b flex items-center justify-center">
+                            <span className="text-2xl text-muted-foreground">IMG</span>
                           </div>
-                          <div className="w-12 h-12 mx-auto mb-3 rounded-lg flex items-center justify-center" 
-                               style={{ backgroundColor: colors.background }}>
-                            <item.icon className="w-6 h-6" style={{ color: colors.text }} />
+                          <div className="p-4 text-center">
+                            <Badge 
+                              className="mb-3 gap-1" 
+                              style={{ backgroundColor: colors.background, color: colors.text }}
+                            >
+                              <item.icon className="w-3 h-3" />
+                              {item.format}
+                            </Badge>
+                            <h4 className="font-semibold text-sm mb-2">{item.title}</h4>
+                            <p className="text-xs text-muted-foreground mb-4">{item.description}</p>
+                            <Button 
+                              size="sm" 
+                              className="w-full bg-blue-500 hover:bg-blue-600 text-white border-blue-500 hover:border-blue-600"
+                              asChild
+                            >
+                              <a href={item.link} target="_blank" rel="noopener noreferrer">
+                                Spustit ukázku
+                              </a>
+                            </Button>
                           </div>
-                          <Badge 
-                            className="mb-2" 
-                            style={{ backgroundColor: colors.background, color: colors.text }}
-                          >
-                            {item.format}
-                          </Badge>
-                          <h4 className="font-semibold text-sm mb-2">{item.title}</h4>
-                          <p className="text-xs text-muted-foreground mb-3">{item.description}</p>
-                          <Button variant="outline" size="sm" asChild>
-                            <a href={item.link} target="_blank" rel="noopener noreferrer">
-                              Vyzkoušet →
-                            </a>
-                          </Button>
                         </Card>
                       );
                     })}
