@@ -40,7 +40,7 @@ const EmailTemplate = () => {
       subject: "Novinky z Calmory: Ta druhá, Odlož den a tip na klid offline 🍃",
       preheader: "Meditace, příběh a tip – vaše malá dávka klidu na tento týden.",
       title: "Díky za předregistraci",
-      subtitle: "Vaše týdenní dávka klidu",
+      subtitle: "Vítejte v komunitě lidí, kteří hledají cestu ke klidnější mysli. Připravili jsme pro vás speciální výběr terapeutických obsahů - meditaci 'Odlož den', inspirativní příběh o přijetí rozdílnosti a praktický tip pro vytvoření klidu ve vašem domově.",
       cta: "Vyzkoušet Calmory"
     },
     launch: {
@@ -180,26 +180,44 @@ const EmailTemplate = () => {
           {/* Email Body */}
           <div className="p-6">
             {/* Hero Section */}
-            <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Heart className="w-8 h-8 text-white" />
+            <div className="relative text-center mb-8 rounded-lg overflow-hidden">
+              {/* Background Image */}
+              <div 
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style={{
+                  backgroundImage: `url('/src/assets/calmory-hero.jpg')`,
+                  filter: 'brightness(0.3)'
+                }}
+              />
+              <div 
+                className="absolute inset-0"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%)'
+                }}
+              />
+              
+              {/* Content */}
+              <div className="relative z-10 p-8">
+                <div className="w-16 h-16 bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4 border border-white/20">
+                  <Heart className="w-8 h-8 text-white" />
+                </div>
+                <h2 className="text-2xl font-bold mb-4 text-white">{currentTemplate.title}</h2>
+                <p className="text-white/90 mb-6 max-w-lg mx-auto leading-relaxed">{currentTemplate.subtitle}</p>
               </div>
-              <h2 className="text-2xl font-bold mb-2">{currentTemplate.title}</h2>
-              <p className="text-muted-foreground mb-6">{currentTemplate.subtitle}</p>
               
               {selectedTemplate === "countdown" && (
-                <div className="flex justify-center gap-4 mb-6">
+                <div className="flex justify-center gap-4 mb-6 relative z-10">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-primary">30</div>
-                    <div className="text-xs text-muted-foreground">DNÍ</div>
+                    <div className="text-2xl font-bold text-white">30</div>
+                    <div className="text-xs text-white/70">DNÍ</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-primary">12</div>
-                    <div className="text-xs text-muted-foreground">HODIN</div>
+                    <div className="text-2xl font-bold text-white">12</div>
+                    <div className="text-xs text-white/70">HODIN</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-primary">45</div>
-                    <div className="text-xs text-muted-foreground">MINUT</div>
+                    <div className="text-2xl font-bold text-white">45</div>
+                    <div className="text-xs text-white/70">MINUT</div>
                   </div>
                 </div>
               )}
