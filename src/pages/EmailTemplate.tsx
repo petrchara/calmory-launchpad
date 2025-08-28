@@ -249,9 +249,9 @@ const EmailTemplate = () => {
                 </div>
 
                 {/* Newsletter Section Header */}
-                <div className="text-center mb-8">
-                  <h3 className="text-xl font-bold mb-2">Calmory novinky a tipy</h3>
-                  <p className="text-muted-foreground">Vaše týdenní dávka klidu</p>
+                <div className="text-center mb-8 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+                  <h3 className="text-xl font-bold mb-2 text-blue-900">Calmory novinky a tipy</h3>
+                  <p className="text-blue-700">Vaše týdenní dávka klidu</p>
                 </div>
 
                 {/* Content Showcase - 3 blocks side by side */}
