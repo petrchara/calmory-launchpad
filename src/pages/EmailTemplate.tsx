@@ -81,21 +81,21 @@ const EmailTemplate = () => {
     {
       icon: Brain,
       title: "Řízené meditace",
-      description: "Krátké praxe pro každodenní klid",
+      description: "Krátké praxe pro každodenní klid. Objevte sílu mindfulness a naučte se techniky, které vám pomohou najít vnitřní rovnováhu. Ideální pro začátečníky i pokročilé. Každá meditace je navržena tak, aby vás provázela krokem za krokem k hlubšímu pocitu klidu a soustředění.",
       format: "meditace",
       link: "https://dev.calmoryapp.com/#registrace"
     },
     {
       icon: Heart,
       title: "Dechová cvičení", 
-      description: "Techniky pro okamžité uklidnění",
+      description: "Techniky pro okamžité uklidnění. Naučte se ovládat svůj dech a tím i své emoce. Proven metody pro snížení stresu a úzkosti. Jednoduché cvičení, které si můžete zopakovat kdykoliv během dne. Perfektní pro zvládnutí náročných situací a okamžité uvolnění napětí.",
       format: "dychani",
       link: "https://dev.calmoryapp.com/#registrace"
     },
     {
       icon: Moon,
       title: "Podpora spánku",
-      description: "Relaxační příběhy na dobrou noc",
+      description: "Relaxační příběhy na dobrou noc. Klidné narace a uklidňující zvuky, které vám pomohou usnout. Speciálně navržené pro ty, kteří mají problémy s usínáním. Kombinace storytellingu a relaxačních technik pro lepší kvalitu spánku. Vaše cesta ke klidnému a regenerativnímu odpočinku.",
       format: "usinani", 
       link: "https://dev.calmoryapp.com/#registrace"
     }
@@ -286,17 +286,17 @@ const EmailTemplate = () => {
                               <item.icon className="w-3 h-3" />
                               {item.format}
                             </Badge>
-                            <h4 className="font-semibold text-sm mb-2">{item.title}</h4>
-                            <p className="text-xs text-muted-foreground mb-4">{item.description}</p>
+                            <h4 className="font-semibold text-sm mb-3">{item.title}</h4>
                             <Button 
                               size="sm" 
-                              className="w-full bg-blue-500 hover:bg-blue-600 text-white border-blue-500 hover:border-blue-600"
+                              className="w-full bg-blue-500 hover:bg-blue-600 text-white border-blue-500 hover:border-blue-600 mb-4"
                               asChild
                             >
                               <a href={item.link} target="_blank" rel="noopener noreferrer">
                                 Spustit ukázku
                               </a>
                             </Button>
+                            <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
                           </div>
                         </Card>
                       );
