@@ -83,21 +83,24 @@ const EmailTemplate = () => {
       title: "Řízené meditace",
       description: "Krátké praxe pro každodenní klid. Objevte sílu mindfulness a naučte se techniky, které vám pomohou najít vnitřní rovnováhu. Ideální pro začátečníky i pokročilé. Každá meditace je navržena tak, aby vás provázela krokem za krokem k hlubšímu pocitu klidu a soustředění.",
       format: "meditace",
-      link: "https://dev.calmoryapp.com/#registrace"
+      link: "https://dev.calmoryapp.com/#registrace",
+      image: "/lovable-uploads/3bc3a236-0f65-484f-a051-5a826f131023.png"
     },
     {
       icon: Heart,
       title: "Dechová cvičení", 
       description: "Techniky pro okamžité uklidnění. Naučte se ovládat svůj dech a tím i své emoce. Proven metody pro snížení stresu a úzkosti. Jednoduché cvičení, které si můžete zopakovat kdykoliv během dne. Perfektní pro zvládnutí náročných situací a okamžité uvolnění napětí.",
       format: "dychani",
-      link: "https://dev.calmoryapp.com/#registrace"
+      link: "https://dev.calmoryapp.com/#registrace",
+      image: "/lovable-uploads/6f0529c6-e167-4efa-b76e-f55d10237a5c.png"
     },
     {
       icon: Moon,
       title: "Podpora spánku",
       description: "Relaxační příběhy na dobrou noc. Klidné narace a uklidňující zvuky, které vám pomohou usnout. Speciálně navržené pro ty, kteří mají problémy s usínáním. Kombinace storytellingu a relaxačních technik pro lepší kvalitu spánku. Vaše cesta ke klidnému a regenerativnímu odpočinku.",
       format: "usinani", 
-      link: "https://dev.calmoryapp.com/#registrace"
+      link: "https://dev.calmoryapp.com/#registrace",
+      image: "/lovable-uploads/220593f7-6d2d-44db-b88d-788565fefa7d.png"
     }
   ];
 
@@ -107,21 +110,24 @@ const EmailTemplate = () => {
       title: "Meditace týdne: Odlož den",
       description: "Krátká praxe, která vám pomůže uvolnit napětí a odložit tíhu každodennosti.",
       link: "https://dev.calmoryapp.com/#registrace",
-      format: "meditace"
+      format: "meditace",
+      image: "/lovable-uploads/9ac1b17f-5154-4886-bdbb-fc0ae03d1e33.png"
     },
     {
       icon: BookOpen,
       title: "Článek týdne: Ta druhá",
       description: "Příběh dvou sester, které se přestaly srovnávat a začaly růst vedle sebe. O přijetí, blízkosti i rozdílnosti.",
       link: "https://calmoryapp.com/cs/a-600-ta-druha",
-      format: "pribeh"
+      format: "pribeh",
+      image: "/lovable-uploads/5e06c86b-7158-4dbc-94a4-395f95d2d5d7.png"
     },
     {
       icon: Leaf,
       title: "Offline tip Calmory",
       description: "Vytvořte si doma malý ostrůvek klidu: zapalte svíčku, odložte telefon a nalaďte se na dech.",
       link: "https://dev.calmoryapp.com/#registrace",
-      format: "tip"
+      format: "tip",
+      image: "/lovable-uploads/62693207-956f-447b-9b03-b7824e1f7aa3.png"
     }
   ];
 
@@ -271,8 +277,12 @@ const EmailTemplate = () => {
                       return (
                         <Card key={index} className="p-0 overflow-hidden hover:shadow-md transition-shadow">
                           {/* Full width square image */}
-                          <div className="w-full aspect-square bg-gradient-to-br from-muted to-muted/50 border-b flex items-center justify-center">
-                            <span className="text-2xl text-muted-foreground">IMG</span>
+                          <div className="w-full aspect-square border-b overflow-hidden">
+                            <img 
+                              src={item.image} 
+                              alt={item.title}
+                              className="w-full h-full object-cover"
+                            />
                           </div>
                           <div className="p-4 text-center">
                             <Badge 
@@ -348,8 +358,12 @@ const EmailTemplate = () => {
                         <Card key={index} className="p-4 hover:shadow-md transition-shadow">
                           <div className="flex items-start gap-4">
                             {/* Preview Image */}
-                            <div className="w-20 h-20 bg-gradient-to-br from-muted to-muted/50 rounded-lg border flex items-center justify-center flex-shrink-0">
-                              <span className="text-xs text-muted-foreground">IMG</span>
+                            <div className="w-20 h-20 rounded-lg border overflow-hidden flex-shrink-0">
+                              <img 
+                                src={item.image} 
+                                alt={item.title}
+                                className="w-full h-full object-cover"
+                              />
                             </div>
                             
                             <div className="flex-1">
