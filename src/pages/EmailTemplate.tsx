@@ -467,10 +467,16 @@ const EmailTemplate = () => {
                 </a>
               </div>
               
-              <div className="flex justify-center gap-4">
+              <div className="flex justify-center gap-4 mb-4">
                 <a href="#" className="hover:text-foreground">Zásady ochrany</a>
                 <a href="#" className="hover:text-foreground">Odhlásit</a>
                 <a href="mailto:hello@calmoryapp.com" className="hover:text-foreground">Kontakt</a>
+              </div>
+              
+              {/* Legal Information */}
+              <div className="border-t pt-4 text-xs text-muted-foreground">
+                <p className="mb-2">Tento e-mail byl odeslán na adresu standa@knotek.eu.</p>
+                <p>Odesilatelem je Booker Fish, s.r.o., provozovatel terapeutické aplikace Calmory. Tento e-mail je podle zákona obchodním sdělením.</p>
               </div>
             </div>
           </div>
