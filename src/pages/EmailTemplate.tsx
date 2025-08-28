@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CheckCircle2, Heart, Brain, Moon, Play, Download, Star, BookOpen, Leaf, Gift, Facebook, Instagram, Youtube, Smartphone } from "lucide-react";
+import { CheckCircle2, Heart, Brain, Moon, Play, Download, Star, BookOpen, Leaf, Gift, Facebook, Instagram, Youtube, Smartphone, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -161,11 +161,20 @@ const EmailTemplate = () => {
         <div className="bg-white rounded-lg shadow-xl overflow-hidden max-w-2xl mx-auto">
           {/* Email Header */}
           <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-transparent p-6 border-b">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                <Heart className="w-4 h-4 text-primary-foreground" />
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                  <Heart className="w-4 h-4 text-primary-foreground" />
+                </div>
+                <span className="font-semibold text-lg">Calmory</span>
               </div>
-              <span className="font-semibold text-lg">Calmory</span>
+              <div className="text-right">
+                <p className="text-sm font-medium text-foreground mb-1">Vaše malá dávka klidu na tento týden</p>
+                <a href="#" className="text-xs text-primary hover:text-primary/80 flex items-center gap-1">
+                  <ExternalLink className="w-3 h-3" />
+                  Webová verze newsletteru
+                </a>
+              </div>
             </div>
             <p className="text-sm text-muted-foreground">
               Předmět: {currentTemplate.subject}
