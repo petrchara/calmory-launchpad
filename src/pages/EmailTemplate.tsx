@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CheckCircle2, Heart, Brain, Moon, Play, Download, Star, BookOpen, Leaf, Gift, Facebook, Instagram, Youtube, Smartphone, ExternalLink } from "lucide-react";
+import { CheckCircle2, Heart, Brain, Moon, Play, Download, Star, BookOpen, Leaf, Gift, Facebook, Instagram, Youtube, Smartphone, ExternalLink, AlertTriangle, Info, Mail, Users, Clock, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -44,11 +44,11 @@ const EmailTemplate = () => {
       cta: "Vyzkoušet Calmory"
     },
     launch: {
-      subject: "🌟 Calmory už brzy - Vaše klidná mysl čeká",
-      preheader: "Připravte se na revoluci v terapeutické péči o duševní zdraví.",
-      title: "Calmory přichází za 2 měsíce",
-      subtitle: "Připravte se na revolutionizující terapeutickou aplikaci",
-      cta: "Získat časný přístup"
+      subject: "📧 App Store Connect - Delivery notification",
+      preheader: "Notification about your recent app delivery - CalmoryApp.",
+      title: "Systémová šablona",
+      subtitle: "Vzorová šablona s různými UI elementy pro systémové a administrativní e-maily",
+      cta: "Další informace"
     },
     content: {
       subject: "📱 Podívejte se na vzhled aplikace Calmory",
@@ -156,7 +156,7 @@ const EmailTemplate = () => {
               >
                 {key === "newsletter" && "Díky za předregistraci"}
                 {key === "content" && "Ukázky vzhledu aplikace"}
-                {key === "launch" && "Spuštění"}
+                {key === "launch" && "Systémová šablona"}
                 {key === "countdown" && "Odpočítávání"}
               </Button>
             ))}
@@ -611,8 +611,238 @@ const EmailTemplate = () => {
               </div>
             )}
 
-            {/* Features for Launch Template */}
+            {/* System Template - App Store Connect Example */}
             {selectedTemplate === "launch" && (
+              <div className="mb-8 space-y-8">
+                {/* System Message Alert */}
+                <Card className="border-orange-200 bg-orange-50">
+                  <div className="p-4">
+                    <div className="flex items-start gap-3">
+                      <AlertTriangle className="w-5 h-5 text-orange-600 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-orange-900 mb-2">App Store Connect</h4>
+                        <p className="text-sm text-orange-800 mb-4">
+                          Hello,<br/><br/>
+                          We noticed one or more issues with a recent delivery for the following app:
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+
+                {/* App Information Block */}
+                <Card className="bg-gray-50 border-gray-200">
+                  <div className="p-4">
+                    <h4 className="font-semibold mb-3 flex items-center gap-2">
+                      <Smartphone className="w-4 h-4" />
+                      Informace o aplikaci
+                    </h4>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">App Name:</span>
+                        <span className="font-medium">CalmoryApp</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">App Apple ID:</span>
+                        <span className="font-mono">6751493189</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Version:</span>
+                        <span>1.0</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Build:</span>
+                        <span>21</span>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+
+                {/* Status Badge */}
+                <div className="text-center">
+                  <Badge className="bg-green-100 text-green-800 border-green-300 px-4 py-2">
+                    <CheckCircle2 className="w-4 h-4 mr-2" />
+                    Delivery Successful
+                  </Badge>
+                </div>
+
+                {/* Issues Section */}
+                <div>
+                  <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                    <AlertTriangle className="w-5 h-5 text-orange-500" />
+                    Zjištěné problémy
+                  </h3>
+                  
+                  <div className="space-y-4">
+                    <Card className="border-red-200 bg-red-50">
+                      <div className="p-4">
+                        <div className="flex items-start gap-3">
+                          <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <span className="text-red-600 text-xs font-bold">1</span>
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-medium text-red-900 mb-2">ITMS-90683: Missing purpose string in Info.plist</h4>
+                            <p className="text-sm text-red-800 mb-3">
+                              Your app's code references one or more APIs that access sensitive user data. The Info.plist file should contain a <code className="bg-red-200 px-1 rounded">NSLocationAlwaysAndWhenInUseUsageDescription</code> key with a user-facing purpose string.
+                            </p>
+                            <Button variant="outline" size="sm" className="text-red-700 border-red-300 hover:bg-red-100">
+                              <ExternalLink className="w-3 h-3 mr-2" />
+                              View Documentation
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </Card>
+
+                    <Card className="border-red-200 bg-red-50">
+                      <div className="p-4">
+                        <div className="flex items-start gap-3">
+                          <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <span className="text-red-600 text-xs font-bold">2</span>
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-medium text-red-900 mb-2">ITMS-90683: Missing purpose string in Info.plist</h4>
+                            <p className="text-sm text-red-800 mb-3">
+                              The Info.plist file should contain a <code className="bg-red-200 px-1 rounded">NSLocationWhenInUseUsageDescription</code> key with a user-facing purpose string explaining why your app needs location data.
+                            </p>
+                            <Button variant="outline" size="sm" className="text-red-700 border-red-300 hover:bg-red-100">
+                              <ExternalLink className="w-3 h-3 mr-2" />
+                              View Documentation
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </Card>
+                  </div>
+                </div>
+
+                {/* Info Box */}
+                <Card className="border-blue-200 bg-blue-50">
+                  <div className="p-4">
+                    <div className="flex items-start gap-3">
+                      <Info className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-medium text-blue-900 mb-2">Tip pro vývojáře</h4>
+                        <p className="text-sm text-blue-800">
+                          Although delivery was successful, you may want to correct these issues in your next delivery. 
+                          If you're using external libraries or SDKs, they may reference APIs that require a purpose string.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+
+                {/* UI Elements Showcase */}
+                <div>
+                  <h3 className="text-lg font-semibold mb-4">Ukázka UI elementů</h3>
+                  
+                  {/* Buttons */}
+                  <div className="mb-6">
+                    <h4 className="font-medium mb-3">Tlačítka</h4>
+                    <div className="flex flex-wrap gap-2">
+                      <Button>Primary Button</Button>
+                      <Button variant="outline">Outline Button</Button>
+                      <Button variant="secondary">Secondary</Button>
+                      <Button variant="destructive">Destructive</Button>
+                      <Button variant="ghost">Ghost</Button>
+                      <Button variant="link">Link</Button>
+                    </div>
+                  </div>
+
+                  {/* Badges */}
+                  <div className="mb-6">
+                    <h4 className="font-medium mb-3">Badges & Status</h4>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge className="bg-green-100 text-green-800">
+                        <CheckCircle2 className="w-3 h-3 mr-1" />
+                        Success
+                      </Badge>
+                      <Badge className="bg-orange-100 text-orange-800">
+                        <AlertTriangle className="w-3 h-3 mr-1" />
+                        Warning
+                      </Badge>
+                      <Badge className="bg-red-100 text-red-800">
+                        <ExternalLink className="w-3 h-3 mr-1" />
+                        Error
+                      </Badge>
+                      <Badge className="bg-blue-100 text-blue-800">
+                        <Info className="w-3 h-3 mr-1" />
+                        Info
+                      </Badge>
+                    </div>
+                  </div>
+
+                  {/* Lists */}
+                  <div className="mb-6">
+                    <h4 className="font-medium mb-3">Seznamy s ikonami</h4>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-3">
+                        <CheckCircle2 className="w-4 h-4 text-green-500" />
+                        <span className="text-sm">Completed task item</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <Clock className="w-4 h-4 text-orange-500" />
+                        <span className="text-sm">Pending task item</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <Users className="w-4 h-4 text-blue-500" />
+                        <span className="text-sm">Team collaboration item</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <Settings className="w-4 h-4 text-gray-500" />
+                        <span className="text-sm">Configuration item</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Typography */}
+                  <div className="mb-6">
+                    <h4 className="font-medium mb-3">Typografie</h4>
+                    <div className="space-y-2">
+                      <h1 className="text-2xl font-bold">Hlavní nadpis H1</h1>
+                      <h2 className="text-xl font-semibold">Podnadpis H2</h2>
+                      <h3 className="text-lg font-medium">Nadpis třetí úrovně H3</h3>
+                      <p className="text-base">Obyčejný odstavec s normálním textem.</p>
+                      <p className="text-sm text-muted-foreground">Menší text nebo poznámka.</p>
+                      <p className="text-xs text-muted-foreground">Velmi malý text pro detaily.</p>
+                    </div>
+                  </div>
+
+                  {/* Code block */}
+                  <div className="mb-6">
+                    <h4 className="font-medium mb-3">Kódové bloky</h4>
+                    <Card className="bg-gray-900 text-gray-100 p-4">
+                      <code className="text-sm">
+                        {`<key>NSLocationWhenInUseUsageDescription</key>
+<string>This app uses location to provide personalized meditation content based on your environment.</string>`}
+                      </code>
+                    </Card>
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="text-center space-y-4">
+                  <div className="flex gap-3 justify-center">
+                    <Button className="bg-blue-600 hover:bg-blue-700">
+                      <Mail className="w-4 h-4 mr-2" />
+                      Upload New Binary
+                    </Button>
+                    <Button variant="outline">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      View in App Store Connect
+                    </Button>
+                  </div>
+                  
+                  <p className="text-sm text-muted-foreground">
+                    Signed,<br/>
+                    <strong>Apple Developer Relations</strong>
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* Features for Launch Template - Hidden */}
+            {selectedTemplate === "launch" && false && (
               <div className="mb-8">
                 <div className="grid gap-4">
                   <div className="flex items-center gap-3">
