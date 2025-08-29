@@ -51,11 +51,11 @@ const EmailTemplate = () => {
       cta: "Získat časný přístup"
     },
     content: {
-      subject: "🧘 Objevte sílu řízených meditací s Calmory",
-      preheader: "Praktické techniky pro váš lepší den již brzy ve vaší kapse.",
-      title: "Každý den klidnější mysl",
-      subtitle: "Praktické techniky pro váš lepší den",
-      cta: "Vyzkoušet zdarma"
+      subject: "📱 Podívejte se na vzhled aplikace Calmory",
+      preheader: "Nahlédněte do budoucí aplikace pro terapeutickou péči o duševní zdraví.",
+      title: "Ukázky vzhledu aplikace",
+      subtitle: "Podívejte se, jak bude vypadat vaše cesta ke klidnější mysli. Připravujeme intuitivní rozhraní, které vám pomůže najít klid kdykoliv a kdekoliv to potřebujete.",
+      cta: "Předregistrovat se"
     },
     countdown: {
       subject: "⏰ Pouze 30 dní do spuštění Calmory",
@@ -147,7 +147,7 @@ const EmailTemplate = () => {
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-4">Email Marketing Šablony - Calmory</h1>
           <div className="flex gap-2 mb-6">
-            {Object.keys(templates).map((key) => (
+            {["newsletter", "content", "launch", "countdown"].map((key) => (
               <Button
                 key={key}
                 variant={selectedTemplate === key ? "default" : "outline"}
@@ -155,8 +155,8 @@ const EmailTemplate = () => {
                 className="capitalize"
               >
                 {key === "newsletter" && "Díky za předregistraci"}
+                {key === "content" && "Ukázky vzhledu aplikace"}
                 {key === "launch" && "Spuštění"}
-                {key === "content" && "Obsah"}
                 {key === "countdown" && "Odpočítávání"}
               </Button>
             ))}
@@ -391,8 +391,202 @@ const EmailTemplate = () => {
               </div>
             )}
 
-            {/* Content Types */}
+            {/* Content Template - Same as Newsletter */}
             {selectedTemplate === "content" && (
+              <div className="mb-8 space-y-8">
+                {/* App Mockup Section */}
+                <div className="text-center mb-8">
+                  <h3 className="text-xl font-bold mb-4">Jak bude aplikace vypadat</h3>
+                  <p className="text-muted-foreground mb-6">
+                    Podívejte se na návrhy rozhraní, které bude vaším průvodcem na cestě ke klidnější mysli
+                  </p>
+                  
+                  {/* Mockup Image */}
+                  <div className="relative bg-gradient-to-br from-primary/5 to-muted/20 rounded-2xl p-8 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-50"></div>
+                    <div className="relative z-10">
+                      <img 
+                        src="/lovable-uploads/db32f3bb-95b9-4ba7-9c5b-950aa5da24bc.png" 
+                        alt="Ukázky rozhraní aplikace Calmory"
+                        className="w-full max-w-3xl mx-auto h-auto object-contain"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="mt-6">
+                    <Button size="lg" className="bg-primary hover:bg-primary/90">
+                      {currentTemplate.cta}
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Dynamic Countdown */}
+                <div className="text-center bg-gradient-to-r from-primary/10 to-transparent rounded-lg p-4 mb-6">
+                  <div className="flex items-center justify-center gap-2 mb-2">
+                    <Smartphone className="w-5 h-5 text-primary" />
+                    <p className="text-lg font-semibold text-primary">Již za 8 týdnů bude aplikace ke stažení!</p>
+                  </div>
+                  <div className="flex justify-center gap-4">
+                    <div className="text-center">
+                      <div className="text-xl font-bold text-primary">56</div>
+                      <div className="text-xs text-muted-foreground">DNÍ</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-xl font-bold text-primary">8</div>
+                      <div className="text-xs text-muted-foreground">HODIN</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-xl font-bold text-primary">23</div>
+                      <div className="text-xs text-muted-foreground">MINUT</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Content Section Header */}
+                <div className="text-center mb-8">
+                  <h3 className="text-xl font-bold mb-2">Calmory novinky a tipy</h3>
+                  <p className="text-muted-foreground">Vaše týdenní dávka klidu</p>
+                </div>
+
+                {/* Content Showcase - 3 blocks side by side */}
+                <div className="mb-8">
+                  <div className="text-center mb-6">
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <Play className="w-5 h-5 text-primary" />
+                      <h3 className="font-semibold">Ukázka obsahu / Vyzkoušejte</h3>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      Prozkoumejte naše terapeutické obsahy a najděte si tu pravou techniku pro váš klid
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {showcaseContent.map((item, index) => {
+                      const colors = getFormatColor(item.format);
+                      return (
+                        <Card key={index} className="p-0 overflow-hidden hover:shadow-md transition-shadow">
+                          {/* Full width square image */}
+                          <div className="w-full aspect-square border-b overflow-hidden">
+                            <img 
+                              src={item.image} 
+                              alt={item.title}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <div className="p-4 text-center">
+                            <Badge 
+                              className="mb-3 gap-1" 
+                              style={{ 
+                                backgroundColor: colors.background === "transparent" ? "transparent" : `hsl(${colors.background})`,
+                                color: `hsl(${colors.text})`,
+                                border: colors.background === "transparent" ? "1px solid hsl(0 0% 80%)" : "none"
+                              }}
+                            >
+                              <item.icon className="w-3 h-3" />
+                              {item.format}
+                            </Badge>
+                            <h4 className="font-semibold text-sm mb-3">{item.title}</h4>
+                            <Button 
+                              size="sm" 
+                              className="w-full bg-blue-500 hover:bg-blue-600 text-white border-blue-500 hover:border-blue-600 mb-4"
+                              asChild
+                            >
+                              <a href={item.link} target="_blank" rel="noopener noreferrer">
+                                <Play className="w-3 h-3 mr-1" />
+                                Spustit ukázku
+                              </a>
+                            </Button>
+                            <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
+                          </div>
+                        </Card>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Bonus Material Section Title */}
+                <div className="text-center mb-6">
+                  <div className="flex items-center justify-center gap-2">
+                    <Gift className="w-5 h-5 text-primary" />
+                    <h3 className="font-semibold">Bonusový materiál týdne</h3>
+                  </div>
+                </div>
+
+                {/* Bonus Material Section */}
+                <Card className="p-6 bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20 mb-8">
+                  <div className="flex items-start gap-4">
+                    <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-primary/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Download className="w-8 h-8 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold mb-2">Zdarma ke stažení: Průvodce klidným dnem</h4>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        PDF s praktickými tipy a cvičeními, která vám pomohou najít klid v každé situaci. 
+                        Ideální pro začátečníky i pokročilé.
+                      </p>
+                      <Button size="sm" className="w-full sm:w-auto">
+                        <Download className="w-4 h-4 mr-2" />
+                        Stáhnout zdarma
+                      </Button>
+                    </div>
+                  </div>
+                </Card>
+
+                {/* Weekly Content */}
+                <div className="mb-8">
+                  <div className="text-center mb-4">
+                    <div className="flex items-center justify-center gap-2">
+                      <BookOpen className="w-5 h-5 text-primary" />
+                      <h3 className="font-semibold">Týdenní obsah</h3>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    {newsletterContent.map((item, index) => {
+                      const colors = getFormatColor(item.format);
+                      return (
+                        <Card key={index} className="p-4 hover:shadow-md transition-shadow">
+                          <div className="flex items-start gap-4">
+                            {/* Preview Image */}
+                            <div className="w-20 h-20 rounded-lg border overflow-hidden flex-shrink-0">
+                              <img 
+                                src={item.image} 
+                                alt={item.title}
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                            
+                            <div className="flex-1">
+                              <div className="flex items-start gap-2 mb-2">
+                                <h4 className="font-semibold text-sm flex-1">{item.title}</h4>
+                                <Badge 
+                                  className="text-xs gap-1" 
+                                  style={{ 
+                                    backgroundColor: colors.background === "transparent" ? "transparent" : `hsl(${colors.background})`,
+                                    color: `hsl(${colors.text})`,
+                                    border: colors.background === "transparent" ? "1px solid hsl(0 0% 80%)" : "none"
+                                  }}
+                                >
+                                  <item.icon className="w-3 h-3" />
+                                  {item.format}
+                                </Badge>
+                              </div>
+                              <p className="text-sm text-muted-foreground mb-3">{item.description}</p>
+                              <Button variant="outline" size="sm" asChild>
+                                <a href={item.link} target="_blank" rel="noopener noreferrer">
+                                  Zobrazit →
+                                </a>
+                              </Button>
+                            </div>
+                          </div>
+                        </Card>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Content Types */}
+            {selectedTemplate === "content" && false && (
               <div className="mb-8">
                 <h3 className="font-semibold mb-4 text-center">Co pro vás připravujeme</h3>
                 <div className="grid grid-cols-2 gap-3">
