@@ -394,26 +394,6 @@ const EmailTemplate = () => {
             {/* Content Template - Same as Newsletter */}
             {selectedTemplate === "content" && (
               <div className="mb-8 space-y-8">
-                {/* App Mockup Section */}
-                <div className="text-center mb-8">
-                  <h3 className="text-xl font-bold mb-4">Jak bude aplikace vypadat</h3>
-                  <p className="text-muted-foreground mb-6">
-                    Podívejte se na návrhy rozhraní, které bude vaším průvodcem na cestě ke klidnější mysli
-                  </p>
-                  
-                  {/* Mockup Image */}
-                  <div className="relative bg-gradient-to-br from-primary/5 to-muted/20 rounded-2xl p-8 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-50"></div>
-                    <div className="relative z-10">
-                      <img 
-                        src="/lovable-uploads/db32f3bb-95b9-4ba7-9c5b-950aa5da24bc.png" 
-                        alt="Ukázky rozhraní aplikace Calmory"
-                        className="w-full max-w-3xl mx-auto h-auto object-contain"
-                      />
-                    </div>
-                  </div>
-                </div>
-
                 {/* Dynamic Countdown */}
                 <div className="text-center bg-gradient-to-r from-primary/10 to-transparent rounded-lg p-4 mb-6">
                   <div className="flex items-center justify-center gap-2 mb-2">
@@ -432,6 +412,26 @@ const EmailTemplate = () => {
                     <div className="text-center">
                       <div className="text-xl font-bold text-primary">23</div>
                       <div className="text-xs text-muted-foreground">MINUT</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* App Mockup Section */}
+                <div className="text-center mb-8">
+                  <h3 className="text-xl font-bold mb-4">Jak bude aplikace vypadat</h3>
+                  <p className="text-muted-foreground mb-6">
+                    Podívejte se na návrhy rozhraní, které bude vaším průvodcem na cestě ke klidnější mysli
+                  </p>
+                  
+                  {/* Mockup Image */}
+                  <div className="relative bg-gradient-to-br from-primary/5 to-muted/20 rounded-2xl p-8 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-50"></div>
+                    <div className="relative z-10">
+                      <img 
+                        src="/lovable-uploads/db32f3bb-95b9-4ba7-9c5b-950aa5da24bc.png" 
+                        alt="Ukázky rozhraní aplikace Calmory"
+                        className="w-full max-w-3xl mx-auto h-auto object-contain"
+                      />
                     </div>
                   </div>
                 </div>
