@@ -154,7 +154,7 @@ const EmailTemplate = () => {
                 onClick={() => setSelectedTemplate(key)}
                 className="capitalize"
               >
-                {key === "newsletter" && "Newsletter"}
+                {key === "newsletter" && "Díky za předregistraci"}
                 {key === "launch" && "Spuštění"}
                 {key === "content" && "Obsah"}
                 {key === "countdown" && "Odpočítávání"}
