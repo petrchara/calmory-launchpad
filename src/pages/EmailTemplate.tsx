@@ -412,12 +412,6 @@ const EmailTemplate = () => {
                       />
                     </div>
                   </div>
-                  
-                  <div className="mt-6">
-                    <Button size="lg" className="bg-primary hover:bg-primary/90">
-                      {currentTemplate.cta}
-                    </Button>
-                  </div>
                 </div>
 
                 {/* Dynamic Countdown */}
