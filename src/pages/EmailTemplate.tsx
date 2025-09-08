@@ -57,13 +57,6 @@ const EmailTemplate = () => {
       subtitle: "Podívejte se, jak bude vypadat vaše cesta ke klidnější mysli. Připravujeme intuitivní rozhraní, které vám pomůže najít klid kdykoliv a kdekoliv to potřebujete.",
       cta: "Předregistrovat se"
     },
-    countdown: {
-      subject: "⏰ Pouze 30 dní do spuštění Calmory",
-      preheader: "Buďte mezi prvními, kdo si vyzkouší revolutionizující aplikaci.",
-      title: "Odpočítávání začalo",
-      subtitle: "Buďte mezi prvními, kdo si vyzkouší Calmory",
-      cta: "Rezervovat místo"
-    }
   };
 
   const heroTitles = [
@@ -147,7 +140,7 @@ const EmailTemplate = () => {
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-4">Email Marketing Šablony - Calmory</h1>
           <div className="flex gap-2 mb-6">
-            {["newsletter", "content", "launch", "countdown"].map((key) => (
+            {["newsletter", "content", "launch"].map((key) => (
               <Button
                 key={key}
                 variant={selectedTemplate === key ? "default" : "outline"}
@@ -157,7 +150,6 @@ const EmailTemplate = () => {
                 {key === "newsletter" && "Díky za předregistraci"}
                 {key === "content" && "Ukázky vzhledu aplikace"}
                 {key === "launch" && "Systémová šablona"}
-                {key === "countdown" && "Odpočítávání"}
               </Button>
             ))}
           </div>
@@ -205,22 +197,6 @@ const EmailTemplate = () => {
                 <p className="text-white/90 mb-6 max-w-lg mx-auto leading-relaxed">{currentTemplate.subtitle}</p>
               </div>
               
-              {selectedTemplate === "countdown" && (
-                <div className="flex justify-center gap-4 mb-6 relative z-10">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-white">30</div>
-                    <div className="text-xs text-white/70">DNÍ</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-white">12</div>
-                    <div className="text-xs text-white/70">HODIN</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-white">45</div>
-                    <div className="text-xs text-white/70">MINUT</div>
-                  </div>
-                </div>
-              )}
             </div>
 
             {/* Newsletter Content */}
