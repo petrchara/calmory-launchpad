@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
+import { useToast } from "@/components/ui/use-toast";
 import { CheckCircle2, Heart, Brain, Moon, Play, Download, Star, BookOpen, Leaf, Gift, Facebook, Instagram, Youtube, Smartphone, ExternalLink, AlertTriangle, Info, Mail, Users, Clock, Settings, X, Smile, Meh, Frown, HeartHandshake, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -7,6 +8,7 @@ import { getFormatColor } from "@/lib/content-colors";
 import { HandleModal } from "@/components/HandleModal";
 
 const EmailTemplate = () => {
+  const { toast } = useToast();
   const [selectedMainTab, setSelectedMainTab] = useState("email");
   const [selectedTemplate, setSelectedTemplate] = useState("newsletter");
   const [selectedModalTab, setSelectedModalTab] = useState("reflexe");
@@ -137,6 +139,220 @@ const EmailTemplate = () => {
   ];
 
   const currentTemplate = templates[selectedTemplate as keyof typeof templates];
+
+  // Generate email HTML for export
+  const generateEmailHTML = useCallback(() => {
+    const baseHTML = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="cs">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>${currentTemplate.subject}</title>
+  <style type="text/css">
+    /* Email client reset styles */
+    body, table, td, p, a, li, blockquote {
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    table, td {
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+    }
+    img {
+      -ms-interpolation-mode: bicubic;
+    }
+    /* Calmory brand styles */
+    .calmory-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      font-family: Arial, sans-serif;
+    }
+    .calmory-header {
+      background: linear-gradient(135deg, #10b981, #3b82f6);
+      padding: 20px;
+      text-align: center;
+    }
+    .calmory-hero {
+      background-image: url('https://dev.calmoryapp.com/lovable-uploads/61360993-992c-4560-9f2a-8748066df71a.png');
+      background-size: cover;
+      background-position: center;
+      padding: 40px 20px;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+    .calmory-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    .calmory-hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    .calmory-content {
+      padding: 30px 20px;
+    }
+    .calmory-button {
+      background: linear-gradient(135deg, #10b981, #3b82f6);
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 8px;
+      display: inline-block;
+      margin: 10px 0;
+    }
+    .calmory-footer {
+      background-color: #f8fafc;
+      padding: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+  <div class="calmory-container">
+    <!-- Header -->
+    <div class="calmory-header">
+      <h1 style="color: white; margin: 0; font-size: 24px;">Calmory</h1>
+      <p style="color: white; margin: 5px 0 0 0; opacity: 0.9;">Vaše malá dávka klidu na tento týden</p>
+    </div>
+    
+    <!-- Hero Section -->
+    <div class="calmory-hero">
+      <div class="calmory-hero-content">
+        <h2 style="font-size: 28px; margin: 0 0 15px 0;">${currentTemplate.title}</h2>
+        <p style="font-size: 16px; margin: 0 0 20px 0; opacity: 0.9;">${currentTemplate.subtitle}</p>
+        <a href="https://dev.calmoryapp.com/#registrace" class="calmory-button">${currentTemplate.cta}</a>
+      </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="calmory-content">
+      ${selectedTemplate === 'newsletter' ? `
+        <!-- Newsletter specific content -->
+        <div style="text-align: center; background: linear-gradient(135deg, #10b981, #3b82f6); background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1)); padding: 20px; margin-bottom: 30px; border-radius: 8px;">
+          <h3 style="margin: 0 0 10px 0; color: #059669;">Již za 8 týdnů bude aplikace ke stažení!</h3>
+          <div style="display: flex; justify-content: center; gap: 20px;">
+            <div style="text-align: center;">
+              <div style="font-size: 24px; font-weight: bold; color: #059669;">56</div>
+              <div style="font-size: 12px; color: #6b7280;">DNÍ</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-size: 24px; font-weight: bold; color: #059669;">8</div>
+              <div style="font-size: 12px; color: #6b7280;">HODIN</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-size: 24px; font-weight: bold; color: #059669;">23</div>
+              <div style="font-size: 12px; color: #6b7280;">MINUT</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Content blocks -->
+        <h3 style="text-align: center; margin-bottom: 20px;">Týdenní obsah</h3>
+        <div style="margin-bottom: 30px;">
+          <h4>🧠 Meditace týdne: Odlož den</h4>
+          <p>Krátká praxe, která vám pomůže uvolnit napětí a odložit tíhu každodennosti.</p>
+          <a href="https://dev.calmoryapp.com/#registrace" class="calmory-button">Spustit ukázku</a>
+        </div>
+        
+        <div style="margin-bottom: 30px;">
+          <h4>📖 Článek týdne: Ta druhá</h4>
+          <p>Příběh dvou sester, které se přestaly srovnávat a začaly růst vedle sebe.</p>
+          <a href="https://calmoryapp.com/cs/a-600-ta-druha" class="calmory-button">Přečíst článek</a>
+        </div>
+        
+        <div style="margin-bottom: 30px;">
+          <h4>🍃 Offline tip Calmory</h4>
+          <p>Vytvořte si doma malý ostrůvek klidu: zapalte svíčku, odložte telefon a nalaďte se na dech.</p>
+        </div>
+      ` : selectedTemplate === 'content' ? `
+        <!-- Content showcase template -->
+        <h3 style="text-align: center; margin-bottom: 20px;">Ukázky obsahu aplikace</h3>
+        <p style="text-align: center; margin-bottom: 30px;">Podívejte se, jak bude vypadat vaše cesta ke klidnější mysli.</p>
+        
+        <div style="margin-bottom: 20px;">
+          <h4>🧠 Řízené meditace</h4>
+          <p>Krátké praxe pro každodenní klid. Objevte sílu mindfulness a naučte se techniky pro vnitřní rovnováhu.</p>
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+          <h4>💙 Dechová cvičení</h4>
+          <p>Techniky pro okamžité uklidnění. Naučte se ovládat svůj dech a tím i své emoce.</p>
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+          <h4>🌙 Podpora spánku</h4>
+          <p>Relaxační příběhy na dobrou noc. Klidné narace a uklidňující zvuky pro lepší spánek.</p>
+        </div>
+      ` : `
+        <!-- Launch/system template -->
+        <h3 style="text-align: center; margin-bottom: 20px;">Systémové oznámení</h3>
+        <p style="text-align: center; margin-bottom: 30px;">Toto je ukázka systémové šablony pro administrativní e-maily.</p>
+        
+        <div style="background-color: #f3f4f6; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+          <h4>ℹ️ Důležité informace</h4>
+          <p>Vaše aplikace byla úspěšně nahrána do App Store Connect.</p>
+          <p><strong>Status:</strong> Připraveno k revizi</p>
+          <p><strong>Verze:</strong> 1.0.0</p>
+        </div>
+      `}
+    </div>
+    
+    <!-- Footer -->
+    <div class="calmory-footer">
+      <p>© 2024 Calmory. Všechna práva vyhrazena.</p>
+      <p>Pokud si již nepřejete dostávat naše e-maily, <a href="#" style="color: #3b82f6;">odhlaste se zde</a>.</p>
+    </div>
+  </div>
+</body>
+</html>`;
+    return baseHTML;
+  }, [selectedTemplate, currentTemplate]);
+
+  // Download HTML file
+  const downloadHTML = useCallback(() => {
+    const htmlContent = generateEmailHTML();
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `calmory-email-${selectedTemplate}-${new Date().toISOString().split('T')[0]}.html`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    
+    toast({
+      title: "HTML stažen",
+      description: `Soubor calmory-email-${selectedTemplate}.html byl úspěšně stažen.`,
+    });
+  }, [generateEmailHTML, selectedTemplate, toast]);
+
+  // Copy to clipboard
+  const copyToClipboard = useCallback(async () => {
+    try {
+      const htmlContent = generateEmailHTML();
+      await navigator.clipboard.writeText(htmlContent);
+      toast({
+        title: "Zkopírováno",
+        description: "HTML kód byl úspěšně zkopírován do schránky.",
+      });
+    } catch (err) {
+      toast({
+        title: "Chyba",
+        description: "Nepodařilo se zkopírovat kód do schránky.",
+        variant: "destructive"
+      });
+    }
+  }, [generateEmailHTML, toast]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background p-6">
@@ -1140,11 +1356,11 @@ const EmailTemplate = () => {
               </div>
             </div>
             <div className="flex gap-2 mt-4">
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" onClick={downloadHTML}>
                 <Download className="w-4 h-4 mr-2" />
                 Stáhnout HTML
               </Button>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" onClick={copyToClipboard}>
                 Kopírovat kód
               </Button>
             </div>
