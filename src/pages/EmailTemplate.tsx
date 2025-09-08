@@ -875,7 +875,7 @@ const EmailTemplate = () => {
             {/* Mobile Phone Frame - iPhone 16 dimensions */}
             <div 
               className="relative bg-black rounded-[3rem] p-3 shadow-2xl flex-shrink-0" 
-              style={{ width: '390px', height: '844px' }}
+              style={{ width: '390px', height: '810px' }}
             >
               <div className="bg-white rounded-[2.5rem] overflow-hidden w-full h-full relative">
                 {/* Status Bar */}
