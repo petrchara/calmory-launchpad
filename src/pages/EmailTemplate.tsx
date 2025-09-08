@@ -871,10 +871,10 @@ const EmailTemplate = () => {
 
         {/* Modal Windows Demo */}
         {selectedMainTab === "modal" && selectedModalTab === "reflexe" && (
-          <div className="max-w-sm mx-auto">
+          <div className="max-w-md mx-auto">
             {/* Mobile Phone Frame */}
             <div className="relative bg-black rounded-[2.5rem] p-2 shadow-2xl">
-              <div className="bg-white rounded-[2rem] overflow-hidden h-[600px] relative">
+              <div className="bg-white rounded-[2rem] overflow-hidden w-[270px] h-[480px] relative" style={{ aspectRatio: '1080/1920' }}>
                 {/* Status Bar */}
                 <div className="bg-gray-900 text-white text-xs py-1 px-4 flex justify-between items-center">
                   <span>9:41</span>
