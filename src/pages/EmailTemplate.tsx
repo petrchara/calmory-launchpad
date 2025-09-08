@@ -142,180 +142,302 @@ const EmailTemplate = () => {
 
   // Generate email HTML for export
   const generateEmailHTML = useCallback(() => {
+    const templateData = templates[selectedTemplate as keyof typeof templates];
+    
+    // Get the hero image URL
+    const heroImageUrl = '/lovable-uploads/61360993-992c-4560-9f2a-8748066df71a.png';
+    
+    let mainContent = '';
+    
+    if (selectedTemplate === 'newsletter') {
+      mainContent = `
+        <!-- Newsletter Content -->
+        <tr>
+          <td style="padding: 20px;">
+            <!-- Countdown Section -->
+            <table width="100%" cellpadding="0" cellspacing="0" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1)); border-radius: 8px; margin-bottom: 30px;">
+              <tr>
+                <td style="padding: 20px; text-align: center;">
+                  <h3 style="margin: 0 0 15px 0; color: #059669; font-size: 18px;">📱 Již za 8 týdnů bude aplikace ke stažení!</h3>
+                  <table width="200" cellpadding="0" cellspacing="0" align="center">
+                    <tr>
+                      <td style="text-align: center; padding: 0 10px;">
+                        <div style="font-size: 24px; font-weight: bold; color: #059669;">56</div>
+                        <div style="font-size: 12px; color: #6b7280;">DNÍ</div>
+                      </td>
+                      <td style="text-align: center; padding: 0 10px;">
+                        <div style="font-size: 24px; font-weight: bold; color: #059669;">8</div>
+                        <div style="font-size: 12px; color: #6b7280;">HODIN</div>
+                      </td>
+                      <td style="text-align: center; padding: 0 10px;">
+                        <div style="font-size: 24px; font-weight: bold; color: #059669;">23</div>
+                        <div style="font-size: 12px; color: #6b7280;">MINUT</div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+            
+            <!-- Content Showcase -->
+            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 30px;">
+              <tr>
+                <td style="text-align: center; padding-bottom: 20px;">
+                  <h3 style="margin: 0; font-size: 20px; color: #1f2937;">▶️ Ukázka obsahu / Vyzkoušejte</h3>
+                  <p style="margin: 5px 0 0 0; font-size: 14px; color: #6b7280;">Prozkoumejte naše terapeutické obsahy a najděte si tu pravou techniku pro váš klid</p>
+                </td>
+              </tr>
+            </table>
+            
+            <!-- Content Blocks -->
+            ${showcaseContent.map(item => `
+            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 25px; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;">
+              <tr>
+                <td>
+                  <img src="${item.image}" alt="${item.title}" style="width: 100%; height: 200px; object-fit: cover; display: block;">
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 20px;">
+                  <div style="background: ${getFormatColor(item.format).background !== 'transparent' ? `hsl(${getFormatColor(item.format).background})` : '#f3f4f6'}; color: ${`hsl(${getFormatColor(item.format).text})`}; padding: 4px 8px; border-radius: 4px; font-size: 12px; display: inline-block; margin-bottom: 10px;">
+                    ${item.format}
+                  </div>
+                  <h4 style="margin: 0 0 10px 0; font-size: 16px; color: #1f2937;">${item.title}</h4>
+                  <p style="margin: 0 0 15px 0; font-size: 14px; color: #6b7280; line-height: 1.5;">${item.description}</p>
+                  <a href="${item.link}" style="background: #3b82f6; color: white; padding: 8px 16px; text-decoration: none; border-radius: 6px; font-size: 14px; display: inline-block;">▶️ Spustit ukázku</a>
+                </td>
+              </tr>
+            </table>
+            `).join('')}
+            
+            <!-- Bonus Material -->
+            <table width="100%" cellpadding="0" cellspacing="0" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(59, 130, 246, 0.1)); border-radius: 8px; border: 1px solid rgba(16, 185, 129, 0.2); margin-bottom: 30px;">
+              <tr>
+                <td style="padding: 25px;">
+                  <h3 style="margin: 0 0 15px 0; font-size: 18px; color: #1f2937;">🎁 Bonusový materiál týdne</h3>
+                  <h4 style="margin: 0 0 10px 0; font-size: 16px; color: #1f2937;">Zdarma ke stažení: Průvodce klidným dnem</h4>
+                  <p style="margin: 0 0 15px 0; font-size: 14px; color: #6b7280; line-height: 1.5;">
+                    PDF s praktickými tipy a cvičeními, která vám pomohou najít klid v každé situaci. Ideální pro začátečníky i pokročilé.
+                  </p>
+                  <a href="https://dev.calmoryapp.com/#registrace" style="background: linear-gradient(135deg, #10b981, #3b82f6); color: white; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-size: 14px; display: inline-block;">📥 Stáhnout zdarma</a>
+                </td>
+              </tr>
+            </table>
+            
+            <!-- Weekly Content -->
+            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 30px;">
+              <tr>
+                <td style="text-align: center; padding-bottom: 20px;">
+                  <h3 style="margin: 0; font-size: 18px; color: #1f2937;">📖 Týdenní obsah</h3>
+                </td>
+              </tr>
+            </table>
+            
+            ${newsletterContent.map(item => `
+            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 20px; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;">
+              <tr>
+                <td width="120" style="padding: 0;">
+                  <img src="${item.image}" alt="${item.title}" style="width: 120px; height: 120px; object-fit: cover; display: block;">
+                </td>
+                <td style="padding: 15px;">
+                  <div style="background: ${getFormatColor(item.format).background !== 'transparent' ? `hsl(${getFormatColor(item.format).background})` : '#f3f4f6'}; color: ${`hsl(${getFormatColor(item.format).text})`}; padding: 3px 6px; border-radius: 4px; font-size: 11px; display: inline-block; margin-bottom: 8px;">
+                    ${item.format}
+                  </div>
+                  <h4 style="margin: 0 0 8px 0; font-size: 14px; color: #1f2937;">${item.title}</h4>
+                  <p style="margin: 0 0 10px 0; font-size: 12px; color: #6b7280; line-height: 1.4;">${item.description}</p>
+                  <a href="${item.link}" style="background: #10b981; color: white; padding: 6px 12px; text-decoration: none; border-radius: 4px; font-size: 12px; display: inline-block;">Číst více</a>
+                </td>
+              </tr>
+            </table>
+            `).join('')}
+            
+          </td>
+        </tr>`;
+        
+    } else if (selectedTemplate === 'content') {
+      mainContent = `
+        <!-- Content Showcase Template -->
+        <tr>
+          <td style="padding: 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 30px;">
+              <tr>
+                <td style="text-align: center; padding-bottom: 20px;">
+                  <h3 style="margin: 0; font-size: 20px; color: #1f2937;">📱 Podívejte se na vzhled aplikace Calmory</h3>
+                  <p style="margin: 10px 0 0 0; font-size: 14px; color: #6b7280;">Nahlédněte do budoucí aplikace pro terapeutickou péči o duševní zdraví</p>
+                </td>
+              </tr>
+            </table>
+            
+            ${showcaseContent.map(item => `
+            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 25px; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;">
+              <tr>
+                <td>
+                  <img src="${item.image}" alt="${item.title}" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 20px;">
+                  <h4 style="margin: 0 0 10px 0; font-size: 18px; color: #1f2937;">${item.title}</h4>
+                  <p style="margin: 0 0 15px 0; font-size: 14px; color: #6b7280; line-height: 1.5;">${item.description}</p>
+                  <a href="${item.link}" style="background: #3b82f6; color: white; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-size: 14px; display: inline-block;">Předregistrovat se</a>
+                </td>
+              </tr>
+            </table>
+            `).join('')}
+            
+          </td>
+        </tr>`;
+        
+    } else { // launch template
+      mainContent = `
+        <!-- System Template -->
+        <tr>
+          <td style="padding: 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 25px;">
+              <tr>
+                <td style="padding: 20px;">
+                  <h3 style="margin: 0 0 15px 0; font-size: 18px; color: #1e40af;">ℹ️ App Store Connect - Notification</h3>
+                  <p style="margin: 0 0 10px 0; font-size: 14px; color: #374151;"><strong>App Name:</strong> CalmoryApp</p>
+                  <p style="margin: 0 0 10px 0; font-size: 14px; color: #374151;"><strong>Version:</strong> 1.0.0</p>
+                  <p style="margin: 0 0 10px 0; font-size: 14px; color: #374151;"><strong>Status:</strong> Ready for Review</p>
+                  <p style="margin: 0 0 15px 0; font-size: 14px; color: #374151;"><strong>Platform:</strong> iOS</p>
+                  <a href="https://dev.calmoryapp.com" style="background: #1e40af; color: white; padding: 8px 16px; text-decoration: none; border-radius: 6px; font-size: 14px; display: inline-block;">Zobrazit detaily</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>`;
+    }
+
     const baseHTML = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="cs">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>${currentTemplate.subject}</title>
+  <title>${templateData.subject}</title>
+  <!--[if !mso]><!-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!--<![endif]-->
   <style type="text/css">
-    /* Email client reset styles */
-    body, table, td, p, a, li, blockquote {
-      -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-    }
-    table, td {
-      mso-table-lspace: 0pt;
-      mso-table-rspace: 0pt;
-    }
-    img {
-      -ms-interpolation-mode: bicubic;
-    }
-    /* Calmory brand styles */
-    .calmory-container {
-      max-width: 600px;
-      margin: 0 auto;
-      background-color: #ffffff;
-      font-family: Arial, sans-serif;
-    }
-    .calmory-header {
-      background: linear-gradient(135deg, #10b981, #3b82f6);
-      padding: 20px;
-      text-align: center;
-    }
-    .calmory-hero {
-      background-image: url('https://dev.calmoryapp.com/lovable-uploads/61360993-992c-4560-9f2a-8748066df71a.png');
-      background-size: cover;
-      background-position: center;
-      padding: 40px 20px;
-      text-align: center;
-      color: white;
-      position: relative;
-    }
-    .calmory-hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.4);
-    }
-    .calmory-hero-content {
-      position: relative;
-      z-index: 1;
-    }
-    .calmory-content {
-      padding: 30px 20px;
-    }
-    .calmory-button {
-      background: linear-gradient(135deg, #10b981, #3b82f6);
-      color: white;
-      padding: 12px 24px;
-      text-decoration: none;
-      border-radius: 8px;
-      display: inline-block;
-      margin: 10px 0;
-    }
-    .calmory-footer {
-      background-color: #f8fafc;
-      padding: 20px;
-      text-align: center;
-      font-size: 12px;
-      color: #64748b;
+    /* Client-specific Styles */
+    #outlook a { padding: 0; }
+    body { width: 100% !important; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; margin: 0; padding: 0; }
+    .ExternalClass { width: 100%; }
+    .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div { line-height: 100%; }
+    table { border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; }
+    a img { border: none; }
+    
+    /* iOS Blue Links */
+    a[x-apple-data-detectors] { color: inherit !important; text-decoration: none !important; font-size: inherit !important; font-family: inherit !important; font-weight: inherit !important; line-height: inherit !important; }
+    
+    /* Android Center Fix */
+    div[style*="margin: 16px 0;"] { margin: 0 !important; }
+    
+    @media only screen and (max-width: 600px) {
+      .mobile-hidden { display: none !important; }
+      .mobile-center { text-align: center !important; }
+      .mobile-full { width: 100% !important; }
     }
   </style>
 </head>
-<body>
-  <div class="calmory-container">
-    <!-- Header -->
-    <div class="calmory-header">
-      <h1 style="color: white; margin: 0; font-size: 24px;">Calmory</h1>
-      <p style="color: white; margin: 5px 0 0 0; opacity: 0.9;">Vaše malá dávka klidu na tento týden</p>
-    </div>
-    
-    <!-- Hero Section -->
-    <div class="calmory-hero">
-      <div class="calmory-hero-content">
-        <h2 style="font-size: 28px; margin: 0 0 15px 0;">${currentTemplate.title}</h2>
-        <p style="font-size: 16px; margin: 0 0 20px 0; opacity: 0.9;">${currentTemplate.subtitle}</p>
-        <a href="https://dev.calmoryapp.com/#registrace" class="calmory-button">${currentTemplate.cta}</a>
-      </div>
-    </div>
-    
-    <!-- Main Content -->
-    <div class="calmory-content">
-      ${selectedTemplate === 'newsletter' ? `
-        <!-- Newsletter specific content -->
-        <div style="text-align: center; background: linear-gradient(135deg, #10b981, #3b82f6); background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1)); padding: 20px; margin-bottom: 30px; border-radius: 8px;">
-          <h3 style="margin: 0 0 10px 0; color: #059669;">Již za 8 týdnů bude aplikace ke stažení!</h3>
-          <div style="display: flex; justify-content: center; gap: 20px;">
-            <div style="text-align: center;">
-              <div style="font-size: 24px; font-weight: bold; color: #059669;">56</div>
-              <div style="font-size: 12px; color: #6b7280;">DNÍ</div>
-            </div>
-            <div style="text-align: center;">
-              <div style="font-size: 24px; font-weight: bold; color: #059669;">8</div>
-              <div style="font-size: 12px; color: #6b7280;">HODIN</div>
-            </div>
-            <div style="text-align: center;">
-              <div style="font-size: 24px; font-weight: bold; color: #059669;">23</div>
-              <div style="font-size: 12px; color: #6b7280;">MINUT</div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Content blocks -->
-        <h3 style="text-align: center; margin-bottom: 20px;">Týdenní obsah</h3>
-        <div style="margin-bottom: 30px;">
-          <h4>🧠 Meditace týdne: Odlož den</h4>
-          <p>Krátká praxe, která vám pomůže uvolnit napětí a odložit tíhu každodennosti.</p>
-          <a href="https://dev.calmoryapp.com/#registrace" class="calmory-button">Spustit ukázku</a>
-        </div>
-        
-        <div style="margin-bottom: 30px;">
-          <h4>📖 Článek týdne: Ta druhá</h4>
-          <p>Příběh dvou sester, které se přestaly srovnávat a začaly růst vedle sebe.</p>
-          <a href="https://calmoryapp.com/cs/a-600-ta-druha" class="calmory-button">Přečíst článek</a>
-        </div>
-        
-        <div style="margin-bottom: 30px;">
-          <h4>🍃 Offline tip Calmory</h4>
-          <p>Vytvořte si doma malý ostrůvek klidu: zapalte svíčku, odložte telefon a nalaďte se na dech.</p>
-        </div>
-      ` : selectedTemplate === 'content' ? `
-        <!-- Content showcase template -->
-        <h3 style="text-align: center; margin-bottom: 20px;">Ukázky obsahu aplikace</h3>
-        <p style="text-align: center; margin-bottom: 30px;">Podívejte se, jak bude vypadat vaše cesta ke klidnější mysli.</p>
-        
-        <div style="margin-bottom: 20px;">
-          <h4>🧠 Řízené meditace</h4>
-          <p>Krátké praxe pro každodenní klid. Objevte sílu mindfulness a naučte se techniky pro vnitřní rovnováhu.</p>
-        </div>
-        
-        <div style="margin-bottom: 20px;">
-          <h4>💙 Dechová cvičení</h4>
-          <p>Techniky pro okamžité uklidnění. Naučte se ovládat svůj dech a tím i své emoce.</p>
-        </div>
-        
-        <div style="margin-bottom: 20px;">
-          <h4>🌙 Podpora spánku</h4>
-          <p>Relaxační příběhy na dobrou noc. Klidné narace a uklidňující zvuky pro lepší spánek.</p>
-        </div>
-      ` : `
-        <!-- Launch/system template -->
-        <h3 style="text-align: center; margin-bottom: 20px;">Systémové oznámení</h3>
-        <p style="text-align: center; margin-bottom: 30px;">Toto je ukázka systémové šablony pro administrativní e-maily.</p>
-        
-        <div style="background-color: #f3f4f6; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-          <h4>ℹ️ Důležité informace</h4>
-          <p>Vaše aplikace byla úspěšně nahrána do App Store Connect.</p>
-          <p><strong>Status:</strong> Připraveno k revizi</p>
-          <p><strong>Verze:</strong> 1.0.0</p>
-        </div>
-      `}
-    </div>
-    
-    <!-- Footer -->
-    <div class="calmory-footer">
-      <p>© 2024 Calmory. Všechna práva vyhrazena.</p>
-      <p>Pokud si již nepřejete dostávat naše e-maily, <a href="#" style="color: #3b82f6;">odhlaste se zde</a>.</p>
-    </div>
+<body style="margin: 0; padding: 0; background-color: #f8fafc;">
+  
+  <!-- Preheader Text -->
+  <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all;">
+    ${templateData.preheader}
   </div>
+  
+  <!-- Email Container -->
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f8fafc; min-height: 100vh;">
+    <tr>
+      <td align="center" valign="top" style="padding: 20px 0;">
+        
+        <!-- Main Email Table -->
+        <table width="600" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); overflow: hidden;">
+          
+          <!-- Header -->
+          <tr>
+            <td style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.05)); padding: 20px; border-bottom: 1px solid #e5e7eb;">
+              <table width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td>
+                    <table cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td width="32" height="32" style="background: linear-gradient(135deg, #10b981, #3b82f6); border-radius: 50%; text-align: center; vertical-align: middle;">
+                          <span style="color: white; font-size: 16px;">💙</span>
+                        </td>
+                        <td style="padding-left: 12px;">
+                          <span style="font-size: 18px; font-weight: bold; color: #1f2937;">Calmory - Vaše malá dávka klidu na tento týden</span>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td style="text-align: right;">
+                    <a href="#" style="font-size: 12px; color: #3b82f6; text-decoration: none;">🔗 Webová verze newsletteru</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          
+          <!-- Hero Section -->
+          <tr>
+            <td style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('${heroImageUrl}'); background-size: cover; background-position: center; padding: 50px 20px; text-align: center; color: white;">
+              <div style="width: 64px; height: 64px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; margin: 0 auto 20px auto; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                <span style="font-size: 24px;">💙</span>
+              </div>
+              <h1 style="margin: 0 0 15px 0; font-size: 28px; font-weight: bold; color: white;">${templateData.title}</h1>
+              <p style="margin: 0 0 25px 0; font-size: 16px; color: rgba(255, 255, 255, 0.9); max-width: 400px; margin-left: auto; margin-right: auto; line-height: 1.5;">${templateData.subtitle}</p>
+              <a href="https://dev.calmoryapp.com/#registrace" style="background: rgba(255, 255, 255, 0.2); color: white; border: 1px solid rgba(255, 255, 255, 0.3); padding: 12px 24px; text-decoration: none; border-radius: 8px; font-size: 16px; display: inline-block; backdrop-filter: blur(10px);">${templateData.cta}</a>
+            </td>
+          </tr>
+          
+          ${mainContent}
+          
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #f8fafc; padding: 30px 20px; text-align: center; border-top: 1px solid #e5e7eb;">
+              <table width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="padding-bottom: 20px;">
+                    <h4 style="margin: 0 0 15px 0; font-size: 16px; color: #1f2937;">📱 Sledujte nás na sociálních sítích</h4>
+                    <table cellpadding="0" cellspacing="0" align="center">
+                      <tr>
+                        <td style="padding: 0 10px;">
+                          <a href="#" style="color: #3b82f6; text-decoration: none; font-size: 24px;">📘</a>
+                        </td>
+                        <td style="padding: 0 10px;">
+                          <a href="#" style="color: #3b82f6; text-decoration: none; font-size: 24px;">📷</a>
+                        </td>
+                        <td style="padding: 0 10px;">
+                          <a href="#" style="color: #3b82f6; text-decoration: none; font-size: 24px;">📺</a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-size: 12px; color: #6b7280; line-height: 1.5;">
+                    <p style="margin: 0 0 10px 0;">© 2024 Calmory. Všechna práva vyhrazena.</p>
+                    <p style="margin: 0;">Pokud si již nepřejete dostávat naše e-maily, <a href="#" style="color: #3b82f6; text-decoration: none;">odhlaste se zde</a>.</p>
+                    <p style="margin: 10px 0 0 0;">Calmory s.r.o. | Praha, Česká republika</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          
+        </table>
+        
+      </td>
+    </tr>
+  </table>
+  
 </body>
 </html>`;
     return baseHTML;
-  }, [selectedTemplate, currentTemplate]);
+  }, [selectedTemplate]);
 
   // Download HTML file
   const downloadHTML = useCallback(() => {
