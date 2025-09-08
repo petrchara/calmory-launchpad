@@ -11,6 +11,7 @@ const EmailTemplate = () => {
   const [selectedTemplate, setSelectedTemplate] = useState("newsletter");
   const [selectedModalTab, setSelectedModalTab] = useState("reflexe");
   const [isHandleModalOpen, setIsHandleModalOpen] = useState(false);
+  const [isReflexeModalOpen, setIsReflexeModalOpen] = useState(false);
 
   const contentTypes = [
     {
@@ -1011,6 +1012,15 @@ const EmailTemplate = () => {
               <p className="text-sm text-muted-foreground mb-4">
                 Po dokončení meditace se uživateli zobrazí modální okno pro zachycení jeho pocitů a reflexi prožitku.
               </p>
+              
+              <Button 
+                onClick={() => setIsReflexeModalOpen(true)}
+                className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white mb-4"
+                size="lg"
+              >
+                Vyzkoušet Handle Modal pro Reflexe
+              </Button>
+              
               <div className="flex gap-2 justify-center text-xs text-muted-foreground">
                 <span className="flex items-center gap-1">
                   <Heart className="w-3 h-3" />
@@ -1179,6 +1189,67 @@ const EmailTemplate = () => {
               Handle modal je ideální pro mobilní aplikace kde uživatelé potřebují rychle upravovat velikost modalu. 
               Inspirováno Ionic frameworkem a je perfektní pro mapy, filtry nebo dlouhé seznamy.
             </p>
+          </div>
+        </div>
+      </HandleModal>
+      
+      <HandleModal 
+        isOpen={isReflexeModalOpen} 
+        onClose={() => setIsReflexeModalOpen(false)}
+        title="Reflexe po meditaci"
+      >
+        <div className="space-y-6">
+          <div className="text-center">
+            <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Heart className="w-8 h-8 text-white" />
+            </div>
+            <h3 className="text-xl font-semibold mb-2">Jak se cítíte?</h3>
+            <p className="text-muted-foreground">
+              Pomozte nám lépe pochopit váš pocit po dokončené meditaci
+            </p>
+          </div>
+          
+          {/* Emotion Selection */}
+          <div className="grid grid-cols-3 gap-4">
+            {[
+              { icon: Smile, label: "Skvěle", color: "text-green-500", bg: "bg-green-50 hover:bg-green-100" },
+              { icon: HeartHandshake, label: "Klidně", color: "text-blue-500", bg: "bg-blue-50 hover:bg-blue-100" },
+              { icon: Sparkles, label: "Energicky", color: "text-purple-500", bg: "bg-purple-50 hover:bg-purple-100" },
+              { icon: Meh, label: "Neutrálně", color: "text-gray-500", bg: "bg-gray-50 hover:bg-gray-100" },
+              { icon: Moon, label: "Ospalě", color: "text-indigo-500", bg: "bg-indigo-50 hover:bg-indigo-100" },
+              { icon: Frown, label: "Nejistě", color: "text-orange-500", bg: "bg-orange-50 hover:bg-orange-100" }
+            ].map((emotion, index) => {
+              const IconComponent = emotion.icon;
+              return (
+                <button
+                  key={index}
+                  className={`${emotion.bg} rounded-xl p-3 text-center transition-all hover:scale-105 active:scale-95`}
+                >
+                  <IconComponent className={`w-6 h-6 mx-auto mb-1 ${emotion.color}`} />
+                  <span className="text-xs font-medium text-gray-700">{emotion.label}</span>
+                </button>
+              );
+            })}
+          </div>
+          
+          {/* Action Buttons */}
+          <div className="space-y-2">
+            <Button className="w-full bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white border-0">
+              Odeslat hodnocení
+            </Button>
+            <Button variant="outline" className="w-full text-gray-600">
+              Přeskočit
+            </Button>
+          </div>
+          
+          <div className="bg-blue-50 p-4 rounded-lg">
+            <h4 className="font-semibold text-blue-900 mb-2">Výhody Handle Modalu</h4>
+            <ul className="text-sm text-blue-700 space-y-1">
+              <li>• Přirozené ovládání tažením</li>
+              <li>• Různé velikosti podle potřeby</li>
+              <li>• Optimalizováno pro mobil</li>
+              <li>• Intuitivní pro uživatele</li>
+            </ul>
           </div>
         </div>
       </HandleModal>
