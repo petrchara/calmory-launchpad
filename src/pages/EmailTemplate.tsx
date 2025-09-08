@@ -872,12 +872,12 @@ const EmailTemplate = () => {
         {/* Modal Windows Demo */}
         {selectedMainTab === "modal" && selectedModalTab === "reflexe" && (
           <div className="flex justify-center overflow-x-auto">
-            {/* Mobile Phone Frame - 1080 x 1920 px */}
+            {/* Mobile Phone Frame - iPhone 16 dimensions */}
             <div 
-              className="relative bg-black rounded-[2.5rem] p-4 shadow-2xl flex-shrink-0" 
-              style={{ width: '1080px', height: '1920px' }}
+              className="relative bg-black rounded-[3rem] p-3 shadow-2xl flex-shrink-0" 
+              style={{ width: '390px', height: '844px' }}
             >
-              <div className="bg-white rounded-[2rem] overflow-hidden w-full h-full relative">
+              <div className="bg-white rounded-[2.5rem] overflow-hidden w-full h-full relative">
                 {/* Status Bar */}
                 <div className="bg-gray-900 text-white text-xs py-1 px-4 flex justify-between items-center">
                   <span>9:41</span>
