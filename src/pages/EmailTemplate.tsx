@@ -4,11 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { getFormatColor } from "@/lib/content-colors";
+import { HandleModal } from "@/components/HandleModal";
 
 const EmailTemplate = () => {
   const [selectedMainTab, setSelectedMainTab] = useState("email");
   const [selectedTemplate, setSelectedTemplate] = useState("newsletter");
   const [selectedModalTab, setSelectedModalTab] = useState("reflexe");
+  const [isHandleModalOpen, setIsHandleModalOpen] = useState(false);
 
   const contentTypes = [
     {
@@ -184,6 +186,12 @@ const EmailTemplate = () => {
                 onClick={() => setSelectedModalTab("reflexe")}
               >
                 Reflexe
+              </Button>
+              <Button
+                variant={selectedModalTab === "handle" ? "default" : "outline"}
+                onClick={() => setSelectedModalTab("handle")}
+              >
+                Handle Behavior
               </Button>
             </div>
           )}
@@ -1017,6 +1025,101 @@ const EmailTemplate = () => {
           </div>
         )}
 
+        {/* Handle Modal Demo */}
+        {selectedMainTab === "modal" && selectedModalTab === "handle" && (
+          <div className="space-y-8">
+            {/* Live Demo Section */}
+            <div className="text-center">
+              <h3 className="text-2xl font-semibold mb-4">Handle Behavior Modal</h3>
+              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                Ukázka modálního okna podle Ionic dokumentace s Handle Behavior funkcionalitou. 
+                Modal se ovládá pomocí handle (úchytu) v horní části a podporuje různé breakpointy.
+              </p>
+              
+              <Button 
+                onClick={() => setIsHandleModalOpen(true)}
+                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
+                size="lg"
+              >
+                Vyzkoušet Handle Modal
+              </Button>
+            </div>
+
+            {/* Feature Overview */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+              <Card className="p-6 text-center">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Settings className="w-6 h-6 text-blue-600" />
+                </div>
+                <h4 className="font-semibold mb-2">Breakpointy</h4>
+                <p className="text-sm text-muted-foreground">
+                  Modal podporuje 4 breakpointy: 0%, 25%, 50%, a 75% výšky obrazovky
+                </p>
+              </Card>
+
+              <Card className="p-6 text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Heart className="w-6 h-6 text-green-600" />
+                </div>
+                <h4 className="font-semibold mb-2">Intuitivní ovládání</h4>
+                <p className="text-sm text-muted-foreground">
+                  Kliknutím na handle cyklujete mezi breakpointy, táhnutím nastavujete přesnou pozici
+                </p>
+              </Card>
+
+              <Card className="p-6 text-center">
+                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Smartphone className="w-6 h-6 text-purple-600" />
+                </div>
+                <h4 className="font-semibold mb-2">Mobilní podpora</h4>
+                <p className="text-sm text-muted-foreground">
+                  Plná podpora dotyku na mobilních zařízeních i ovládání myší na desktopu
+                </p>
+              </Card>
+            </div>
+
+            {/* Technical Details */}
+            <Card className="p-6">
+              <h4 className="font-semibold mb-4">Technické detaily</h4>
+              <div className="grid md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <h5 className="font-medium mb-2">Funkčnosti:</h5>
+                  <ul className="space-y-1 text-muted-foreground">
+                    <li>• Draggable handle s vizuálním feedbackem</li>
+                    <li>• Smooth animace mezi breakpointy</li>
+                    <li>• Automatické přichytávání k nejbližšímu breakpointu</li>
+                    <li>• Zavření při dosažení 0% breakpointu</li>
+                  </ul>
+                </div>
+                <div>
+                  <h5 className="font-medium mb-2">Ovládání:</h5>
+                  <ul className="space-y-1 text-muted-foreground">
+                    <li>• Klik na handle = cyklování mezi velikostmi</li>
+                    <li>• Drag handle = přesné nastavení pozice</li>
+                    <li>• Klik mimo modal = zavření</li>
+                    <li>• X tlačítko = okamžité zavření</li>
+                  </ul>
+                </div>
+              </div>
+            </Card>
+
+            {/* Code Preview */}
+            <Card className="p-6">
+              <h4 className="font-semibold mb-4">Implementace</h4>
+              <div className="bg-muted rounded-lg p-4 text-sm font-mono overflow-x-auto">
+                <div className="text-muted-foreground mb-2">// React komponenta s Handle Behavior</div>
+                <div><span className="text-blue-600">const</span> <span className="text-purple-600">HandleModal</span> = {`({ isOpen, onClose, children }) => {`}</div>
+                <div className="ml-4">
+                  <div className="text-muted-foreground">// Breakpointy a drag logika</div>
+                  <div><span className="text-blue-600">const</span> BREAKPOINTS = [0, 0.25, 0.5, 0.75];</div>
+                  <div><span className="text-blue-600">const</span> [currentBreakpoint, setCurrentBreakpoint] = useState(0.25);</div>
+                </div>
+                <div>{`}`}</div>
+              </div>
+            </Card>
+          </div>
+        )}
+
         {/* Email Code Export */}
         <div className="mt-8">
           <Card className="p-6">
@@ -1038,6 +1141,47 @@ const EmailTemplate = () => {
           </Card>
         </div>
       </div>
+      
+      <HandleModal 
+        isOpen={isHandleModalOpen} 
+        onClose={() => setIsHandleModalOpen(false)}
+        title="Handle Behavior Demo"
+      >
+        <div className="space-y-6">
+          <div className="text-center">
+            <h3 className="text-xl font-semibold mb-2">Úspěšně otevřeno!</h3>
+            <p className="text-muted-foreground">
+              Toto je ukázka Handle Behavior modalu podle Ionic dokumentace.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="bg-blue-50 p-4 rounded-lg">
+              <h4 className="font-semibold text-blue-900 mb-2">Jak ovládat</h4>
+              <ul className="text-sm text-blue-700 space-y-1">
+                <li>• Klikni na handle pro cyklování</li>
+                <li>• Táhni handle pro přesnou pozici</li>
+                <li>• Funguje na dotyku i myší</li>
+              </ul>
+            </div>
+            <div className="bg-green-50 p-4 rounded-lg">
+              <h4 className="font-semibold text-green-900 mb-2">Breakpointy</h4>
+              <ul className="text-sm text-green-700 space-y-1">
+                <li>• 25% - Minimální</li>
+                <li>• 50% - Střední</li>
+                <li>• 75% - Maximální</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="bg-gray-50 p-4 rounded-lg">
+            <p className="text-sm text-gray-600 leading-relaxed">
+              Handle modal je ideální pro mobilní aplikace kde uživatelé potřebují rychle upravovat velikost modalu. 
+              Inspirováno Ionic frameworkem a je perfektní pro mapy, filtry nebo dlouhé seznamy.
+            </p>
+          </div>
+        </div>
+      </HandleModal>
     </div>
   );
 };
