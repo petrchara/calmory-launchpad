@@ -56,16 +56,26 @@ const About = () => {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="py-16 md:py-24">
-          <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
-                O nás
-              </h1>
-              <p className="mt-6 text-xl text-muted-foreground max-w-2xl mx-auto">
-                Jsme tým odborníků a technologů, kteří věří, že duševní zdraví by mělo být dostupné každému.
-              </p>
+        <section className="relative h-[600px] md:h-[700px] flex items-center justify-center overflow-hidden">
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url('/lovable-uploads/af9a64e5-7047-425a-8818-cc0127758f1e.png')`
+            }}
+          >
+            <div className="absolute inset-0 bg-black/20"></div>
+          </div>
+          
+          <div className="relative z-10 text-center">
+            <div className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-8 bg-primary rounded-3xl flex items-center justify-center shadow-2xl">
+              <span className="text-3xl md:text-4xl font-bold text-white">Calmory</span>
             </div>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+              Vítejte v Calmory
+            </h1>
+            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto px-6">
+              Jsme tým odborníků a technologů, kteří věří, že duševní zdraví by mělo být dostupné každému.
+            </p>
           </div>
         </section>
 
