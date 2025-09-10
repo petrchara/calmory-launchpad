@@ -4,7 +4,7 @@ import Footer from "@/components/marketing/Footer";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { GraduationCap, ShieldCheck, Zap, Heart, Users, Clock } from "lucide-react";
+import { Wind, BookOpen, Headphones, MessageSquare, Music, FileText, Heart, ShieldCheck, Zap } from "lucide-react";
 
 const About = () => {
   useEffect(() => {
@@ -86,45 +86,45 @@ const About = () => {
               <div className="grid grid-cols-3 gap-8 md:gap-12">
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                    <GraduationCap className="w-8 h-8 text-primary" />
+                    <Wind className="w-8 h-8 text-primary" />
                   </div>
-                  <h3 className="text-2xl font-semibold text-foreground">Odborně</h3>
-                  <p className="text-sm text-muted-foreground mt-2 text-center">Vědecky podložené metody</p>
+                  <h3 className="text-2xl font-semibold text-foreground">Dechová a relaxační cvičení</h3>
+                  <p className="text-sm text-muted-foreground mt-2 text-center">od dvou minut až po delší meditace</p>
                 </div>
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                    <ShieldCheck className="w-8 h-8 text-primary" />
+                    <BookOpen className="w-8 h-8 text-primary" />
                   </div>
-                  <h3 className="text-2xl font-semibold text-foreground">Bezpečně</h3>
-                  <p className="text-sm text-muted-foreground mt-2 text-center">Chráníme vaše soukromí</p>
+                  <h3 className="text-2xl font-semibold text-foreground">Příběhy na spaní a pohádky</h3>
+                  <p className="text-sm text-muted-foreground mt-2 text-center">hlasem vyprávěné pro děti i dospělé, podporující spánek a pocit jistoty</p>
                 </div>
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                    <Zap className="w-8 h-8 text-primary" />
+                    <Headphones className="w-8 h-8 text-primary" />
                   </div>
-                  <h3 className="text-2xl font-semibold text-foreground">Jednoduše</h3>
-                  <p className="text-sm text-muted-foreground mt-2 text-center">Intuitivní a snadné použití</p>
+                  <h3 className="text-2xl font-semibold text-foreground">Meditace a průvodci</h3>
+                  <p className="text-sm text-muted-foreground mt-2 text-center">podle denní fáze: ráno, během dne, večer, před spaním i na dovolené</p>
                 </div>
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                    <Heart className="w-8 h-8 text-primary" />
+                    <MessageSquare className="w-8 h-8 text-primary" />
                   </div>
-                  <h3 className="text-2xl font-semibold text-foreground">S péčí</h3>
-                  <p className="text-sm text-muted-foreground mt-2 text-center">Vytvořeno s empatií a porozuměním</p>
+                  <h3 className="text-2xl font-semibold text-foreground">Afirmace a krátké myšlenky</h3>
+                  <p className="text-sm text-muted-foreground mt-2 text-center">věty, které pomáhají nastavit mysl k odolnosti a sebepřijetí</p>
                 </div>
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                    <Users className="w-8 h-8 text-primary" />
+                    <Music className="w-8 h-8 text-primary" />
                   </div>
-                  <h3 className="text-2xl font-semibold text-foreground">Společně</h3>
-                  <p className="text-sm text-muted-foreground mt-2 text-center">Budujeme komunitu podpory</p>
+                  <h3 className="text-2xl font-semibold text-foreground">Hudba a zvuky přírody</h3>
+                  <p className="text-sm text-muted-foreground mt-2 text-center">pro koncentraci, odpočinek i lepší spánek</p>
                 </div>
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                    <Clock className="w-8 h-8 text-primary" />
+                    <FileText className="w-8 h-8 text-primary" />
                   </div>
-                  <h3 className="text-2xl font-semibold text-foreground">Včas</h3>
-                  <p className="text-sm text-muted-foreground mt-2 text-center">Pomoc kdy ji potřebujete</p>
+                  <h3 className="text-2xl font-semibold text-foreground">Odborný obsah</h3>
+                  <p className="text-sm text-muted-foreground mt-2 text-center">srozumitelně vysvětlená témata z oblasti duševní pohody, psaná jazykem běžného člověka</p>
                 </div>
               </div>
             </div>
@@ -143,7 +143,7 @@ const About = () => {
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="glass-card rounded-xl p-6">
                   <div className="flex items-center justify-center gap-3 mb-4">
-                    <GraduationCap className="size-6 text-primary" />
+                    <BookOpen className="size-6 text-primary" />
                     <span className="font-bold text-lg">Příběhy</span>
                   </div>
                   <h3 className="font-semibold text-lg mb-2 text-center">jako srdce aplikace</h3>
