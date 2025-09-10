@@ -110,9 +110,27 @@ const About = () => {
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Naše mise</h2>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-lg text-muted-foreground mb-12">
                 Jsme česká aplikace, která propojuje příběhy, praktická cvičení a odborné vedení, aby pomohla běžným lidem zvládat stres a hledat klid.
               </p>
+              
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="glass-card rounded-xl p-6">
+                  <GraduationCap className="size-6 text-primary" />
+                  <h3 className="mt-4 font-semibold text-lg">Vědecký přístup</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">Naše techniky vycházejí z vědecky ověřených metod CBT, ACT a mindfulness.</p>
+                </div>
+                <div className="glass-card rounded-xl p-6">
+                  <ShieldCheck className="size-6 text-primary" />
+                  <h3 className="mt-4 font-semibold text-lg">Bezpečné prostředí</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">Chráníme vaše soukromí a poskytujeme bezpečný prostor pro osobní růst.</p>
+                </div>
+                <div className="glass-card rounded-xl p-6">
+                  <Zap className="size-6 text-primary" />
+                  <h3 className="mt-4 font-semibold text-lg">Jednoduché řešení</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">Intuitivní aplikace, která vám pomůže začít cestu k lepšímu duševnímu zdraví.</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
