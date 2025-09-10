@@ -110,11 +110,9 @@ const About = () => {
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
               <div className="glass-card rounded-2xl p-8 md:p-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">Naše mise</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">Naše mise</h2>
                 <p className="text-lg text-muted-foreground mb-6">
-                  V Calmory věříme, že každý si zaslouží přístup k nástrojům pro péči o duševní zdraví. 
-                  Naše aplikace kombinuje vědecky podložené techniky s moderní technologií, 
-                  aby poskytla personalizovanou podporu přímo do vaší kapsy.
+                  Jsme česká aplikace, která propojuje příběhy, praktická cvičení a odborné vedení, aby pomohla běžným lidem zvládat stres a hledat klid.
                 </p>
                 <p className="text-lg text-muted-foreground">
                   Používáme přístupy založené na kognitivně-behaviorální terapii (CBT), 
