@@ -32,6 +32,7 @@ const Navbar = () => {
               </SheetHeader>
               <nav className="mt-6 grid gap-4 text-base">
                 <a href="#funkce" className="text-foreground hover:underline">Funkce a obsah aplikace</a>
+                <a href="/o-nas" className="text-foreground hover:underline">O nás</a>
                 <a href="/abeceda" className="text-foreground hover:underline">Terapeutická abeceda</a>
                 <a href="/blog" className="text-foreground hover:underline">Články a příběhy</a>
                 <a href="/email-sablona" className="text-foreground hover:underline">Email šablony</a>
@@ -47,6 +48,7 @@ const Navbar = () => {
         {/* Desktop menu */}
         <div className="hidden md:flex items-center gap-6 text-sm">
           <a href="#funkce" className="text-muted-foreground hover:text-foreground transition-colors">Funkce a obsah aplikace</a>
+          <a href="/o-nas" className="text-muted-foreground hover:text-foreground transition-colors">O nás</a>
           <a href="/abeceda" className="text-muted-foreground hover:text-foreground transition-colors">Terapeutická abeceda</a>
           <a href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">Články a příběhy</a>
           <a href="/email-sablona" className="text-muted-foreground hover:text-foreground transition-colors">Email šablony</a>
