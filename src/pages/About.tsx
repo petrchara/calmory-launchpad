@@ -123,8 +123,9 @@ const About = () => {
                 </div>
                 <div className="glass-card rounded-xl p-6">
                   <ShieldCheck className="size-6 text-primary" />
-                  <h3 className="mt-4 font-semibold text-lg">Bezpečné prostředí</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">Chráníme vaše soukromí a poskytujeme bezpečný prostor pro osobní růst.</p>
+                  <h3 className="mt-4 font-semibold text-lg">Klid jako každodenní dovednost</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">Klid u nás není luxusní zážitek, ale praktická dovednost. Nabízíme krátká a srozumitelná cvičení: dechové techniky, meditace, relaxace před spaním, nebo výzvy, techniky a postupy pro okamžité zklidnění. Vše navržené tak, aby se daly použít tady a teď. V kanceláři, v tramvaji nebo doma před usnutím.</p>
+                  <p className="mt-3 text-sm text-muted-foreground italic">"Calmory tvoříme pro běžný den každého z nás. Pět minut klidu, které opravdu stihneš." — Stanislav Knotek, ředitel projektu.</p>
                 </div>
                 <div className="glass-card rounded-xl p-6">
                   <Zap className="size-6 text-primary" />
