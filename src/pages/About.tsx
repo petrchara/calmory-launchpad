@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Navbar from "@/components/marketing/Navbar";
 import Footer from "@/components/marketing/Footer";
 import { Button } from "@/components/ui/button";
+import { GraduationCap, ShieldCheck, Zap } from "lucide-react";
 
 const About = () => {
   useEffect(() => {
@@ -76,6 +77,37 @@ const About = () => {
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto px-6">
               Jsme tým odborníků a technologů, kteří věří, že duševní zdraví by mělo být dostupné každému.
             </p>
+          </div>
+        </section>
+
+        {/* Motto Section */}
+        <section className="py-16 md:py-20">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-4xl md:text-5xl font-bold mb-12">
+                Calmory, klidné místo pro tvůj běžný den
+              </h2>
+              <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                    <GraduationCap className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="text-2xl font-semibold text-foreground">Odborně</h3>
+                </div>
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                    <ShieldCheck className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="text-2xl font-semibold text-foreground">Bezpečně</h3>
+                </div>
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                    <Zap className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="text-2xl font-semibold text-foreground">Jednoduše</h3>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
