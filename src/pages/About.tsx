@@ -68,15 +68,9 @@ const About = () => {
           </div>
           
           <div className="relative z-10 text-center">
-            <div className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-8 bg-primary rounded-3xl flex items-center justify-center shadow-2xl">
+            <div className="w-32 h-32 md:w-40 md:h-40 mx-auto bg-primary rounded-3xl flex items-center justify-center shadow-2xl">
               <span className="text-3xl md:text-4xl font-bold text-white">Calmory</span>
             </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-              Vítejte v Calmory
-            </h1>
-            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto px-6">
-              Jsme tým odborníků a technologů, kteří věří, že duševní zdraví by mělo být dostupné každému.
-            </p>
           </div>
         </section>
 
