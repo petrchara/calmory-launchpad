@@ -147,6 +147,21 @@ const About = () => {
           </div>
         </section>
 
+        {/* Team Behind Section */}
+        <section className="py-16">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">Kdo stojí za Calmory?</h2>
+              <p className="text-lg text-muted-foreground">
+                Calmory vzniká pod odborným vedením Filipa Hajny, psychologa a terapeuta, který je zároveň hlavní osobností organizace Velký Vůz Sever. Na obsahu se podílí s týmem zkušených terapeutů a lektorů, kteří pracují s metodikami a ověřenými poznatky psychologie s dlouholetou praxí v oblasti duševního zdraví a krizové intervence.
+              </p>
+              <p className="mt-4 text-lg text-muted-foreground">
+                Každý příběh, meditace či cvičení prochází pečlivou kontrolou, aby platilo naše pravidlo: obsah pomáhá a nikdy neškodí.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Values Section */}
         <section className="py-16">
           <div className="container mx-auto px-6">
