@@ -114,7 +114,7 @@ const About = () => {
                 Jsme česká aplikace, která propojuje příběhy, praktická cvičení a odborné vedení, aby pomohla běžným lidem zvládat stres a hledat klid.
               </p>
               
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-3 gap-6">
                 <div className="glass-card rounded-xl p-6">
                   <GraduationCap className="size-6 text-primary" />
                   <h3 className="mt-4 font-semibold text-lg">Příběhy jako srdce aplikace</h3>
