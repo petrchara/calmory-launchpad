@@ -57,9 +57,9 @@ const About = () => {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative h-[600px] md:h-[700px] flex items-center justify-center overflow-hidden">
+        <section className="relative w-full h-[400px] md:h-[500px] flex items-center justify-center overflow-hidden">
           <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
             style={{
               backgroundImage: `url('/lovable-uploads/af9a64e5-7047-425a-8818-cc0127758f1e.png')`
             }}
