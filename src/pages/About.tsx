@@ -176,14 +176,28 @@ const About = () => {
         {/* Team Behind Section */}
         <section className="py-16">
           <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Kdo stojí za Calmory?</h2>
-              <p className="text-lg text-muted-foreground">
-                Calmory vzniká pod odborným vedením Filipa Hajny, psychologa a terapeuta, který je zároveň hlavní osobností organizace Velký Vůz Sever. Na obsahu se podílí s týmem zkušených terapeutů a lektorů, kteří pracují s metodikami a ověřenými poznatky psychologie s dlouholetou praxí v oblasti duševního zdraví a krizové intervence.
-              </p>
-              <p className="mt-4 text-lg text-muted-foreground">
-                Každý příběh, meditace či cvičení prochází pečlivou kontrolou, aby platilo naše pravidlo: obsah pomáhá a nikdy neškodí.
-              </p>
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Kdo stojí za Calmory?</h2>
+              
+              <div className="space-y-8">
+                <div className="flex items-start gap-4 text-left">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <Heart className="w-6 h-6 text-primary" />
+                  </div>
+                  <p className="text-lg text-muted-foreground">
+                    Calmory vzniká pod odborným vedením týmu terapeutů a psychologů z organizace Velký vůz Sever, v jehož čele stojí psycholog a terapeut Filip Hajna. Tento tým má dlouholeté zkušenosti s duševním zdravím, psychoterapií i krizovou intervencí a do obsahu aplikace přináší ověřené metodiky a bezpečné postupy. Díky jejich vedení je každý příběh, meditace či cvičení navrženo tak, aby naplňovalo naše základní pravidlo: obsah pomáhá a nikdy neškodí.
+                  </p>
+                </div>
+                
+                <div className="flex items-start gap-4 text-left">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <ShieldCheck className="w-6 h-6 text-primary" />
+                  </div>
+                  <p className="text-lg text-muted-foreground">
+                    Velký vůz Sever je zastřešující odbornou organizací, se kterou Calmory úzce spolupracuje. Kromě vlastního týmu terapeutů zapojujeme i další specialisty v oblastech osobního rozvoje, koučingu či krizové intervence. Díky tomu nabízíme pestrou a odborně podloženou škálu nástrojů, které podporují každodenní duševní pohodu, a zároveň zajišťujeme, že každý prvek aplikace je podložen zkušeností a odbornou praxí.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
