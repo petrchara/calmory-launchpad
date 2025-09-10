@@ -4,7 +4,7 @@ import Footer from "@/components/marketing/Footer";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { GraduationCap, ShieldCheck, Zap } from "lucide-react";
+import { GraduationCap, ShieldCheck, Zap, Heart } from "lucide-react";
 
 const About = () => {
   useEffect(() => {
@@ -83,24 +83,34 @@ const About = () => {
               <h2 className="text-4xl md:text-5xl font-bold mb-12">
                 Calmory, klidné místo pro tvůj běžný den
               </h2>
-              <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+              <div className="grid md:grid-cols-4 gap-8 md:gap-12">
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                     <GraduationCap className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="text-2xl font-semibold text-foreground">Odborně</h3>
+                  <p className="text-sm text-muted-foreground mt-2 text-center">Vědecky podložené metody</p>
                 </div>
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                     <ShieldCheck className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="text-2xl font-semibold text-foreground">Bezpečně</h3>
+                  <p className="text-sm text-muted-foreground mt-2 text-center">Chráníme vaše soukromí</p>
                 </div>
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                     <Zap className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="text-2xl font-semibold text-foreground">Jednoduše</h3>
+                  <p className="text-sm text-muted-foreground mt-2 text-center">Intuitivní a snadné použití</p>
+                </div>
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                    <Heart className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="text-2xl font-semibold text-foreground">S péčí</h3>
+                  <p className="text-sm text-muted-foreground mt-2 text-center">Vytvořeno s empatií a porozuměním</p>
                 </div>
               </div>
             </div>
