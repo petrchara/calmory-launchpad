@@ -4,7 +4,7 @@ import Footer from "@/components/marketing/Footer";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { GraduationCap, ShieldCheck, Zap, Heart } from "lucide-react";
+import { GraduationCap, ShieldCheck, Zap, Heart, Users, Clock } from "lucide-react";
 
 const About = () => {
   useEffect(() => {
@@ -83,7 +83,7 @@ const About = () => {
               <h2 className="text-4xl md:text-5xl font-bold mb-12">
                 Calmory, klidné místo pro tvůj běžný den
               </h2>
-              <div className="grid md:grid-cols-4 gap-8 md:gap-12">
+              <div className="grid grid-cols-3 gap-8 md:gap-12">
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                     <GraduationCap className="w-8 h-8 text-primary" />
@@ -111,6 +111,20 @@ const About = () => {
                   </div>
                   <h3 className="text-2xl font-semibold text-foreground">S péčí</h3>
                   <p className="text-sm text-muted-foreground mt-2 text-center">Vytvořeno s empatií a porozuměním</p>
+                </div>
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                    <Users className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="text-2xl font-semibold text-foreground">Společně</h3>
+                  <p className="text-sm text-muted-foreground mt-2 text-center">Budujeme komunitu podpory</p>
+                </div>
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                    <Clock className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="text-2xl font-semibold text-foreground">Včas</h3>
+                  <p className="text-sm text-muted-foreground mt-2 text-center">Pomoc kdy ji potřebujete</p>
                 </div>
               </div>
             </div>
