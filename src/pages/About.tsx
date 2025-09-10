@@ -89,42 +89,42 @@ const About = () => {
                     <Wind className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="text-2xl font-semibold text-foreground">Dechová a relaxační cvičení</h3>
-                  <p className="text-sm text-muted-foreground mt-2 text-center">od dvou minut až po delší meditace</p>
+                  <p className="text-sm text-muted-foreground mt-2 text-center">Pomohou vám uvolnit napětí, zklidnit dech a najít rovnováhu – kdykoli během dne.</p>
                 </div>
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                     <BookOpen className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="text-2xl font-semibold text-foreground">Příběhy na spaní a pohádky</h3>
-                  <p className="text-sm text-muted-foreground mt-2 text-center">hlasem vyprávěné pro děti i dospělé, podporující spánek a pocit jistoty</p>
+                  <p className="text-sm text-muted-foreground mt-2 text-center">Podpoří klidné usínání a pocit jistoty, jsou vám k dispozici pro děti i dospělé.</p>
                 </div>
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                     <Headphones className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="text-2xl font-semibold text-foreground">Meditace a průvodci</h3>
-                  <p className="text-sm text-muted-foreground mt-2 text-center">podle denní fáze: ráno, během dne, večer, před spaním i na dovolené</p>
+                  <p className="text-sm text-muted-foreground mt-2 text-center">Naučí vás, jak najít klid a soustředění podle denní fáze – od rána až po večerní ztišení.</p>
                 </div>
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                     <MessageSquare className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="text-2xl font-semibold text-foreground">Afirmace a krátké myšlenky</h3>
-                  <p className="text-sm text-muted-foreground mt-2 text-center">věty, které pomáhají nastavit mysl k odolnosti a sebepřijetí</p>
+                  <p className="text-sm text-muted-foreground mt-2 text-center">Pomohou vám nastavit mysl k odolnosti a laskavějšímu vztahu k sobě.</p>
                 </div>
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                     <Music className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="text-2xl font-semibold text-foreground">Hudba a zvuky přírody</h3>
-                  <p className="text-sm text-muted-foreground mt-2 text-center">pro koncentraci, odpočinek i lepší spánek</p>
+                  <p className="text-sm text-muted-foreground mt-2 text-center">Budou vás provázet při práci i odpočinku a navodí klidný spánek.</p>
                 </div>
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                     <FileText className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="text-2xl font-semibold text-foreground">Odborný obsah</h3>
-                  <p className="text-sm text-muted-foreground mt-2 text-center">srozumitelně vysvětlená témata z oblasti duševní pohody, psaná jazykem běžného člověka</p>
+                  <p className="text-sm text-muted-foreground mt-2 text-center">Nabízí vám srozumitelné vysvětlení důležitých témat duševní pohody bez složité hantýrky.</p>
                 </div>
               </div>
             </div>
