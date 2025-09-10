@@ -273,10 +273,21 @@ const About = () => {
         <section className="py-16">
           <div className="container mx-auto px-6">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Připojte se k nám</h2>
-              <p className="text-lg text-muted-foreground mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">Přidejte se k nám</h2>
+              <p className="text-lg text-muted-foreground mb-6">
                 Začněte svou cestu k lepšímu duševnímu zdraví už dnes.
               </p>
+              <div className="text-left bg-background/50 rounded-lg p-6 mb-8 space-y-3">
+                <p className="text-muted-foreground">
+                  <strong>Bezplatný přístup na omezenou dobu</strong> – možnost vyzkoušet všechny formáty obsahu.
+                </p>
+                <p className="text-muted-foreground">
+                  Poté <strong>členské předplatné</strong>, které odemkne celou knihovnu i pravidelně přidávané novinky.
+                </p>
+                <p className="text-muted-foreground">
+                  <strong>Bonus pro předregistrované:</strong> zvýhodněná cena na první rok.
+                </p>
+              </div>
               <Button asChild variant="hero" size="lg">
                 <a href="/#cekaci-listina">Přidat se na čekací listinu</a>
               </Button>
