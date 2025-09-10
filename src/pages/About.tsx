@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import Navbar from "@/components/marketing/Navbar";
 import Footer from "@/components/marketing/Footer";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { GraduationCap, ShieldCheck, Zap } from "lucide-react";
 
 const About = () => {
@@ -205,14 +207,75 @@ const About = () => {
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Náš tým</h2>
-              <p className="text-lg text-muted-foreground mb-8">
+              <p className="text-lg text-muted-foreground mb-12">
                 Za Calmory stojí tým psychologů, terapeutů a vývojářů, 
                 kteří spojili své síly, aby vytvořili aplikaci, která skutečně pomáhá.
               </p>
-              <div className="glass-card rounded-2xl p-8">
-                <p className="text-muted-foreground italic">
-                  Podrobné informace o týmu budou doplněny na základě obsahu z vašeho dokumentu.
-                </p>
+              
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <Card className="glass-card animate-fade-in">
+                  <CardHeader className="flex flex-row items-center gap-4">
+                    <Avatar className="size-14">
+                      <AvatarImage src="/placeholder.svg" alt="Filip Hajna" />
+                      <AvatarFallback>FH</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <CardTitle className="text-lg">Filip Hajna</CardTitle>
+                      <p className="text-sm text-muted-foreground">Odborný garant</p>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">Psycholog a terapeut, hlavní osobnost organizace Velký Vůz Sever.</p>
+                  </CardContent>
+                </Card>
+                
+                <Card className="glass-card animate-fade-in">
+                  <CardHeader className="flex flex-row items-center gap-4">
+                    <Avatar className="size-14">
+                      <AvatarImage src="/placeholder.svg" alt="Michaela Pompová" />
+                      <AvatarFallback>MP</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <CardTitle className="text-lg">Michaela Pompová</CardTitle>
+                      <p className="text-sm text-muted-foreground">Manažerka obsahu</p>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">Odpovědná za kurátorování a moderování příběhů v aplikaci.</p>
+                  </CardContent>
+                </Card>
+                
+                <Card className="glass-card animate-fade-in">
+                  <CardHeader className="flex flex-row items-center gap-4">
+                    <Avatar className="size-14">
+                      <AvatarImage src="/placeholder.svg" alt="Stanislav Knotek" />
+                      <AvatarFallback>SK</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <CardTitle className="text-lg">Stanislav Knotek</CardTitle>
+                      <p className="text-sm text-muted-foreground">Ředitel projektu</p>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">Vede celkový vývoj aplikace a koordinuje práci týmu.</p>
+                  </CardContent>
+                </Card>
+                
+                <Card className="glass-card animate-fade-in">
+                  <CardHeader className="flex flex-row items-center gap-4">
+                    <Avatar className="size-14">
+                      <AvatarImage src="/placeholder.svg" alt="Tým vývojářů" />
+                      <AvatarFallback>TÝM</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <CardTitle className="text-lg">Tým vývojářů</CardTitle>
+                      <p className="text-sm text-muted-foreground">Technologové</p>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">Technický tým stojící za vývojem a udržováním aplikace.</p>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </div>
