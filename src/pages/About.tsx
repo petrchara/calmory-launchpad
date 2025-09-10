@@ -117,8 +117,9 @@ const About = () => {
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="glass-card rounded-xl p-6">
                   <GraduationCap className="size-6 text-primary" />
-                  <h3 className="mt-4 font-semibold text-lg">Vědecký přístup</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">Naše techniky vycházejí z vědecky ověřených metod CBT, ACT a mindfulness.</p>
+                  <h3 className="mt-4 font-semibold text-lg">Příběhy jako srdce aplikace</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">Skutečné příběhy, anonymizované a citlivě moderované nebo vytvořené s terapeuty na základě životních zkušeností. Přinášejí strategie zvládání běžných životních výzev a podporují pocit sounáležitosti.</p>
+                  <p className="mt-3 text-sm text-muted-foreground italic">"Příběhy dávají věcem smysl. Pomáhají cítit, že v tom člověk není nikdy sám." — Michaela Pompová, manažerka obsahu.</p>
                 </div>
                 <div className="glass-card rounded-xl p-6">
                   <ShieldCheck className="size-6 text-primary" />
