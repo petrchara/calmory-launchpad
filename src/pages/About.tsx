@@ -129,8 +129,9 @@ const About = () => {
                 </div>
                 <div className="glass-card rounded-xl p-6">
                   <Zap className="size-6 text-primary" />
-                  <h3 className="mt-4 font-semibold text-lg">Jednoduché řešení</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">Intuitivní aplikace, která vám pomůže začít cestu k lepšímu duševnímu zdraví.</p>
+                  <h3 className="mt-4 font-semibold text-lg">Bezpečí jako základ důvěry</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">Bezpečí pro nás znamená víc než jen ochranu dat. Budujeme prostředí, kde se uživatel cítí respektován, pochopen a nikdy neohrožen. Obsah vzniká pod dohledem odborníků a je tvořen tak, aby pomáhal a neškodil. Calmory je tu pro běžný život a každodenní činnosti, kdy člověk občas ztratí rovnováhu a potřebuje se zklidnit, nadechnout a znovu najít svůj vnitřní klid.</p>
+                  <p className="mt-3 text-sm text-muted-foreground italic">"Naším krédem je: Odbornost. Bezpečí. Lidskost. Obsah Calmory tvoříme tak, aby pomáhal a nikdy neškodil." — Filip Hajna, odborný garant projektu</p>
                 </div>
               </div>
             </div>
