@@ -216,17 +216,27 @@ const About = () => {
                 <Card className="glass-card animate-fade-in">
                   <CardHeader className="flex flex-row items-center gap-4">
                     <Avatar className="size-14">
+                      <AvatarImage src="/placeholder.svg" alt="Stanislav Knotek" />
+                      <AvatarFallback>SK</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <CardTitle className="text-lg">Stanislav Knotek</CardTitle>
+                      <p className="text-sm text-muted-foreground">Ředitel Calmory</p>
+                    </div>
+                  </CardHeader>
+                </Card>
+                
+                <Card className="glass-card animate-fade-in">
+                  <CardHeader className="flex flex-row items-center gap-4">
+                    <Avatar className="size-14">
                       <AvatarImage src="/placeholder.svg" alt="Filip Hajna" />
                       <AvatarFallback>FH</AvatarFallback>
                     </Avatar>
                     <div>
                       <CardTitle className="text-lg">Filip Hajna</CardTitle>
-                      <p className="text-sm text-muted-foreground">Odborný garant</p>
+                      <p className="text-sm text-muted-foreground">Odborný garant, psycholog a terapeut</p>
                     </div>
                   </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground">Psycholog a terapeut, hlavní osobnost organizace Velký Vůz Sever.</p>
-                  </CardContent>
                 </Card>
                 
                 <Card className="glass-card animate-fade-in">
@@ -240,41 +250,19 @@ const About = () => {
                       <p className="text-sm text-muted-foreground">Manažerka obsahu</p>
                     </div>
                   </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground">Odpovědná za kurátorování a moderování příběhů v aplikaci.</p>
-                  </CardContent>
                 </Card>
                 
                 <Card className="glass-card animate-fade-in">
                   <CardHeader className="flex flex-row items-center gap-4">
                     <Avatar className="size-14">
-                      <AvatarImage src="/placeholder.svg" alt="Stanislav Knotek" />
-                      <AvatarFallback>SK</AvatarFallback>
+                      <AvatarImage src="/placeholder.svg" alt="Leoš Silný" />
+                      <AvatarFallback>LS</AvatarFallback>
                     </Avatar>
                     <div>
-                      <CardTitle className="text-lg">Stanislav Knotek</CardTitle>
-                      <p className="text-sm text-muted-foreground">Ředitel projektu</p>
+                      <CardTitle className="text-lg">Leoš Silný</CardTitle>
+                      <p className="text-sm text-muted-foreground">Vývoj aplikace</p>
                     </div>
                   </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground">Vede celkový vývoj aplikace a koordinuje práci týmu.</p>
-                  </CardContent>
-                </Card>
-                
-                <Card className="glass-card animate-fade-in">
-                  <CardHeader className="flex flex-row items-center gap-4">
-                    <Avatar className="size-14">
-                      <AvatarImage src="/placeholder.svg" alt="Tým vývojářů" />
-                      <AvatarFallback>TÝM</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <CardTitle className="text-lg">Tým vývojářů</CardTitle>
-                      <p className="text-sm text-muted-foreground">Technologové</p>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground">Technický tým stojící za vývojem a udržováním aplikace.</p>
-                  </CardContent>
                 </Card>
               </div>
             </div>
