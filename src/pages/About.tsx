@@ -288,7 +288,7 @@ const About = () => {
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-5 h-5 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Zap className="w-3 h-3 text-primary" />
+                    <Heart className="w-3 h-3 text-primary" />
                   </div>
                   <p className="text-muted-foreground">
                     Poté <strong>členské předplatné</strong>, které odemkne celou knihovnu i pravidelně přidávané novinky.
@@ -296,7 +296,7 @@ const About = () => {
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-5 h-5 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <ShieldCheck className="w-3 h-3 text-primary" />
+                    <Heart className="w-3 h-3 text-primary" />
                   </div>
                   <p className="text-muted-foreground">
                     <strong>Bonus pro předregistrované:</strong> zvýhodněná cena na první rok.
@@ -304,7 +304,7 @@ const About = () => {
                 </div>
               </div>
               <Button asChild variant="hero" size="lg">
-                <a href="/#cekaci-listina">Přidat se na čekací listinu</a>
+                <a href="/#cekaci-listina">Přidat se pro přednostní přístup</a>
               </Button>
             </div>
           </div>
