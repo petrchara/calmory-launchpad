@@ -116,29 +116,29 @@ const About = () => {
               
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="glass-card rounded-xl p-6">
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center justify-center gap-3 mb-4">
                     <GraduationCap className="size-6 text-primary" />
                     <span className="font-bold text-lg">Příběhy</span>
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">jako srdce aplikace</h3>
+                  <h3 className="font-semibold text-lg mb-2 text-center">jako srdce aplikace</h3>
                   <p className="mt-2 text-sm text-muted-foreground">Skutečné příběhy, anonymizované a citlivě moderované nebo vytvořené s terapeuty na základě životních zkušeností. Přinášejí strategie zvládání běžných životních výzev a podporují pocit sounáležitosti.</p>
                   <p className="mt-3 text-sm text-muted-foreground italic">"Příběhy dávají věcem smysl. Pomáhají cítit, že v tom člověk není nikdy sám." — Michaela Pompová, manažerka obsahu.</p>
                 </div>
                 <div className="glass-card rounded-xl p-6">
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center justify-center gap-3 mb-4">
                     <ShieldCheck className="size-6 text-primary" />
                     <span className="font-bold text-lg">Klid</span>
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">jako každodenní dovednost</h3>
+                  <h3 className="font-semibold text-lg mb-2 text-center">jako každodenní dovednost</h3>
                   <p className="mt-2 text-sm text-muted-foreground">Klid u nás není luxusní zážitek, ale praktická dovednost. Nabízíme krátká a srozumitelná cvičení: dechové techniky, meditace, relaxace před spaním, nebo výzvy, techniky a postupy pro okamžité zklidnění. Vše navržené tak, aby se daly použít tady a teď. V kanceláři, v tramvaji nebo doma před usnutím.</p>
                   <p className="mt-3 text-sm text-muted-foreground italic">"Calmory tvoříme pro běžný den každého z nás. Pět minut klidu, které opravdu stihneš." — Stanislav Knotek, ředitel projektu.</p>
                 </div>
                 <div className="glass-card rounded-xl p-6">
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center justify-center gap-3 mb-4">
                     <Zap className="size-6 text-primary" />
                     <span className="font-bold text-lg">Bezpečí</span>
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">jako základ důvěry</h3>
+                  <h3 className="font-semibold text-lg mb-2 text-center">jako základ důvěry</h3>
                   <p className="mt-2 text-sm text-muted-foreground">Bezpečí pro nás znamená víc než jen ochranu dat. Budujeme prostředí, kde se uživatel cítí respektován, pochopen a nikdy neohrožen. Obsah vzniká pod dohledem odborníků a je tvořen tak, aby pomáhal a neškodil. Calmory je tu pro běžný život a každodenní činnosti, kdy člověk občas ztratí rovnováhu a potřebuje se zklidnit, nadechnout a znovu najít svůj vnitřní klid.</p>
                   <p className="mt-3 text-sm text-muted-foreground italic">"Naším krédem je: Odbornost. Bezpečí. Lidskost. Obsah Calmory tvoříme tak, aby pomáhal a nikdy neškodil." — Filip Hajna, odborný garant projektu</p>
                 </div>
